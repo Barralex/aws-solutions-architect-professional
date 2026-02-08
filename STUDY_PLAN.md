@@ -10,7 +10,7 @@
 ## Progreso General
 
 ```
-[░░░░░░░░░░░░░░░░░░░░] 0/19 secciones | 11/205 lecciones
+[█░░░░░░░░░░░░░░░░░░░] 0/19 secciones | 22/205 lecciones
 ```
 
 ---
@@ -41,17 +41,17 @@
 
 ## 4. Security (28 clases | 1h 58min)
 - [x] 4.1 CloudTrail ✅ (100% quiz)
-- [ ] 4.2 CloudTrail - Solution Architecture
-- [ ] 4.3 CloudTrail - Events
-- [ ] 4.4 KMS
-- [ ] 4.5 Parameter Store
-- [ ] 4.6 Secrets Manager
-- [ ] 4.7 RDS Security
-- [ ] 4.8 SSL Encryption, SNI & MITM
-- [ ] 4.9 AWS Certificate Manager (ACM)
-- [ ] 4.10 CloudHSM
-- [ ] 4.11 Solution Architecture - SSL on ALB
-- [ ] 4.12 S3 Security
+- [x] 4.2 CloudTrail - EventBridge Integration ✅
+- [x] 4.3 CloudTrail - SA Pro ✅ (100% quiz)
+- [x] 4.4 KMS ✅ (75% quiz)
+- [x] 4.5 Parameter Store ✅ (75% quiz)
+- [x] 4.6 Secrets Manager ✅ (100% quiz)
+- [x] 4.7 RDS Security ✅ (67% quiz)
+- [x] 4.8 SSL Encryption, SNI & MITM ✅ (100% quiz)
+- [x] 4.9 AWS Certificate Manager (ACM) ✅ (67% quiz)
+- [x] 4.10 CloudHSM ✅ (67% quiz)
+- [x] 4.11 Solution Architecture - SSL on ALB ✅ (67% quiz)
+- [x] 4.12 S3 Security ⚠️ (25% quiz - REPASAR)
 - [ ] 4.13 S3 Access Points
 - [ ] 4.14 S3 Multi-Region Access Points
 - [ ] 4.15 S3 Multi-Region Access Points - Failover

@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 925
-**Lecciones completadas:** 11/205
+**Total XP:** 1575
+**Lecciones completadas:** 22/205
 
 ---
 
@@ -264,6 +264,229 @@
 
 ---
 
+### 4.3 CloudTrail - SA Pro
+**Estado:** ✅ Completado
+**Fecha:** 2026-02-08
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Detectar muchas API calls denegadas | C - CloudWatch Logs + Metric Filter | ✅ +25 XP |
+| 2 | Dónde crear Organization Trail | D - Management Account | ✅ +25 XP |
+| 3 | Reaccionar inmediatamente a TerminateInstances | C - EventBridge | ✅ +25 XP |
+| 4 | Centralizar logs multi-account | C - S3 Bucket Policy | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] CloudTrail a S3 con mejoras (Object Lock, Versioning, etc)
+- [x] Multi-account = S3 Bucket Policy
+- [x] Organization Trail en Management Account
+- [x] EventBridge para reacción inmediata, CloudWatch Logs para contar/anomalías, S3 para largo plazo
+
+---
+
+### 4.4 KMS - Key Management Service
+**Estado:** ✅ Completado
+**Fecha:** 2026-02-08
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Startup sin compliance, qué clave usar | B (incorrecto) → C - Customer/AWS Managed | ❌ |
+| 2 | Banco con control de hardware | D - CloudHSM | ✅ +25 XP |
+| 3 | Multi-región sin re-cifrar | C - Multi-Region Key | ✅ +25 XP |
+| 4 | BYOK afirmación FALSA | C - No compatible con CloudHSM | ✅ +25 XP |
+
+**Puntuación:** 3/4 (75%) ✅ APROBADO
+**XP ganado:** 75
+
+#### Conceptos dominados:
+- [x] Simétrica vs Asimétrica
+- [x] CloudHSM para control total de hardware
+- [x] Multi-Region Keys para cifrar/descifrar cross-region
+- [x] BYOK solo simétrica 256-bit, no compatible con CloudHSM
+- [ ] AWS Owned Keys no se eligen, son internas ← REPASAR
+
+---
+
+### 4.5 Parameter Store (SSM)
+**Estado:** ✅ Completado
+**Fecha:** 2026-02-08
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Permisos para parámetro encriptado | A (incorrecto) → C - SSM + KMS | ❌ |
+| 2 | AMI actualizado en CloudFormation | B - Public Parameters | ✅ +25 XP |
+| 3 | Expiración y notificación | C - Advanced + Parameter Policy | ✅ +25 XP |
+| 4 | Migrar a Secrets Manager sin cambiar código | B - /aws/reference/secretsmanager/ | ✅ +25 XP |
+
+**Puntuación:** 3/4 (75%) ✅ APROBADO
+**XP ganado:** 75
+
+#### Conceptos dominados:
+- [x] Jerarquía de parámetros por paths
+- [x] Public Parameters para AMIs
+- [x] Standard vs Advanced (policies solo en Advanced)
+- [x] Reference a Secrets Manager desde Parameter Store
+- [ ] Parámetros encriptados necesitan SSM + KMS ← REPASAR
+
+---
+
+### 4.6 Secrets Manager
+**Estado:** ✅ Completado
+**Fecha:** 2026-02-08
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Rotar RDS password automáticamente | B - Secrets Manager | ✅ +25 XP |
+| 2 | Compartir secreto cross-account | C - Resource Policy + KMS Policy | ✅ +25 XP |
+| 3 | Cómo ECS inyecta secretos | B - Env vars al boot | ✅ +25 XP |
+| 4 | Diferencia SM vs PS | B - Rotación automática | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] Rotación automática con Lambda incluida (RDS/Redshift/DocumentDB)
+- [x] Cross-account = Resource Policy + KMS Policy (NO RAM)
+- [x] ECS inyecta secretos como env vars al boot
+- [x] SM vs PS: rotación automática es la diferencia clave
+
+---
+
+### 4.7 RDS Security
+**Estado:** ✅ Completado
+**Fecha:** 2026-02-08
+
+#### Quiz (3 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | TDE para qué engines | B (incorrecto) → C - Oracle/SQL Server | ❌ |
+| 2 | IAM auth para qué engines | C - MySQL/PostgreSQL/MariaDB | ✅ +25 XP |
+| 3 | Ver queries en RDS | C - Herramientas DB específicas | ✅ +25 XP |
+
+**Puntuación:** 2/3 (67%) ✅ APROBADO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] IAM auth solo MySQL, PostgreSQL, MariaDB
+- [x] CloudTrail no trackea queries de RDS
+- [ ] TDE solo Oracle y SQL Server ← REPASAR
+
+---
+
+### 4.8 SSL Encryption, SNI & MITM
+**Estado:** ✅ Completado
+**Fecha:** 2026-02-08
+
+#### Quiz (3 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Múltiples SSL en un LB | B - ALB con SNI | ✅ +25 XP |
+| 2 | CLB con 3 apps SSL | B - 3 CLBs separados | ✅ +25 XP |
+| 3 | Protección MITM | C - HTTPS + DNSSEC | ✅ +25 XP |
+
+**Puntuación:** 3/3 (100%) ⭐ PERFECTO
+**XP ganado:** 75
+
+#### Conceptos dominados:
+- [x] SNI = múltiples SSL certs en un LB
+- [x] ALB/NLB/CloudFront tienen SNI, CLB no
+- [x] MITM prevention = HTTPS + DNSSEC
+
+---
+
+### 4.9 AWS Certificate Manager (ACM)
+**Estado:** ✅ Completado
+**Fecha:** 2026-02-08
+
+#### Quiz (3 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | ALBs en 3 regiones | B - 3 certs | ✅ +25 XP |
+| 2 | Cert subido manualmente | A (incorrecto) → C - Renewal manual | ❌ |
+| 3 | CloudFront global | C - Un solo cert | ✅ +25 XP |
+
+**Puntuación:** 2/3 (67%) ✅ APROBADO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] ACM es regional, un cert por región
+- [x] CloudFront es global, un solo cert
+- [ ] Cert subido = renewal manual ← REPASAR
+
+---
+
+### 4.10 CloudHSM
+**Estado:** ✅ Completado
+**Fecha:** 2026-02-08
+
+#### Quiz (3 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Perdiste las keys | C - AWS no puede hacer nada | ✅ +25 XP |
+| 2 | HA para CloudHSM | D (incorrecto) → B - Mínimo 2 HSMs en 2 AZs | ❌ |
+| 3 | Gestionar usuarios | C - Dentro del HSM | ✅ +25 XP |
+
+**Puntuación:** 2/3 (67%) ✅ APROBADO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] AWS no recupera keys perdidas
+- [x] Usuarios se manejan dentro del HSM (no IAM)
+- [ ] HA = mínimo 2 HSMs en 2 AZs (manual, no automático) ← REPASAR
+
+---
+
+### 4.11 Solution Architecture - SSL on ALB
+**Estado:** ✅ Completado
+**Fecha:** 2026-02-08
+
+#### Quiz (3 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Más seguro, key no expuesta | C - CloudHSM offloading | ✅ +25 XP |
+| 2 | Simple y escalable | C - ALB + ACM | ✅ +25 XP |
+| 3 | Cert para EC2 directo | A (incorrecto) → B - SSM Parameter Store | ❌ |
+
+**Puntuación:** 2/3 (67%) ✅ APROBADO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] CloudHSM offloading = más seguro (key nunca sale)
+- [x] ALB + ACM = simple y escalable
+- [ ] ACM no exporta certs, EC2 usa SSM ← REPASAR
+
+---
+
+### 4.12 S3 Security
+**Estado:** ⚠️ Repasar
+**Fecha:** 2026-02-08
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | SSE-KMS bucket público | A (incorrecto) → B - No puede leer sin KMS | ❌ |
+| 2 | Forzar HTTPS | B (incorrecto) → C - aws:SecureTransport | ❌ |
+| 3 | VPC Endpoint condition | D (incorrecto) → B - aws:SourceVpc | ❌ |
+| 4 | Compliance no delete | C - Object Lock WORM | ✅ +25 XP |
+
+**Puntuación:** 1/4 (25%) ❌ NO APROBADO
+**XP ganado:** 25
+
+#### Conceptos a REPASAR:
+- [ ] SSE-KMS protege aunque bucket sea público
+- [ ] aws:SecureTransport para forzar HTTPS
+- [ ] aws:SourceVpc / aws:SourceVpce para VPC endpoints
+- [ ] aws:SourceIp es solo para IP públicas
+- [x] Object Lock = WORM para compliance
+
+---
+
 ## Historial de sesiones
 
 | Fecha | Sección | Lección | XP | Resultado |
@@ -279,4 +502,14 @@
 | 2026-02-06 | 3 | 3.9 Control Tower | 100 | ⭐ Perfecto (100%) |
 | 2026-02-06 | 3 | 3.10 RAM | 75 | ✅ Aprobado (75%) |
 | 2026-02-06 | 4 | 4.1 CloudTrail | 100 | ⭐ Perfecto (100%) |
+| 2026-02-08 | 4 | 4.3 CloudTrail - SA Pro | 100 | ⭐ Perfecto (100%) |
+| 2026-02-08 | 4 | 4.4 KMS | 75 | ✅ Aprobado (75%) |
+| 2026-02-08 | 4 | 4.5 Parameter Store | 75 | ✅ Aprobado (75%) |
+| 2026-02-08 | 4 | 4.6 Secrets Manager | 100 | ⭐ Perfecto (100%) |
+| 2026-02-08 | 4 | 4.7 RDS Security | 50 | ✅ Aprobado (67%) |
+| 2026-02-08 | 4 | 4.8 SSL, SNI & MITM | 75 | ⭐ Perfecto (100%) |
+| 2026-02-08 | 4 | 4.9 ACM | 50 | ✅ Aprobado (67%) |
+| 2026-02-08 | 4 | 4.10 CloudHSM | 50 | ✅ Aprobado (67%) |
+| 2026-02-08 | 4 | 4.11 SSL on ALB | 50 | ✅ Aprobado (67%) |
+| 2026-02-08 | 4 | 4.12 S3 Security | 25 | ❌ Repasar (25%) |
 

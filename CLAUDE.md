@@ -11,19 +11,110 @@ Proyecto de estudio para el curso AWS Solutions Architect Professional de Udemy.
 
 ---
 
+## Perfil del estudiante
+
+- **Rol:** Solutions Architect Senior
+- **Foco:** Servicios offshore desde Uruguay a clientes americanos (via Variix)
+- **Realidad:** Usa servicios AWS comunes día a día, pero hay servicios "enterprise" que nunca toca (CloudHSM, custom keys, etc.)
+- **Problema:** Conceptos que nunca usa en la práctica son difíciles de retener
+- **Cómo enseñar servicios "raros":**
+  1. Por qué existe (qué problema resuelve)
+  2. Quién lo usa (bancos, gobierno, compliance pesado)
+  3. Qué cae en el examen (sin perderse en detalles)
+  4. Regla simple para recordar
+
+---
+
 ## WORKFLOW PARA CADA LECCIÓN
 
 **JAMÁS de memoria, SIEMPRE del curso.**
 
 ### Pasos obligatorios para cada video:
 
-1. **Abrir browser** → Navegar a Udemy → Ir al video
-2. **Extraer transcript** → Click en botón de transcripción
-3. **Crear archivo MD** → `/transcripts/{seccion}/{numero}-{nombre}.md`
-4. **Enseñar paso a paso** → Concepto por concepto con ASCII, NO todo de golpe
-5. **Quiz** → 4 preguntas, variar posición de respuestas correctas
+1. **Pedir transcript** → Usuario pega el transcript (NO usar MCP/Playwright para transcripts)
+2. **Crear archivo MD** → `/transcripts/{seccion}/{numero}-{nombre}.md`
+
+**IMPORTANTE:** Si necesito verificar estructura del curso, usar:
+https://www.udemy.com/course/aws-solutions-architect-professional/
+NUNCA inventar nombres de lecciones. Udemy es la fuente de verdad.
+4. **Enseñar paso a paso** → VER FORMATO ABAJO
+5. **Quiz** → VER FORMATO ABAJO
 6. **Actualizar progreso** → `quiz-results.md` y `STUDY_PLAN.md`
 7. **Siguiente lección** → Repetir
+
+---
+
+## FORMATO DE ENSEÑANZA (OBLIGATORIO)
+
+### Cómo enseñar cada lección:
+
+**MODO WIZARD - Concepto por concepto:**
+
+1. Analizar el transcript y extraer los conceptos clave (3-6 conceptos por lección)
+2. Presentar UN concepto a la vez con:
+   - Explicación corta y clara
+   - Diagrama ASCII si aplica
+   - Ejemplo práctico si aplica
+3. Esperar confirmación del usuario antes de pasar al siguiente
+4. Repetir hasta cubrir todos los conceptos
+
+**Ejemplo de flujo:**
+```
+Yo: "Concepto 1/4: CloudTrail a S3..."
+    [explicación + ASCII]
+    "Entendido? Seguimos?"
+
+Usuario: "si"
+
+Yo: "Concepto 2/4: Multi-Account..."
+    [explicación + ASCII]
+    "Listo? Siguiente?"
+
+... y así hasta terminar
+```
+
+**NO HACER:**
+- Tirar todos los conceptos de golpe
+- Saltear la explicación y ir directo al quiz
+- Asumir que el usuario entiende sin preguntar
+
+---
+
+## FORMATO DE QUIZ (OBLIGATORIO)
+
+### Cómo hacer el quiz:
+
+1. **UNA pregunta a la vez** - NO las 4 juntas
+2. **Esperar respuesta** antes de mostrar la siguiente
+3. **Feedback inmediato** - decir si estuvo bien o mal y por qué
+4. **Variar posición** de respuestas correctas (no siempre A o B)
+
+**Ejemplo de flujo:**
+```
+Yo: "Quiz - Pregunta 1/4:
+    [pregunta]
+    A) ...
+    B) ...
+    C) ...
+    D) ..."
+
+Usuario: "B"
+
+Yo: "Correcto! +25 XP
+    [breve explicación de por qué]
+
+    Pregunta 2/4:
+    ..."
+
+... y así hasta terminar
+```
+
+5. **Al finalizar el quiz:**
+   - Mostrar puntuación (ej: 3/4 - 75%)
+   - Mostrar XP ganado
+   - Actualizar `quiz-results.md`
+   - Actualizar estado en este archivo (CLAUDE.md)
+   - Preguntar si seguimos con la siguiente lección
 
 ### Estructura de archivos:
 ```
@@ -41,5 +132,5 @@ Proyecto de estudio para el curso AWS Solutions Architect Professional de Udemy.
 
 ### Estado actual:
 - **Sección:** 4 - Security
-- **Lección actual:** 4.2 CloudTrail - EventBridge Integration
-- **Próxima:** 4.3 CloudTrail - SA Pro
+- **Lección completada:** 4.12 S3 Security ⚠️ (REPASAR)
+- **Próxima:** 4.13 S3 Access Points
