@@ -10,7 +10,7 @@
 ## Progreso General
 
 ```
-[█░░░░░░░░░░░░░░░░░░░] 0/19 secciones | 22/205 lecciones
+[█░░░░░░░░░░░░░░░░░░░] 0/19 secciones | 25/205 lecciones
 ```
 
 ---
@@ -52,23 +52,22 @@
 - [x] 4.10 CloudHSM ✅ (67% quiz)
 - [x] 4.11 Solution Architecture - SSL on ALB ✅ (67% quiz)
 - [x] 4.12 S3 Security ⚠️ (25% quiz - REPASAR)
-- [ ] 4.13 S3 Access Points
-- [ ] 4.14 S3 Multi-Region Access Points
-- [ ] 4.15 S3 Multi-Region Access Points - Failover
-- [ ] 4.16 S3 Object Lambda
-- [ ] 4.17 DDoS and AWS Shield
-- [ ] 4.18 AWS WAF
-- [ ] 4.19 AWS Firewall Manager
-- [ ] 4.20 Blocking an IP Address
-- [ ] 4.21 Amazon Inspector
-- [ ] 4.22 AWS Config
-- [ ] 4.23 AWS Managed Logs
-- [ ] 4.24 Amazon GuardDuty
-- [ ] 4.25 IAM Advanced Policies
-- [ ] 4.26 EC2 Instance Connect
-- [ ] 4.27 AWS Security Hub
-- [ ] 4.28 Amazon Detective
-- [ ] 4.29 Security Quiz
+- [x] 4.13 S3 Access Points ✅ (100% quiz)
+- [x] 4.14 S3 Multi-Region Access Points ✅ (100% quiz)
+- [x] 4.15 S3 Object Lambda ✅ (100% quiz)
+- [ ] 4.16 DDoS and AWS Shield
+- [ ] 4.17 AWS WAF
+- [ ] 4.18 AWS Firewall Manager
+- [ ] 4.19 Blocking an IP Address
+- [ ] 4.20 Amazon Inspector
+- [ ] 4.21 AWS Config
+- [ ] 4.22 AWS Managed Logs
+- [ ] 4.23 Amazon GuardDuty
+- [ ] 4.24 IAM Advanced Policies
+- [ ] 4.25 EC2 Instance Connect
+- [ ] 4.26 AWS Security Hub
+- [ ] 4.27 Amazon Detective
+- [ ] 4.28 Security Quiz
 
 ## 5. Compute & Load Balancing (26 clases | 2h 41min)
 - [ ] 5.1 Solution Architecture on AWS

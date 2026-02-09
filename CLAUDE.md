@@ -87,7 +87,10 @@ Yo: "Concepto 2/4: Multi-Account..."
 1. **UNA pregunta a la vez** - NO las 4 juntas
 2. **Esperar respuesta** antes de mostrar la siguiente
 3. **Feedback inmediato** - decir si estuvo bien o mal y por qué
-4. **Variar posición** de respuestas correctas (no siempre A o B)
+4. **RANDOMIZAR POSICIÓN** de respuestas correctas:
+   - Usar A, B, C, D de forma aleatoria real
+   - NO caer en patrones (ej: siempre B y C)
+   - Antes de armar el quiz, decidir posiciones: ej. [D, A, C, B]
 
 **Ejemplo de flujo:**
 ```
@@ -132,5 +135,5 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 4 - Security
-- **Lección completada:** 4.12 S3 Security ⚠️ (REPASAR)
-- **Próxima:** 4.13 S3 Access Points
+- **Lección completada:** 4.16 DDoS and AWS Shield ✅
+- **Próxima:** 4.17 AWS WAF - Web Application Firewall

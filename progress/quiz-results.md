@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 1575
-**Lecciones completadas:** 22/205
+**Total XP:** 1900
+**Lecciones completadas:** 26/205
 
 ---
 
@@ -487,6 +487,95 @@
 
 ---
 
+### 4.13 S3 Access Points
+**Estado:** ✅ Completado
+**Fecha:** 2026-02-08
+
+#### Quiz (2 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Simplificar bucket policy | B - S3 Access Points | ✅ +25 XP |
+| 2 | VPC origin necesita | C - VPC Endpoint | ✅ +25 XP |
+
+**Puntuación:** 2/2 (100%) ⭐ PERFECTO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] Access Points = simplificar bucket policies complejas
+- [x] Cada AP tiene su DNS y policy
+- [x] VPC origin requiere VPC Endpoint
+
+---
+
+### 4.14 S3 Multi-Region Access Points
+**Estado:** ✅ Completado
+**Fecha:** 2026-02-08
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Global users, low latency, single endpoint | C - MRAP con CRR | ✅ +25 XP |
+| 2 | Componente obligatorio | B - Cross-Region Replication bidireccional | ✅ +25 XP |
+| 3 | Virginia falla, qué pasa | B - Ruteo automático a Ireland | ✅ +25 XP |
+| 4 | Diferencia AP vs MRAP | B - AP un bucket, MRAP múltiples regiones | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] MRAP = un endpoint global, múltiples buckets
+- [x] Requiere S3 Cross-Region Replication bidireccional
+- [x] Ruteo automático por latencia
+- [x] Failover automático si región falla
+
+---
+
+### 4.15 S3 Object Lambda
+**Estado:** ✅ Completado
+**Fecha:** 2026-02-08
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Redactar PII sin duplicar bucket | A - S3 Object Lambda | ✅ +25 XP |
+| 2 | Componentes necesarios | D - Bucket + AP + Lambda + Object Lambda AP | ✅ +25 XP |
+| 3 | Diferencia AP vs Object Lambda | A - Permisos vs transformar contenido | ✅ +25 XP |
+| 4 | Watermark personalizado por usuario | C - S3 Object Lambda | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] Object Lambda = middleware que transforma al vuelo
+- [x] Requiere: Bucket + Access Point + Lambda + Object Lambda Access Point
+- [x] Access Points = permisos, Object Lambda = transformación
+- [x] Casos: redactar PII, enriquecer, watermark, resize, convertir formatos
+
+---
+
+### 4.16 DDoS and AWS Shield
+**Estado:** ✅ Completado
+**Fecha:** 2026-02-08
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Protección default sin presupuesto | B (incorrecto) → D - Shield Standard | ❌ |
+| 2 | Cost protection durante DDoS | A - Shield Advanced | ✅ +25 XP |
+| 3 | Dónde se filtra antes de llegar a región | C - CloudFront + Route 53 (Edge) | ✅ +25 XP |
+| 4 | Diferencia Shield vs WAF | B - Shield DDoS L3/L4, WAF reglas L7 | ✅ +25 XP |
+
+**Puntuación:** 3/4 (75%) ✅ APROBADO
+**XP ganado:** 75
+
+#### Conceptos dominados:
+- [x] Shield Advanced = $3K/mes, cost protection, 24/7 DRT
+- [x] CloudFront + Route 53 = Shield en el edge
+- [x] Shield = anti-DDoS, WAF = filtro por reglas L7
+- [ ] Shield Standard = gratis y ON por default ← REPASAR
+
+---
+
 ## Historial de sesiones
 
 | Fecha | Sección | Lección | XP | Resultado |
@@ -512,4 +601,7 @@
 | 2026-02-08 | 4 | 4.10 CloudHSM | 50 | ✅ Aprobado (67%) |
 | 2026-02-08 | 4 | 4.11 SSL on ALB | 50 | ✅ Aprobado (67%) |
 | 2026-02-08 | 4 | 4.12 S3 Security | 25 | ❌ Repasar (25%) |
+| 2026-02-08 | 4 | 4.13 S3 Access Points | 50 | ⭐ Perfecto (100%) |
+| 2026-02-08 | 4 | 4.14 S3 Multi-Region Access Points | 100 | ⭐ Perfecto (100%) |
+| 2026-02-08 | 4 | 4.15 S3 Object Lambda | 100 | ⭐ Perfecto (100%) |
 
