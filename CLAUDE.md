@@ -135,5 +135,5 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 4 - Security
-- **Lección completada:** 4.16 DDoS and AWS Shield ✅
-- **Próxima:** 4.17 AWS WAF - Web Application Firewall
+- **Lección completada:** 4.27 Amazon Detective ✅
+- **Próxima:** 4.28 Security Quiz (quiz final de sección)

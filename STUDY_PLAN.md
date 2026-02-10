@@ -55,18 +55,18 @@
 - [x] 4.13 S3 Access Points ✅ (100% quiz)
 - [x] 4.14 S3 Multi-Region Access Points ✅ (100% quiz)
 - [x] 4.15 S3 Object Lambda ✅ (100% quiz)
-- [ ] 4.16 DDoS and AWS Shield
-- [ ] 4.17 AWS WAF
-- [ ] 4.18 AWS Firewall Manager
-- [ ] 4.19 Blocking an IP Address
-- [ ] 4.20 Amazon Inspector
-- [ ] 4.21 AWS Config
-- [ ] 4.22 AWS Managed Logs
-- [ ] 4.23 Amazon GuardDuty
-- [ ] 4.24 IAM Advanced Policies
-- [ ] 4.25 EC2 Instance Connect
-- [ ] 4.26 AWS Security Hub
-- [ ] 4.27 Amazon Detective
+- [x] 4.16 DDoS and AWS Shield ✅ (100% quiz)
+- [x] 4.17 AWS WAF ✅ (100% quiz)
+- [x] 4.18 AWS Firewall Manager ✅ (100% quiz)
+- [x] 4.19 Blocking an IP Address ✅ (100% quiz)
+- [x] 4.20 Amazon Inspector ✅ (100% quiz)
+- [x] 4.21 AWS Config ⚠️ (25% quiz - REPASAR)
+- [x] 4.22 AWS Managed Logs ✅ (75% quiz)
+- [x] 4.23 Amazon GuardDuty ✅ (75% quiz)
+- [x] 4.24 IAM Advanced Policies ✅ (75% quiz)
+- [x] 4.25 EC2 Instance Connect ✅ (100% quiz)
+- [x] 4.26 AWS Security Hub ✅ (75% quiz)
+- [x] 4.27 Amazon Detective ✅ (100% quiz)
 - [ ] 4.28 Security Quiz
 
 ## 5. Compute & Load Balancing (26 clases | 2h 41min)
