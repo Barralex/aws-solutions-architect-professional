@@ -70,10 +70,10 @@
 - [ ] 4.28 Security Quiz
 
 ## 5. Compute & Load Balancing (26 clases | 2h 41min)
-- [ ] 5.1 Solution Architecture on AWS
-- [ ] 5.2 EC2
-- [ ] 5.3 High Performance Computing (HPC)
-- [ ] 5.4 Auto Scaling
+- [x] 5.1 Solution Architecture on AWS ✅ (intro, sin quiz)
+- [x] 5.2 EC2 ⚠️ (50% quiz - REPASAR)
+- [x] 5.3 High Performance Computing (HPC) ✅ (100% quiz)
+- [x] 5.4 Auto Scaling ✅ (100% quiz)
 - [ ] 5.5 Auto Scaling Update Strategies
 - [ ] 5.6 Spot Instances & Spot Fleet
 - [ ] 5.7 Amazon ECS
