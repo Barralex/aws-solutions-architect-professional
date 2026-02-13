@@ -1,6 +1,15 @@
-# aws-solutions-architect-professional
+# AWS Solutions Architect Professional
 
 Study notes for AWS SAP-C02, assisted by Claude.
+
+## 📊 Progress
+
+```
+███████████░░░░░░░░░░░░░░░░░░░░ 23% (48/205 lessons)
+```
+
+**Current section:** 5 - Compute & Load Balancing
+**Next lesson:** 5.12 AWS Lambda - Functions
 
 ## What's this
 
@@ -16,9 +25,9 @@ Going through Stephane Maarek's Udemy course. Instead of taking notes by hand, I
 ```
 /transcripts/          # Notes by section
   /3-Identity/         # IAM, STS, Cognito, Organizations...
-  /4-Security/         # CloudTrail, KMS, WAF...
-/progress/             # Quiz results + XP
-STUDY_PLAN.md          # 205 lessons, 19 sections
+  /4-Security/         # CloudTrail, KMS, WAF, Shield...
+  /5-Compute/          # EC2, ECS, EKS, Lambda...
+STUDY_PLAN.md          # Full 205 lessons checklist
 ```
 
 ---

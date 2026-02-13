@@ -74,13 +74,13 @@
 - [x] 5.2 EC2 ⚠️ (50% quiz - REPASAR)
 - [x] 5.3 High Performance Computing (HPC) ✅ (100% quiz)
 - [x] 5.4 Auto Scaling ✅ (100% quiz)
-- [ ] 5.5 Auto Scaling Update Strategies
-- [ ] 5.6 Spot Instances & Spot Fleet
-- [ ] 5.7 Amazon ECS
-- [ ] 5.8 Amazon ECR
-- [ ] 5.9 Amazon EKS
-- [ ] 5.10 AWS App Runner
-- [ ] 5.11 ECS Anywhere & EKS Anywhere
+- [x] 5.5 Auto Scaling Update Strategies ✅ (75% quiz)
+- [x] 5.6 Spot Instances & Spot Fleet ✅ (100% quiz)
+- [x] 5.7 Amazon ECS ⚠️ (50% quiz - REPASAR)
+- [x] 5.8 Amazon ECR ✅ (75% quiz)
+- [x] 5.9 Amazon EKS ✅ (100% quiz)
+- [x] 5.10 AWS App Runner ✅ (100% quiz)
+- [x] 5.11 ECS Anywhere & EKS Anywhere ✅ (100% quiz)
 - [ ] 5.12 AWS Lambda - Functions
 - [ ] 5.13 AWS Lambda - in VPC
 - [ ] 5.14 Elastic Load Balancers - Basics
