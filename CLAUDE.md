@@ -134,6 +134,35 @@ Yo: "Correcto! +25 XP
 ```
 
 ### Estado actual:
-- **Sección:** 4 - Security
-- **Lección completada:** 4.27 Amazon Detective ✅
-- **Próxima:** 4.28 Security Quiz (quiz final de sección)
+- **Sección:** 5 - Compute & Load Balancing
+- **Lección completada:** 5.14 Elastic Load Balancers - Basics ✅
+- **Próxima:** 5.15 Elastic Load Balancers - Advanced
+
+---
+
+## WORKFLOW DE COMMITS
+
+Cuando el usuario pida hacer commit:
+
+1. **Actualizar README.md** con el progreso actual:
+   - Calcular % completado: (lecciones completadas / 205) * 100
+   - Actualizar progress bar ASCII
+   - Actualizar "Current section" y "Next lesson"
+
+2. **Formato del progress bar:**
+   ```
+   █ = 3.33% cada bloque (30 bloques total)
+   ░ = bloques vacíos
+
+   Ejemplo 23%: ███████░░░░░░░░░░░░░░░░░░░░░░░ 23% (48/205 lessons)
+   ```
+
+3. **Mensaje de commit:**
+   - En inglés
+   - Simple y descriptivo
+   - SIN Co-Authored-By
+
+4. **Ejemplo:**
+   ```
+   Add Compute section lessons 5.12-5.14
+   ```

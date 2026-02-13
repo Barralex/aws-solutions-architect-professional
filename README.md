@@ -5,11 +5,11 @@ Study notes for AWS SAP-C02, assisted by Claude.
 ## 📊 Progress
 
 ```
-███████████░░░░░░░░░░░░░░░░░░░░ 23% (48/205 lessons)
+████████░░░░░░░░░░░░░░░░░░░░░░ 25% (51/205 lessons)
 ```
 
 **Current section:** 5 - Compute & Load Balancing
-**Next lesson:** 5.12 AWS Lambda - Functions
+**Next lesson:** 5.15 Elastic Load Balancers - Advanced
 
 ## What's this
 

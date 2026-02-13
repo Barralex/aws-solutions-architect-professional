@@ -81,9 +81,9 @@
 - [x] 5.9 Amazon EKS ✅ (100% quiz)
 - [x] 5.10 AWS App Runner ✅ (100% quiz)
 - [x] 5.11 ECS Anywhere & EKS Anywhere ✅ (100% quiz)
-- [ ] 5.12 AWS Lambda - Functions
-- [ ] 5.13 AWS Lambda - in VPC
-- [ ] 5.14 Elastic Load Balancers - Basics
+- [x] 5.12 AWS Lambda - Functions ✅ (100% quiz)
+- [x] 5.13 AWS Lambda - in VPC ✅ (100% quiz)
+- [x] 5.14 Elastic Load Balancers - Basics ✅ (100% quiz)
 - [ ] 5.15 Elastic Load Balancers - Advanced
 - [ ] 5.16 API Gateway
 - [ ] 5.17 API Gateway - Caching & Security
