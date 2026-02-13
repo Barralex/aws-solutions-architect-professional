@@ -1,5 +1,7 @@
 # AWS Solutions Architect Professional
 
+<img src="https://images.credly.com/images/2d84e428-9078-49b6-a804-13c15383d0de/image.png" width="150" alt="AWS Certified Solutions Architect Professional">
+
 Study notes for AWS SAP-C02, assisted by Claude.
 
 ## 📊 Progress
