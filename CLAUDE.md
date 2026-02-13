@@ -135,8 +135,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 5 - Compute & Load Balancing
-- **Lección completada:** 5.14 Elastic Load Balancers - Basics ✅
-- **Próxima:** 5.15 Elastic Load Balancers - Advanced
+- **Lección completada:** 5.16 API Gateway ✅
+- **Próxima:** 5.17 API Gateway - Caching & Security
 
 ---
 
