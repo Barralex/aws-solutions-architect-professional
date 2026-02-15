@@ -86,13 +86,13 @@
 - [x] 5.14 Elastic Load Balancers - Basics ✅ (100% quiz)
 - [x] 5.15 Elastic Load Balancers - Advanced ✅ (100% quiz)
 - [x] 5.16 API Gateway ✅ (100% quiz)
-- [ ] 5.17 API Gateway - Caching & Security
-- [ ] 5.18 AWS AppSync
-- [ ] 5.19 Route 53 - Basics
-- [ ] 5.20 Route 53 - Routing Policies
-- [ ] 5.21 Route 53 - Resolvers
-- [ ] 5.22 AWS Global Accelerator
-- [ ] 5.23 Comparison of Solutions Architecture
+- [x] 5.17 API Gateway - Caching & Security ✅ (100% quiz)
+- [x] 5.18 AWS AppSync ✅ (100% quiz)
+- [x] 5.19 Route 53 - Basics ✅ (100% quiz)
+- [x] 5.20 Route 53 - Routing Policies ✅ (100% quiz)
+- [x] 5.21 Route 53 - Resolvers ✅ (100% quiz)
+- [x] 5.22 AWS Global Accelerator ✅ (100% quiz)
+- [x] 5.23 Comparison of Solutions Architecture ✅ (100% quiz)
 - [ ] 5.24 AWS Outposts
 - [ ] 5.25 AWS WaveLength
 - [ ] 5.26 AWS Local Zones

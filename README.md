@@ -7,11 +7,11 @@ Study notes for AWS SAP-C02, assisted by Claude.
 ## 📊 Progress
 
 ```
-████████░░░░░░░░░░░░░░░░░░░░░░ 26% (53/205 lessons)
+█████████░░░░░░░░░░░░░░░░░░░░░ 29% (60/205 lessons)
 ```
 
 **Current section:** 5 - Compute & Load Balancing
-**Next lesson:** 5.17 API Gateway - Caching & Security
+**Next lesson:** 5.24 AWS Outposts
 
 ## What's this
 

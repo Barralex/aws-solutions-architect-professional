@@ -135,8 +135,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 5 - Compute & Load Balancing
-- **Lección completada:** 5.16 API Gateway ✅
-- **Próxima:** 5.17 API Gateway - Caching & Security
+- **Lección completada:** 5.23 Comparison of Solutions Architecture ✅
+- **Próxima:** 5.24 AWS Outposts
 
 ---
 
