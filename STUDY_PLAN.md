@@ -93,10 +93,10 @@
 - [x] 5.21 Route 53 - Resolvers ✅ (100% quiz)
 - [x] 5.22 AWS Global Accelerator ✅ (100% quiz)
 - [x] 5.23 Comparison of Solutions Architecture ✅ (100% quiz)
-- [ ] 5.24 AWS Outposts
-- [ ] 5.25 AWS WaveLength
-- [ ] 5.26 AWS Local Zones
-- [ ] 5.27 Compute & Load Balancing Quiz
+- [x] 5.24 AWS Outposts ✅ (100% quiz)
+- [x] 5.25 AWS WaveLength ✅ (100% quiz)
+- [x] 5.26 AWS Local Zones ✅ (100% quiz)
+- [x] 5.27 Compute & Load Balancing Quiz ✅
 
 ## 6. Storage (13 clases | 1h 8min)
 - [ ] 6.1 EBS & Local Instance Store

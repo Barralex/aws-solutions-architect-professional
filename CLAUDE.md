@@ -134,9 +134,9 @@ Yo: "Correcto! +25 XP
 ```
 
 ### Estado actual:
-- **Sección:** 5 - Compute & Load Balancing
-- **Lección completada:** 5.23 Comparison of Solutions Architecture ✅
-- **Próxima:** 5.24 AWS Outposts
+- **Sección:** 6 - Storage
+- **Lección completada:** 5.27 Compute & Load Balancing Quiz ✅ (sección 5 completada!)
+- **Próxima:** 6.1 EBS & Local Instance Store
 
 ---
 
