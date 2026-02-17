@@ -14,7 +14,7 @@ Proyecto de estudio para el curso AWS Solutions Architect Professional de Udemy.
 ## Perfil del estudiante
 
 - **Rol:** Solutions Architect Senior
-- **Foco:** Servicios offshore desde Uruguay a clientes americanos (via Variix)
+- **Foco:** Servicios offshore desde Uruguay a clientes americanos (via Vairix)
 - **Realidad:** Usa servicios AWS comunes día a día, pero hay servicios "enterprise" que nunca toca (CloudHSM, custom keys, etc.)
 - **Problema:** Conceptos que nunca usa en la práctica son difíciles de retener
 - **Cómo enseñar servicios "raros":**
