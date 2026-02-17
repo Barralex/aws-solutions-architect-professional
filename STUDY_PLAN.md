@@ -100,18 +100,18 @@
 
 ## 6. Storage (13 clases | 1h 8min)
 - [x] 6.1 EBS & Local Instance Store ✅ (100% quiz)
-- [ ] 6.2 Amazon EFS
-- [ ] 6.3 Amazon S3
-- [ ] 6.4 Amazon S3 - Replication
-- [ ] 6.5 Amazon S3 - Storage Classes
-- [ ] 6.6 S3 Solution Architecture
-- [ ] 6.7 Amazon FSx
-- [ ] 6.8 Amazon FSx - Solution Architecture
-- [ ] 6.9 AWS DataSync
-- [ ] 6.10 AWS DataSync - Solution Architecture
-- [ ] 6.11 AWS Data Exchange
-- [ ] 6.12 AWS Transfer Family
-- [ ] 6.13 AWS Storage Services Price Comparison
+- [x] 6.2 Amazon EFS ✅ (100% quiz)
+- [x] 6.3 Amazon S3 ✅ (75% quiz)
+- [x] 6.4 Amazon S3 - Storage Class Analysis ✅
+- [x] 6.5 Amazon S3 - Storage Lens ✅ (100% quiz)
+- [x] 6.6 S3 Solution Architecture ✅ (100% quiz)
+- [x] 6.7 Amazon FSx ⚠️ (0% quiz - REPASAR)
+- [x] 6.8 Amazon FSx - Solution Architecture ✅ (100% quiz)
+- [x] 6.9 AWS DataSync ✅ (100% quiz)
+- [x] 6.10 AWS DataSync - Solution Architecture ✅ (100% quiz)
+- [x] 6.11 AWS Data Exchange ✅ (100% quiz)
+- [x] 6.12 AWS Transfer Family ⚠️ (0% quiz - REPASAR endpoint types)
+- [x] 6.13 AWS Storage Services Price Comparison ✅ (100% quiz)
 - [ ] 6.14 Storage Quiz
 
 ## 7. Caching (6 clases | 36min)

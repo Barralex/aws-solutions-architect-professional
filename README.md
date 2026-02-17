@@ -7,11 +7,11 @@ Study notes for AWS SAP-C02, assisted by Claude.
 ## 📊 Progress
 
 ```
-█████████░░░░░░░░░░░░░░░░░░░░░ 31% (64/205 lessons)
+███████████░░░░░░░░░░░░░░░░░░░ 38% (77/205 lessons)
 ```
 
-**Current section:** 6 - Storage
-**Next lesson:** 6.2 EFS
+**Current section:** 6 - Storage (almost done)
+**Next lesson:** 7.1 CloudFront Basics
 
 ## What's this
 

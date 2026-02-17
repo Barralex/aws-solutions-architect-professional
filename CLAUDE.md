@@ -78,6 +78,17 @@ Yo: "Concepto 2/4: Multi-Account..."
 - Saltear la explicación y ir directo al quiz
 - Asumir que el usuario entiende sin preguntar
 
+**SIEMPRE dar ejemplos de vida real (offshore SA):**
+- En CADA concepto, no solo cuando no entiende
+- Formato: Cliente (tipo/ubicación) → Problema → Solución con el servicio
+- Ejemplos relevantes: Fintech Miami, Startup NYC, Enterprise en Texas, etc.
+- Mostrar qué pasa SI NO usás el servicio (consecuencia real)
+
+**CUANDO DICE "me cuesta" o "hacelo sencillo/conciso":**
+- Tabla "VES EN EXAMEN → RESPUESTA" (sin rodeos)
+- Quiz de 1 pregunta y seguir
+- No aburrir con detalles técnicos
+
 ---
 
 ## FORMATO DE QUIZ (OBLIGATORIO)
@@ -135,8 +146,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 6 - Storage
-- **Lección completada:** 6.1 EBS & Local Instance Store ✅
-- **Próxima:** 6.2 EFS
+- **Lección completada:** 6.13 Storage Services Price Comparison ✅
+- **Próxima:** 6.14 Storage Quiz (fin de sección)
 
 ---
 
