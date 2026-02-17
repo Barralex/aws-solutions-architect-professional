@@ -7,11 +7,11 @@ Study notes for AWS SAP-C02, assisted by Claude.
 ## 📊 Progress
 
 ```
-█████████░░░░░░░░░░░░░░░░░░░░░ 31% (63/205 lessons)
+█████████░░░░░░░░░░░░░░░░░░░░░ 31% (64/205 lessons)
 ```
 
 **Current section:** 6 - Storage
-**Next lesson:** 6.1 EBS & Local Instance Store
+**Next lesson:** 6.2 EFS
 
 ## What's this
 

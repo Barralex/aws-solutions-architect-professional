@@ -99,7 +99,7 @@
 - [x] 5.27 Compute & Load Balancing Quiz ✅
 
 ## 6. Storage (13 clases | 1h 8min)
-- [ ] 6.1 EBS & Local Instance Store
+- [x] 6.1 EBS & Local Instance Store ✅ (100% quiz)
 - [ ] 6.2 Amazon EFS
 - [ ] 6.3 Amazon S3
 - [ ] 6.4 Amazon S3 - Replication

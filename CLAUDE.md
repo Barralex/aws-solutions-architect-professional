@@ -135,8 +135,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 6 - Storage
-- **Lección completada:** 5.27 Compute & Load Balancing Quiz ✅ (sección 5 completada!)
-- **Próxima:** 6.1 EBS & Local Instance Store
+- **Lección completada:** 6.1 EBS & Local Instance Store ✅
+- **Próxima:** 6.2 EFS
 
 ---
 
