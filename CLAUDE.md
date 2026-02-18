@@ -145,9 +145,9 @@ Yo: "Correcto! +25 XP
 ```
 
 ### Estado actual:
-- **Sección:** 6 - Storage
-- **Lección completada:** 6.13 Storage Services Price Comparison ✅
-- **Próxima:** 6.14 Storage Quiz (fin de sección)
+- **Sección:** 7 - Caching
+- **Lección completada:** 7.2 CloudFront Advanced ✅
+- **Próxima:** 7.3 Lambda@Edge
 
 ---
 

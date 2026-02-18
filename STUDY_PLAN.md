@@ -115,8 +115,8 @@
 - [ ] 6.14 Storage Quiz
 
 ## 7. Caching (6 clases | 36min)
-- [ ] 7.1 CloudFront - Basics
-- [ ] 7.2 CloudFront - Advanced
+- [x] 7.1 CloudFront - Basics ✅ (100% quiz)
+- [x] 7.2 CloudFront - Advanced ✅ (100% quiz)
 - [ ] 7.3 Lambda@Edge
 - [ ] 7.4 Lambda@Edge - Solution Architecture
 - [ ] 7.5 Amazon ElastiCache
