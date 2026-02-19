@@ -145,9 +145,9 @@ Yo: "Correcto! +25 XP
 ```
 
 ### Estado actual:
-- **Sección:** 7 - Caching
-- **Lección completada:** 7.6 Handling Extreme Rates ✅
-- **Próxima:** 7.7 Caching Quiz (fin de sección)
+- **Sección:** 8 - Databases
+- **Lección completada:** 7.7 Caching Quiz ✅
+- **Próxima:** 8.1 DynamoDB
 
 ---
 
