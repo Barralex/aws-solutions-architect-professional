@@ -146,8 +146,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 7 - Caching
-- **Lección completada:** 7.2 CloudFront Advanced ✅
-- **Próxima:** 7.3 Lambda@Edge
+- **Lección completada:** 7.6 Handling Extreme Rates ✅
+- **Próxima:** 7.7 Caching Quiz (fin de sección)
 
 ---
 
