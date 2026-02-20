@@ -146,8 +146,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 8 - Databases
-- **Lección completada:** 7.7 Caching Quiz ✅
-- **Próxima:** 8.1 DynamoDB
+- **Lección completada:** 8.1 DynamoDB ✅ (75% quiz)
+- **Próxima:** 8.2 Amazon OpenSearch
 
 ---
 

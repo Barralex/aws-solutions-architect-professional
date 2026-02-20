@@ -117,14 +117,14 @@
 ## 7. Caching (6 clases | 36min)
 - [x] 7.1 CloudFront - Basics ✅ (100% quiz)
 - [x] 7.2 CloudFront - Advanced ✅ (100% quiz)
-- [ ] 7.3 Lambda@Edge
-- [ ] 7.4 Lambda@Edge - Solution Architecture
-- [ ] 7.5 Amazon ElastiCache
-- [ ] 7.6 Handling Extreme Rates
-- [ ] 7.7 Caching Quiz
+- [x] 7.3 Lambda@Edge ✅ (100% quiz)
+- [x] 7.4 Lambda@Edge - Solution Architecture ✅ (100% quiz)
+- [x] 7.5 Amazon ElastiCache ✅ (100% quiz)
+- [x] 7.6 Handling Extreme Rates ✅ (100% quiz)
+- [x] 7.7 Caching Quiz ✅
 
 ## 8. Databases (5 clases | 39min)
-- [ ] 8.1 DynamoDB
+- [x] 8.1 DynamoDB ✅ (75% quiz)
 - [ ] 8.2 Amazon OpenSearch
 - [ ] 8.3 RDS
 - [ ] 8.4 Aurora - Basics
