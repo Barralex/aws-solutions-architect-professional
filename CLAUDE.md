@@ -145,9 +145,9 @@ Yo: "Correcto! +25 XP
 ```
 
 ### Estado actual:
-- **Sección:** 8 - Databases
-- **Lección completada:** 8.3 RDS ✅ (100% quiz)
-- **Próxima:** 8.4 Aurora - Basics
+- **Sección:** 8 - Databases (COMPLETADA)
+- **Lección completada:** 8.5 Aurora - Advanced ✅ (100% quiz)
+- **Próxima:** 9.1 Step Functions
 
 ---
 

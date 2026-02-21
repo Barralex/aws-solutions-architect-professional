@@ -127,8 +127,8 @@
 - [x] 8.1 DynamoDB ✅ (75% quiz)
 - [x] 8.2 Amazon OpenSearch ✅ (75% quiz)
 - [x] 8.3 RDS ✅ (100% quiz)
-- [ ] 8.4 Aurora - Basics
-- [ ] 8.5 Aurora - Advanced
+- [x] 8.4 Aurora - Basics ✅ (50% quiz)
+- [x] 8.5 Aurora - Advanced ✅ (100% quiz)
 - [ ] 8.6 Databases Quiz
 
 ## 9. Service Communication (6 clases | 34min)
