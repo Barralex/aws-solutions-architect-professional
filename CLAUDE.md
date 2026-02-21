@@ -146,8 +146,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 8 - Databases
-- **Lección completada:** 8.1 DynamoDB ✅ (75% quiz)
-- **Próxima:** 8.2 Amazon OpenSearch
+- **Lección completada:** 8.3 RDS ✅ (100% quiz)
+- **Próxima:** 8.4 Aurora - Basics
 
 ---
 

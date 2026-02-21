@@ -125,8 +125,8 @@
 
 ## 8. Databases (5 clases | 39min)
 - [x] 8.1 DynamoDB ✅ (75% quiz)
-- [ ] 8.2 Amazon OpenSearch
-- [ ] 8.3 RDS
+- [x] 8.2 Amazon OpenSearch ✅ (75% quiz)
+- [x] 8.3 RDS ✅ (100% quiz)
 - [ ] 8.4 Aurora - Basics
 - [ ] 8.5 Aurora - Advanced
 - [ ] 8.6 Databases Quiz

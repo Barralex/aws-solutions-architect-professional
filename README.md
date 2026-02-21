@@ -7,11 +7,11 @@ Study notes for AWS SAP-C02, assisted by Claude.
 ## 📊 Progress
 
 ```
-████████████░░░░░░░░░░░░░░░░░░ 41% (85/205 lessons)
+█████████████░░░░░░░░░░░░░░░░░ 42% (87/205 lessons)
 ```
 
 **Current section:** 8 - Databases
-**Next lesson:** 8.2 Amazon OpenSearch
+**Next lesson:** 8.4 Aurora - Basics
 
 ## What's this
 
