@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 1900
-**Lecciones completadas:** 26/205
+**Total XP:** 2000
+**Lecciones completadas:** 27/205
 
 ---
 
@@ -604,4 +604,5 @@
 | 2026-02-08 | 4 | 4.13 S3 Access Points | 50 | ⭐ Perfecto (100%) |
 | 2026-02-08 | 4 | 4.14 S3 Multi-Region Access Points | 100 | ⭐ Perfecto (100%) |
 | 2026-02-08 | 4 | 4.15 S3 Object Lambda | 100 | ⭐ Perfecto (100%) |
+| 2026-02-21 | 9 | 9.2 SQS | 100 | ⭐ Perfecto (100%) |
 

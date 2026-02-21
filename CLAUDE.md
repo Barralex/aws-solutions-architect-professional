@@ -145,9 +145,9 @@ Yo: "Correcto! +25 XP
 ```
 
 ### Estado actual:
-- **Sección:** 8 - Databases (COMPLETADA)
-- **Lección completada:** 8.5 Aurora - Advanced ✅ (100% quiz)
-- **Próxima:** 9.1 Step Functions
+- **Sección:** 9 - Service Communication
+- **Lección completada:** 9.2 SQS ✅ (100% quiz)
+- **Próxima:** 9.3 SNS
 
 ---
 
