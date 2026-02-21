@@ -146,8 +146,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 9 - Service Communication
-- **Lección completada:** 9.2 SQS ✅ (100% quiz)
-- **Próxima:** 9.3 SNS
+- **Lección completada:** 9.6 SNS Delivery Retries & DLQ ⚠️ (50% quiz)
+- **Próxima:** 9.7 Kinesis
 
 ---
 

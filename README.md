@@ -7,11 +7,11 @@ Study notes for AWS SAP-C02, assisted by Claude.
 ## 📊 Progress
 
 ```
-██████████████░░░░░░░░░░░░░░░░ 44% (91/205 lessons)
+██████████████░░░░░░░░░░░░░░░░ 46% (95/205 lessons)
 ```
 
 **Current section:** 9 - Service Communication
-**Next lesson:** 9.3 SNS
+**Next lesson:** 9.7 Kinesis
 
 ## What's this
 
