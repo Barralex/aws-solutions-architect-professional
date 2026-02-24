@@ -145,9 +145,9 @@ Yo: "Correcto! +25 XP
 ```
 
 ### Estado actual:
-- **Sección:** 9 - Service Communication
-- **Lección completada:** 9.6 SNS Delivery Retries & DLQ ⚠️ (50% quiz)
-- **Próxima:** 9.7 Kinesis
+- **Sección:** 10 - Data Engineering
+- **Lección completada:** 10.5 Amazon MSK ✅ (100% quiz)
+- **Próxima:** 10.6 (siguiente del curso)
 
 ---
 

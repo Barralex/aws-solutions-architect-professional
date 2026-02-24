@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 2175
-**Lecciones completadas:** 31/205
+**Total XP:** 2500
+**Lecciones completadas:** 98/205
 
 ---
 
@@ -609,4 +609,9 @@
 | 2026-02-21 | 9 | 9.4 SNS | 25 | ❌ Repasar (33%) |
 | 2026-02-21 | 9 | 9.5 SNS+SQS Fan Out | 75 | ✅ Aprobado (75%) |
 | 2026-02-21 | 9 | 9.6 SNS Delivery Retries & DLQ | 25 | ⚠️ Repasar (50%) |
+| 2026-02-21 | 10 | 10.1 Kinesis Data Streams | 50 | ✅ Aprobado (67%) |
+| 2026-02-23 | 10 | 10.2 Kinesis Data Firehose | 100 | ⭐ Perfecto (100%) |
+| 2026-02-23 | 10 | 10.3 Managed Service Apache Flink | 50 | ⭐ Perfecto (100%) |
+| 2026-02-23 | 10 | 10.4 Streaming Architectures | 75 | ✅ Aprobado (75%) |
+| 2026-02-23 | 10 | 10.5 Amazon MSK | 50 | ⭐ Perfecto (100%) |
 
