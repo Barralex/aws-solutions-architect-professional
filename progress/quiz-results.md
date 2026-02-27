@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 2500
-**Lecciones completadas:** 98/205
+**Total XP:** 2775
+**Lecciones completadas:** 103/205
 
 ---
 
@@ -614,4 +614,9 @@
 | 2026-02-23 | 10 | 10.3 Managed Service Apache Flink | 50 | ⭐ Perfecto (100%) |
 | 2026-02-23 | 10 | 10.4 Streaming Architectures | 75 | ✅ Aprobado (75%) |
 | 2026-02-23 | 10 | 10.5 Amazon MSK | 50 | ⭐ Perfecto (100%) |
+| 2026-02-24 | 10 | 10.6 AWS Batch | 75 | ⭐ Perfecto (100%) |
+| 2026-02-27 | 10 | 10.7 Amazon EMR | 25 | ❌ Repasar (33%) |
+| 2026-02-27 | 10 | 10.8 Running Jobs Comparison | 50 | ⭐ Perfecto (100%) |
+| 2026-02-27 | 10 | 10.9 AWS Glue | 50 | ⭐ Perfecto (100%) |
+| 2026-02-27 | 10 | 10.10 Amazon Redshift | 75 | ✅ Aprobado (75%) |
 

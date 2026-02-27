@@ -7,11 +7,11 @@ Study notes for AWS SAP-C02, assisted by Claude.
 ## 📊 Progress
 
 ```
-███████████████░░░░░░░░░░░░░░░ 48% (98/205 lessons)
+████████████████░░░░░░░░░░░░░░ 50% (103/205 lessons)
 ```
 
 **Current section:** 10 - Data Engineering
-**Next lesson:** 10.6 (next in course)
+**Next lesson:** 10.11 (next in course)
 
 ## What's this
 
