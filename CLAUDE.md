@@ -146,8 +146,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 10 - Data Engineering
-- **Lección completada:** 10.10 Amazon Redshift ✅ (75% quiz)
-- **Próxima:** 10.11 (siguiente del curso)
+- **Lección completada:** 10.15 Big Data Architecture ✅ (repaso)
+- **Próxima:** Siguiente sección del curso
 
 ---
 

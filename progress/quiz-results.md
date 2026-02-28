@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 2775
-**Lecciones completadas:** 103/205
+**Total XP:** 3050
+**Lecciones completadas:** 108/205
 
 ---
 
@@ -576,6 +576,29 @@
 
 ---
 
+### 10.14 Amazon QuickSight
+**Estado:** ✅ Completado
+**Fecha:** 2026-02-28
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Dashboards interactivos sobre Redshift | C - Amazon QuickSight | ✅ +25 XP |
+| 2 | In-memory engine con data importada | D - SPICE Engine | ✅ +25 XP |
+| 3 | Ocultar columnas por usuario | C - Enterprise + CLS | ✅ +25 XP |
+| 4 | Dashboard lento conectado directo a Redshift | C - SPICE no se activa sin importar | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] QuickSight = BI serverless, dashboards
+- [x] SPICE = in-memory, solo con data importada
+- [x] Users/Groups ≠ IAM users
+- [x] CLS = Enterprise only
+
+---
+
 ## Historial de sesiones
 
 | Fecha | Sección | Lección | XP | Resultado |
@@ -619,4 +642,8 @@
 | 2026-02-27 | 10 | 10.8 Running Jobs Comparison | 50 | ⭐ Perfecto (100%) |
 | 2026-02-27 | 10 | 10.9 AWS Glue | 50 | ⭐ Perfecto (100%) |
 | 2026-02-27 | 10 | 10.10 Amazon Redshift | 75 | ✅ Aprobado (75%) |
+| 2026-02-28 | 10 | 10.11 DocumentDB | 50 | ⭐ Perfecto (100%) |
+| 2026-02-28 | 10 | 10.12 Amazon Timestream | 50 | ⭐ Perfecto (100%) |
+| 2026-02-28 | 10 | 10.13 Amazon Athena | 75 | ⭐ Perfecto (100%) |
+| 2026-02-28 | 10 | 10.14 Amazon QuickSight | 100 | ⭐ Perfecto (100%) |
 
