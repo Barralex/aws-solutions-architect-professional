@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 3050
-**Lecciones completadas:** 108/205
+**Total XP:** 3450
+**Lecciones completadas:** 113/205
 
 ---
 
@@ -599,6 +599,119 @@
 
 ---
 
+## Sección 11: Monitoring
+
+### 11.1 CloudWatch
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-02
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | EC2 crítica sin ASG, recover automático | B - CloudWatch Alarm → EC2 Recover Action | ✅ +25 XP |
+| 2 | API 200 OK pero datos incorrectos | D - CloudWatch Synthetics Canary | ✅ +25 XP |
+| 3 | Monitorear RAM en EC2 | C - CloudWatch Unified Agent + custom metric | ✅ +25 XP |
+| 4 | Dashboard multi-region | B - Un solo dashboard multi-region | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] EC2 Recover Action mantiene IPs y metadata
+- [x] Synthetics Canary valida contenido, no solo status code
+- [x] RAM no es métrica built-in, necesita Unified Agent
+- [x] Dashboards soportan múltiples regiones nativo
+
+---
+
+### 11.2 CloudWatch Logs
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-02
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Logs a S3 con max 1 min delay | B - Subscription Filter → Firehose → S3 | ✅ +25 XP |
+| 2 | Centralizar logs 5 cuentas multi-region | C - Sub Filter → KDS central → Firehose → S3 | ✅ +25 XP |
+| 3 | Alerta por email con >50 errores 500 en 5 min | C - Metric Filter → Alarm → SNS | ✅ +25 XP |
+| 4 | CW Agent siempre instalado en 200+ EC2 | C - SSM State Manager | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] CreateExportTask = batch, hasta 12h delay, NO real-time
+- [x] Subscription Filter → Firehose para near-real-time a S3
+- [x] Multi-account aggregation: Sub Filter → KDS → Firehose → S3
+- [x] Metric Filter para crear métricas desde patrones en logs
+- [x] SSM State Manager para compliance continuo del agent
+
+---
+
+### 11.3 Amazon EventBridge
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-02
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Bug viernes, eventos procesados OK pero mal, reprocesar | C - EventBridge Archive & Replay | ✅ +25 XP |
+| 2 | Auth0 bloquea usuario, revocar permisos AWS | C - Partner Event Bus → Rule → Lambda | ✅ +25 XP |
+| 3 | Detectar root login centralizado en 6 cuentas | C - PutEvents al Central Event Bus con resource-based policy | ✅ +25 XP |
+| 4 | App custom genera eventos → Step Functions | C - Custom Event Bus con PutEvents API | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] Archive & Replay para reprocesar eventos (no DLQ)
+- [x] Partner Event Bus para SaaS (Zendesk, Auth0, Datadog)
+- [x] Custom Event Bus + PutEvents para apps propias
+- [x] Resource-Based Policy para central event bus cross-account
+
+---
+
+### 11.4 AWS X-Ray
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-02
+
+#### Quiz (2 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Encontrar cuello de botella en cadena de microservicios | C - AWS X-Ray | ✅ +25 XP |
+| 2 | Habilitar X-Ray en Lambda y ECS | B - Lambda: tick casilla, ECS: agent/sidecar | ✅ +25 XP |
+
+**Puntuación:** 2/2 (100%) ⭐ PERFECTO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] X-Ray = distributed tracing entre microservicios
+- [x] Lambda = checkbox, ECS = agent/sidecar, EC2 = agent, Beanstalk = auto
+- [x] "Distributed tracing" en examen → X-Ray
+
+---
+
+### 11.5 AWS Health Dashboard
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-02
+
+#### Quiz (2 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Health events de 20 cuentas en un solo lugar | C - Health Dashboard + Organizations | ✅ +25 XP |
+| 2 | Personal Health → EventBridge, Service Health → ? | B - Service Health solo via RSS | ✅ +25 XP |
+
+**Puntuación:** 2/2 (100%) ⭐ PERFECTO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] Personal Health Dashboard = tus recursos, va a EventBridge
+- [x] Service Health Dashboard = público, solo RSS
+- [x] Organizations = vista agregada de todas las cuentas
+- [x] Health API para acceso programático
+
+---
+
 ## Historial de sesiones
 
 | Fecha | Sección | Lección | XP | Resultado |
@@ -646,4 +759,9 @@
 | 2026-02-28 | 10 | 10.12 Amazon Timestream | 50 | ⭐ Perfecto (100%) |
 | 2026-02-28 | 10 | 10.13 Amazon Athena | 75 | ⭐ Perfecto (100%) |
 | 2026-02-28 | 10 | 10.14 Amazon QuickSight | 100 | ⭐ Perfecto (100%) |
+| 2026-03-02 | 11 | 11.1 CloudWatch | 100 | ⭐ Perfecto (100%) |
+| 2026-03-02 | 11 | 11.2 CloudWatch Logs | 100 | ⭐ Perfecto (100%) |
+| 2026-03-02 | 11 | 11.3 Amazon EventBridge | 100 | ⭐ Perfecto (100%) |
+| 2026-03-02 | 11 | 11.4 AWS X-Ray | 50 | ⭐ Perfecto (100%) |
+| 2026-03-02 | 11 | 11.5 AWS Health Dashboard | 50 | ⭐ Perfecto (100%) |
 

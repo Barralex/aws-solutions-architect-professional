@@ -145,9 +145,9 @@ Yo: "Correcto! +25 XP
 ```
 
 ### Estado actual:
-- **Sección:** 10 - Data Engineering
-- **Lección completada:** 10.15 Big Data Architecture ✅ (repaso)
-- **Próxima:** Siguiente sección del curso
+- **Sección:** 11 - Monitoring
+- **Lección completada:** 11.5 AWS Health Dashboard ✅
+- **Próxima:** 11.6 (siguiente lección de Monitoring)
 
 ---
 
