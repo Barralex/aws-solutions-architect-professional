@@ -7,11 +7,11 @@ Study notes for AWS SAP-C02, assisted by Claude.
 ## 📊 Progress
 
 ```
-████████████████░░░░░░░░░░░░░░ 55% (113/205 lessons)
+█████████████████░░░░░░░░░░░░░ 57% (117/205 lessons)
 ```
 
-**Current section:** 11 - Monitoring
-**Next lesson:** 11.6
+**Current section:** 12 - Deployment and Instance Management
+**Next lesson:** 12.5 SAM
 
 ## What's this
 

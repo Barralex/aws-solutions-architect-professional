@@ -145,9 +145,9 @@ Yo: "Correcto! +25 XP
 ```
 
 ### Estado actual:
-- **Sección:** 11 - Monitoring
-- **Lección completada:** 11.5 AWS Health Dashboard ✅
-- **Próxima:** 11.6 (siguiente lección de Monitoring)
+- **Sección:** 12 - Deployment and Instance Management
+- **Lección completada:** 12.4 Service Catalog ✅
+- **Próxima:** 12.5 SAM (Serverless Application Model)
 
 ---
 

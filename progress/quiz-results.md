@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 3450
-**Lecciones completadas:** 113/205
+**Total XP:** 3600
+**Lecciones completadas:** 117/205
 
 ---
 
@@ -764,4 +764,8 @@
 | 2026-03-02 | 11 | 11.3 Amazon EventBridge | 100 | ⭐ Perfecto (100%) |
 | 2026-03-02 | 11 | 11.4 AWS X-Ray | 50 | ⭐ Perfecto (100%) |
 | 2026-03-02 | 11 | 11.5 AWS Health Dashboard | 50 | ⭐ Perfecto (100%) |
+| 2026-03-05 | 12 | 12.1 Elastic Beanstalk | 100 | ⭐ Perfecto (100%) |
+| 2026-03-06 | 12 | 12.2 CodeDeploy | 0 | ❌ Repasar (0%) |
+| 2026-03-06 | 12 | 12.3 CloudFormation | 25 | ⭐ Perfecto (100%) |
+| 2026-03-06 | 12 | 12.4 Service Catalog | 25 | ⭐ Perfecto (100%) |
 
