@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 4000
-**Lecciones completadas:** 121/205
+**Total XP:** 4125
+**Lecciones completadas:** 123/205
 
 ---
 
@@ -807,6 +807,50 @@
 
 ---
 
+## Sección 13: Cost Control
+
+### 13.1 Cost Allocation Tags
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-07
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Cliente no sabe quién gasta qué | B - Cost Allocation Tags + estrategia | ✅ +25 XP |
+| 2 | AWS Generated Tags en recursos existentes | D (incorrecto) → B - No aplica, solo nuevos | ❌ |
+| 3 | Cuándo aparecen en reportes | C - ~24 horas | ✅ +25 XP |
+| 4 | Dónde se ven las Cost Allocation Tags | C - Solo en consola de Billing | ✅ +25 XP |
+
+**Puntuación:** 3/4 (75%) ✅ APROBADO
+**XP ganado:** 75
+
+#### Conceptos dominados:
+- [x] Cost Allocation Tags = columnas en billing reports
+- [x] Solo visibles en consola de Billing
+- [x] ~24 horas de delay
+- [ ] AWS Generated Tags NO son retroactivas ← REPASAR
+
+---
+
+### 13.2 AWS Tag Editor
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-07
+
+#### Quiz (2 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | 80 recursos sin tag en 3 regiones | B - Tag Editor buscar + bulk | ✅ +25 XP |
+| 2 | Diferencia Tag Editor vs Cost Allocation Tags | B - Editar tags vs verlas en billing | ✅ +25 XP |
+
+**Puntuación:** 2/2 (100%) ⭐ PERFECTO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] Tag Editor = buscar/editar tags en bulk cross-region
+- [x] Tag Editor ≠ Cost Allocation Tags
+
+---
+
 ## Historial de sesiones
 
 | Fecha | Sección | Lección | XP | Resultado |
@@ -867,4 +911,6 @@
 | 2026-03-06 | 12 | 12.6 CDK | 100 | ⭐ Perfecto (100%) |
 | 2026-03-07 | 12 | 12.7 Systems Manager | 100 | ⭐ Perfecto (100%) |
 | 2026-03-07 | 12 | 12.8 Cloud Map | 100 | ⭐ Perfecto (100%) |
+| 2026-03-07 | 13 | 13.1 Cost Allocation Tags | 75 | ✅ Aprobado (75%) |
+| 2026-03-07 | 13 | 13.2 Tag Editor | 50 | ⭐ Perfecto (100%) |
 

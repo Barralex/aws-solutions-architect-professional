@@ -7,11 +7,11 @@ Study notes for AWS SAP-C02, assisted by Claude.
 ## 📊 Progress
 
 ```
-██████████████████░░░░░░░░░░░░ 59% (121/205 lessons)
+██████████████████░░░░░░░░░░░░ 60% (123/205 lessons)
 ```
 
 **Current section:** 13 - Cost Control
-**Next lesson:** 13.1 Cost Allocation Tags
+**Next lesson:** 13.3 Trusted Advisor
 
 ## What's this
 
