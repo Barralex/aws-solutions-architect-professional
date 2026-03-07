@@ -146,8 +146,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 12 - Deployment and Instance Management
-- **Lección completada:** 12.4 Service Catalog ✅
-- **Próxima:** 12.5 SAM (Serverless Application Model)
+- **Lección completada:** 12.8 Cloud Map ✅ (Sección 12 COMPLETA)
+- **Próxima:** 13.1 Cost Allocation Tags
 
 ---
 

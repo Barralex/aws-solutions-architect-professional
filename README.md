@@ -7,11 +7,11 @@ Study notes for AWS SAP-C02, assisted by Claude.
 ## 📊 Progress
 
 ```
-█████████████████░░░░░░░░░░░░░ 57% (117/205 lessons)
+██████████████████░░░░░░░░░░░░ 59% (121/205 lessons)
 ```
 
-**Current section:** 12 - Deployment and Instance Management
-**Next lesson:** 12.5 SAM
+**Current section:** 13 - Cost Control
+**Next lesson:** 13.1 Cost Allocation Tags
 
 ## What's this
 

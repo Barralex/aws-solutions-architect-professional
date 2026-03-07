@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 3600
-**Lecciones completadas:** 117/205
+**Total XP:** 4000
+**Lecciones completadas:** 121/205
 
 ---
 
@@ -712,6 +712,101 @@
 
 ---
 
+## Sección 12: Deployment and Instance Management
+
+### 12.5 SAM (Serverless Application Model)
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-06
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Framework serverless con YAML y test local | C - SAM | ✅ +25 XP |
+| 2 | Qué usa SAM para traffic shifting en Lambda | D - CodeDeploy | ✅ +25 XP |
+| 3 | Orden correcto del pipeline CICD con SAM | C - CodeCommit → CodeBuild → CF/SAM → CodeDeploy | ✅ +25 XP |
+| 4 | Cómo deploya SAM Lambda vs DynamoDB | B - Lambda via CodeDeploy, DynamoDB via CF | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] SAM = CloudFormation para serverless
+- [x] SAM usa CodeDeploy internamente para Lambda traffic shifting
+- [x] Pipeline: CodeCommit → CodeBuild → CF/SAM → CodeDeploy
+- [x] Solo Lambda usa CodeDeploy, el resto va por CF normal
+
+---
+
+### 12.6 AWS CDK (Cloud Development Kit)
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-06
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Devs Python sin YAML, definir infra | D - AWS CDK | ✅ +25 XP |
+| 2 | Qué genera cdk synth | C - CloudFormation template | ✅ +25 XP |
+| 3 | Lambda + traffic shifting + YAML | C - SAM | ✅ +25 XP |
+| 4 | Qué tienen en común CDK y SAM | C - Ambos generan CF templates | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] CDK = infra con lenguajes de programación (TS, Python, Java, .NET)
+- [x] CDK compila a CloudFormation templates
+- [x] CDK vs SAM vs CloudFormation: cuándo usar cada uno
+- [x] CDK y SAM ambos generan CF por debajo
+
+---
+
+### 12.7 AWS Systems Manager (SSM)
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-07
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Script en 100 EC2 sin SSH | C - SSM Run Command | ✅ +25 XP |
+| 2 | Instancia no aparece en SSM | B - Agent o IAM Role | ✅ +25 XP |
+| 3 | Log de comandos de devs en prod | C - Session Manager + CW Logs/S3 | ✅ +25 XP |
+| 4 | Extraer logs antes de ASG terminate | B - Lifecycle Hook → EventBridge → Run Command | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] Run Command = ejecutar sin SSH ni puerto 22
+- [x] Session Manager = shell con auditoría completa (CW Logs + CloudTrail)
+- [x] Patch Manager = baseline + groups + maintenance window
+- [x] OpsCenter = agregación de info operativa + runbooks
+- [x] Instancia no aparece = agent o IAM Role
+
+---
+
+### 12.8 AWS Cloud Map
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-07
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Backend endpoint cambia, sin cambiar frontend | C - Cloud Map | ✅ +25 XP |
+| 2 | Cómo consultar Cloud Map | B - SDK, API o DNS (Route 53) | ✅ +25 XP |
+| 3 | Servicio caído registrado en Cloud Map | C - Health checks no devuelven endpoint | ✅ +25 XP |
+| 4 | Diferencia Load Balancer vs Cloud Map | B - LB distribuye tráfico, Cloud Map es service discovery | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] Cloud Map = service discovery gestionado
+- [x] Consulta via SDK, API o DNS (Route 53)
+- [x] Health checks integrados
+- [x] Cloud Map ≠ Load Balancer (discovery vs distribución)
+
+---
+
 ## Historial de sesiones
 
 | Fecha | Sección | Lección | XP | Resultado |
@@ -768,4 +863,8 @@
 | 2026-03-06 | 12 | 12.2 CodeDeploy | 0 | ❌ Repasar (0%) |
 | 2026-03-06 | 12 | 12.3 CloudFormation | 25 | ⭐ Perfecto (100%) |
 | 2026-03-06 | 12 | 12.4 Service Catalog | 25 | ⭐ Perfecto (100%) |
+| 2026-03-06 | 12 | 12.5 SAM | 100 | ⭐ Perfecto (100%) |
+| 2026-03-06 | 12 | 12.6 CDK | 100 | ⭐ Perfecto (100%) |
+| 2026-03-07 | 12 | 12.7 Systems Manager | 100 | ⭐ Perfecto (100%) |
+| 2026-03-07 | 12 | 12.8 Cloud Map | 100 | ⭐ Perfecto (100%) |
 
