@@ -146,8 +146,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 13 - Cost Control
-- **Lección completada:** 13.2 Tag Editor ✅
-- **Próxima:** 13.3 Trusted Advisor
+- **Lección completada:** 13.10 EC2 Reserved Instances ✅ (Sección 13 COMPLETA)
+- **Próxima:** 14.1 Cloud Migration Strategies (6R)
 
 ---
 

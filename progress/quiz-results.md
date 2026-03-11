@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 4125
-**Lecciones completadas:** 123/205
+**Total XP:** 4750
+**Lecciones completadas:** 131/205
 
 ---
 
@@ -851,6 +851,183 @@
 
 ---
 
+### 13.3 AWS Trusted Advisor
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-10
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Developer plan sin full checks | B - Solo 7 checks, necesita Business+ | ✅ +25 XP |
+| 2 | Bucket seguro pero objetos públicos | C - TA solo verifica bucket, no objetos | ✅ +25 XP |
+| 3 | Aumentar límite de vCPUs | C - Support Center o Service Quotas API | ✅ +25 XP |
+| 4 | Monitorear limits 6 cuentas + Slack | C - Lambda → TA → EventBridge cross-account → Slack | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] Full Trusted Advisor = Business o Enterprise plan
+- [x] TA detecta bucket público, NO objetos públicos
+- [x] TA monitorea limits pero NO los aumenta
+- [x] Arquitectura multi-account con EventBridge cross-account
+
+---
+
+### 13.4 AWS Service Quotas
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-10
+
+#### Quiz (3 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Alerta al 80% límite vCPUs | C - Service Quotas + CloudWatch Alarm | ✅ +25 XP |
+| 2 | Diferencia Trusted Advisor vs Service Quotas | B - SQ monitorea y aumenta, TA solo monitorea | ✅ +25 XP |
+| 3 | Lambda throttleando, resolver programáticamente | C - Service Quotas API | ✅ +25 XP |
+
+**Puntuación:** 3/3 (100%) ⭐ PERFECTO
+**XP ganado:** 75
+
+#### Conceptos dominados:
+- [x] Service Quotas = monitorear + aumentar límites
+- [x] Crea CloudWatch Alarms desde la consola
+- [x] Service Quotas API para aumento programático
+- [x] No requiere Business plan (a diferencia de Trusted Advisor)
+
+---
+
+### 13.5 EC2 Launch Types & Savings Plan
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-10
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Batch interrumpible, máximo ahorro | C - Spot Instances | ✅ +25 XP |
+| 2 | Oracle licencia por core, controlar servidor | C - Dedicated Host | ✅ +25 XP |
+| 3 | Migrando EC2 a Fargate/Lambda, ahorro flexible | C - Compute Savings Plan | ✅ +25 XP |
+| 4 | Savings Plan $10/h pero consume $15/h | B - $10 descuento + $5 On-Demand | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] Spot = fault-tolerant + máximo ahorro
+- [x] Dedicated Host = licencias core/socket + placement control
+- [x] EC2 Instance SP (72%) vs Compute SP (66%) vs SageMaker SP (64%)
+- [x] Uso sobre el compromiso = On-Demand
+
+---
+
+### 13.6 S3 Cost Savings
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-10
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Objetos activos 30d luego casi nunca | B - Lifecycle Rules Standard → IA | ✅ +25 XP |
+| 2 | Thumbnails recreables, máximo ahorro | C - One Zone-IA | ✅ +25 XP |
+| 3 | Requester Pays pero sigue pagando | B - Cross-account role en tu cuenta | ✅ +25 XP |
+| 4 | Qué paga siempre el dueño del bucket | B - El almacenamiento (storage) | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] Lifecycle Rules para automatizar transiciones
+- [x] One Zone-IA para datos recreables
+- [x] Requester Pays: storage = dueño, transferencia = solicitante
+- [x] Cross-account role en tu cuenta = vos pagás (trampa)
+
+---
+
+### 13.7 S3 Storage Classes - Analysis
+**Estado:** ⚠️ Repasar
+**Fecha:** 2026-03-10
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Docs regulatorios 7 años, esperar 48hrs | B - Glacier Deep Archive | ✅ +25 XP |
+| 2 | Patrones impredecibles, sin gestión manual | C - Intelligent Tiering | ✅ +25 XP |
+| 3 | Qué es igual en todas las clases | A (incorrecto) → B - Durabilidad 11 nueves | ❌ |
+| 4 | Glacier Flexible más rápido posible | A (incorrecto) → C - Expedited 1-5 min | ❌ |
+
+**Puntuación:** 2/4 (50%) ❌ NO APROBADO
+**XP ganado:** 50
+
+#### Conceptos a REPASAR:
+- [ ] Durabilidad (11 nueves) = igual en TODAS, disponibilidad VARÍA
+- [ ] Glacier Flexible: Expedited (1-5 min) > Standard (3-5 hrs) > Bulk (5-12 hrs gratis)
+
+---
+
+### 13.8 AWS Budgets & Cost Explorer
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-10
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Bloquear recursos al superar $2K | B - Budgets + Budget Action con SCP | ✅ +25 XP |
+| 2 | Deploy budget en 15 cuentas | B - CloudFormation StackSet | ✅ +25 XP |
+| 3 | Entender qué servicio/equipo gastó más | C - Cost Explorer drill down | ✅ +25 XP |
+| 4 | Qué hace Cost Explorer que Budgets no | B - Forecast 12 meses + recomendar Savings Plan | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] Budget Actions: IAM Policy, SCP, Stop instances
+- [x] Centralizado vs Descentralizado (StackSet)
+- [x] Cost Explorer = análisis + forecast + recomendar Savings Plan
+- [x] Budgets = alertas + acciones, Cost Explorer = visualización + predicción
+
+---
+
+### 13.9 AWS Compute Optimizer
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-10
+
+#### Quiz (3 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | 150 EC2 sobre-aprovisionadas | C - Compute Optimizer | ✅ +25 XP |
+| 2 | No incluye RAM en análisis | B - Instalar CloudWatch Agent | ✅ +25 XP |
+| 3 | Recursos soportados | B (incorrecto) → A - EC2, ASG, EBS, Lambda | ❌ |
+
+**Puntuación:** 2/3 (67%) ✅ APROBADO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] Compute Optimizer = ML + CloudWatch para right-sizing
+- [x] RAM necesita CloudWatch Agent
+- [ ] Solo soporta EC2, ASG, EBS, Lambda (no RDS ni S3) ← REPASAR
+
+---
+
+### 13.10 EC2 Reserved Instances
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-11
+
+#### Quiz (3 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Desactivar RI sharing para una cuenta | B - Management Account, Billing Console | ✅ +25 XP |
+| 2 | Renovar RI sin perder descuento | B - Queue compra en fecha expiración | ✅ +25 XP |
+| 3 | Qué más se comparte además de RIs | A (incorrecto) → B - Savings Plans | ❌ |
+
+**Puntuación:** 2/3 (67%) ✅ APROBADO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] RI sharing se controla desde Management Account, Billing Console
+- [x] Renovar RI = queue compra en fecha de expiración
+- [ ] RIs Y Savings Plans se comparten, Spot NO ← REPASAR
+
+---
+
 ## Historial de sesiones
 
 | Fecha | Sección | Lección | XP | Resultado |
@@ -913,4 +1090,12 @@
 | 2026-03-07 | 12 | 12.8 Cloud Map | 100 | ⭐ Perfecto (100%) |
 | 2026-03-07 | 13 | 13.1 Cost Allocation Tags | 75 | ✅ Aprobado (75%) |
 | 2026-03-07 | 13 | 13.2 Tag Editor | 50 | ⭐ Perfecto (100%) |
+| 2026-03-10 | 13 | 13.3 Trusted Advisor | 100 | ⭐ Perfecto (100%) |
+| 2026-03-10 | 13 | 13.4 Service Quotas | 75 | ⭐ Perfecto (100%) |
+| 2026-03-10 | 13 | 13.5 EC2 Launch Types & Savings Plan | 100 | ⭐ Perfecto (100%) |
+| 2026-03-10 | 13 | 13.6 S3 Cost Savings | 100 | ⭐ Perfecto (100%) |
+| 2026-03-10 | 13 | 13.7 S3 Storage Classes | 50 | ❌ Repasar (50%) |
+| 2026-03-10 | 13 | 13.8 Budgets & Cost Explorer | 100 | ⭐ Perfecto (100%) |
+| 2026-03-10 | 13 | 13.9 Compute Optimizer | 50 | ✅ Aprobado (67%) |
+| 2026-03-11 | 13 | 13.10 EC2 Reserved Instances | 50 | ✅ Aprobado (67%) |
 

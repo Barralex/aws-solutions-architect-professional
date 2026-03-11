@@ -7,11 +7,11 @@ Study notes for AWS SAP-C02, assisted by Claude.
 ## 📊 Progress
 
 ```
-██████████████████░░░░░░░░░░░░ 60% (123/205 lessons)
+███████████████████░░░░░░░░░░░ 64% (131/205 lessons)
 ```
 
-**Current section:** 13 - Cost Control
-**Next lesson:** 13.3 Trusted Advisor
+**Current section:** 14 - Migration
+**Next lesson:** 14.1 Cloud Migration Strategies (6R)
 
 ## What's this
 
