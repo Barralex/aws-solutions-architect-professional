@@ -190,12 +190,12 @@
 - [ ] 13.11 Cost Control Quiz
 
 ## 14. Migration (12 clases | 54min)
-- [ ] 14.1 Cloud Migration Strategies (6R)
-- [ ] 14.2 Storage Gateway
-- [ ] 14.3 Storage Gateway - Solution Architecture
-- [ ] 14.4 Snow Family
-- [ ] 14.5 Snow Family - Solution Architecture
-- [ ] 14.6 AWS DMS (Database Migration Service)
+- [x] 14.1 Cloud Migration Strategies (7R) ✅ (100% quiz)
+- [x] 14.2 Storage Gateway ⚠️ (50% quiz - REPASAR)
+- [x] 14.3 Storage Gateway - Solution Architecture ✅ (100% quiz)
+- [x] 14.4 Snow Family ✅ (75% quiz)
+- [x] 14.5 Snow Family - Solution Architecture ✅ (100% quiz)
+- [x] 14.6 AWS DMS (Database Migration Service) ✅ (100% quiz)
 - [ ] 14.7 AWS CART (Cloud Adoption Readiness Tool)
 - [ ] 14.8 Disaster Recovery
 - [ ] 14.9 AWS FIS (Fault Injection Simulator)

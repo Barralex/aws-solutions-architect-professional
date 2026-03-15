@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 4750
-**Lecciones completadas:** 131/205
+**Total XP:** 5225
+**Lecciones completadas:** 137/205
 
 ---
 
@@ -1028,6 +1028,144 @@
 
 ---
 
+## Sección 14: Migration
+
+### 14.1 Cloud Migration Strategies (7R)
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-15
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | DB a AWS sin cambiar código + backups/HA | C - Replatform a RDS | ✅ +25 XP |
+| 2 | 50 servers, datacenter vence en 6 semanas | A - Rehost con MGN | ✅ +25 XP |
+| 3 | VMware on-prem, mantener herramientas | D - Relocate a VMware Cloud on AWS | ✅ +25 XP |
+| 4 | CRM custom de 12 años, sin mantenedores | B - Repurchase a Salesforce | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] 7 estrategias de migración (Retire, Retain, Relocate, Rehost, Replatform, Repurchase, Refactor)
+- [x] Rehost = lift & shift, sin cambios, rápido
+- [x] Replatform = misma app + servicios managed (RDS, Beanstalk)
+- [x] Repurchase = drop & shop, cambiar a SaaS
+- [x] Refactor = reescribir cloud native (serverless, microservicios)
+
+---
+
+### 14.2 AWS Storage Gateway
+**Estado:** ⚠️ Repasar
+**Fecha:** 2026-03-15
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | File server Windows + SMB + Glacier | A (incorrecto) → B - S3 File Gateway + SMB + Lifecycle | ❌ |
+| 2 | Volúmenes médicos, todo local + DR a EBS | A (incorrecto) → D - Volume Gateway Stored | ❌ |
+| 3 | Veritas NetBackup + cintas + 15 años | A - Tape Gateway + Glacier Deep Archive | ✅ +25 XP |
+| 4 | File Gateway + mover a Glacier | C - Lifecycle Policy en S3 | ✅ +25 XP |
+
+**Puntuación:** 2/4 (50%) ❌ NO APROBADO
+**XP ganado:** 50
+
+#### Conceptos a REPASAR:
+- [ ] File share (NFS/SMB) = S3 File Gateway, NO Volume Gateway
+- [ ] Volume Gateway = iSCSI block storage (volúmenes/discos)
+- [ ] Stored = todo on-prem + backup, Cached = cloud + caché local
+- [x] Tape Gateway para cintas/VTL
+- [x] S3 File Gateway NO soporta Glacier directo → Lifecycle Policy
+
+---
+
+### 14.6 AWS DMS (Database Migration Service)
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-15
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Oracle → Aurora PG sin downtime | D - DMS Full Load + CDC + SCT | ✅ +25 XP |
+| 2 | Replicar OpenSearch → OpenSearch con DMS | A - No, OpenSearch solo target | ✅ +25 XP |
+| 3 | MySQL → RDS MySQL, ¿necesita SCT? | C - No, mismo motor | ✅ +25 XP |
+| 4 | Oracle 60TB → Aurora, red 500 Mbps | B - SCT → Snowball → S3 → DMS + CDC | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] DMS + CDC para migración sin downtime
+- [x] SCT solo cuando cambia el motor de DB
+- [x] OpenSearch solo como target, nunca source
+- [x] DMS + Snowball para migraciones masivas (TB)
+
+---
+
+### 14.5 Snow Family - Solution Architecture (Performance)
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-15
+
+#### Quiz (2 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Transferencia a 30 MB/s, necesita más rápido | C - S3 Adapter for Snowball | ✅ +25 XP |
+| 2 | 2M fotos de 800KB, transferencia lenta | B - ZIPs ≥ 1MB + múltiples terminales | ✅ +25 XP |
+
+**Puntuación:** 2/2 (100%) ⭐ PERFECTO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] S3 Adapter for Snowball = 250-400 MB/s (10x más rápido)
+- [x] Archivos pequeños → agrupar en ZIPs + cargar en paralelo
+
+---
+
+### 14.4 Snow Family (Snowball)
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-15
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | 300TB, conexión 1 Gbps compartida | C - Snowball Storage Optimized x2 | ✅ +25 XP |
+| 2 | IoT sin internet, ML tiempo real | A - Snowball Edge Compute Optimized | ✅ +25 XP |
+| 3 | 50TB, conexión 10 Gbps dedicada | D - Upload directo a S3 | ✅ +25 XP |
+| 4 | Buque 3 meses, preprocesar + transcodificar | A (incorrecto) → B - Compute Optimized | ❌ |
+
+**Puntuación:** 3/4 (75%) ✅ APROBADO
+**XP ganado:** 75
+
+#### Conceptos dominados:
+- [x] Regla: >1 semana por red → Snowball
+- [x] Storage Optimized (210TB) para migración masiva
+- [x] Upload directo si la red es suficiente
+- [ ] Compute Optimized cuando hay procesamiento (EC2/Lambda/ML/transcodificación) ← REPASAR
+
+---
+
+### 14.3 Storage Gateway - Solution Architecture
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-15
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Archivo restaurado en S3 no aparece en gateway | D - RefreshCache API | ✅ +25 XP |
+| 2 | Dos oficinas, Dallas R/W + Atlanta read-only | B - File Gateway R/W + Read-Only, mismo bucket | ✅ +25 XP |
+| 3 | FDA, archivos inmutables, WORM | A - S3 File Gateway + Object Lock | ✅ +25 XP |
+| 4 | Facturas PDF, indexar + queries sin afectar gateway | D - S3 Event → Lambda + Athena | ✅ +25 XP |
+
+**Puntuación:** 4/4 (100%) ⭐ PERFECTO
+**XP ganado:** 100
+
+#### Conceptos dominados:
+- [x] RefreshCache API para sincronizar gateway después de cambios en S3
+- [x] Read-only replicas entre datacenters via mismo bucket
+- [x] S3 Object Lock (WORM) para compliance inmutable
+- [x] S3 Events + Lambda + Athena no afectan al gateway
+
+---
+
 ## Historial de sesiones
 
 | Fecha | Sección | Lección | XP | Resultado |
@@ -1098,4 +1236,10 @@
 | 2026-03-10 | 13 | 13.8 Budgets & Cost Explorer | 100 | ⭐ Perfecto (100%) |
 | 2026-03-10 | 13 | 13.9 Compute Optimizer | 50 | ✅ Aprobado (67%) |
 | 2026-03-11 | 13 | 13.10 EC2 Reserved Instances | 50 | ✅ Aprobado (67%) |
+| 2026-03-15 | 14 | 14.1 Cloud Migration Strategies (7R) | 100 | ⭐ Perfecto (100%) |
+| 2026-03-15 | 14 | 14.2 Storage Gateway | 50 | ❌ Repasar (50%) |
+| 2026-03-15 | 14 | 14.3 Storage Gateway - Solution Architecture | 100 | ⭐ Perfecto (100%) |
+| 2026-03-15 | 14 | 14.4 Snow Family | 75 | ✅ Aprobado (75%) |
+| 2026-03-15 | 14 | 14.5 Snow Family - Solution Architecture | 50 | ⭐ Perfecto (100%) |
+| 2026-03-15 | 14 | 14.6 AWS DMS | 100 | ⭐ Perfecto (100%) |
 

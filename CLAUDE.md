@@ -146,8 +146,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 13 - Cost Control
-- **Lección completada:** 13.10 EC2 Reserved Instances ✅ (Sección 13 COMPLETA)
-- **Próxima:** 14.1 Cloud Migration Strategies (6R)
+- **Lección completada:** 14.6 AWS DMS ✅ (100% quiz)
+- **Próxima:** 14.7 AWS CART (Cloud Adoption Readiness Tool)
 
 ---
 
