@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 5225
-**Lecciones completadas:** 137/205
+**Total XP:** 5475
+**Lecciones completadas:** 143/205
 
 ---
 
@@ -1078,6 +1078,122 @@
 
 ---
 
+### 14.12 AWS Backup
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-15
+
+#### Quiz (2 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Backup centralizado EC2+RDS+DynamoDB cross-region | B - AWS Backup | ✅ +25 XP |
+| 2 | Backups que ni root puede borrar | C - Vault Lock (WORM) | ✅ +25 XP |
+
+**Puntuación:** 2/2 (100%) ⭐ PERFECTO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] AWS Backup = backup centralizado multi-servicio
+- [x] Vault Lock (WORM) = ni root borra
+- [x] Cross-region + cross-account
+
+---
+
+### 14.11 AWS Migration Evaluator
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-15
+
+#### Quiz (1 pregunta)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Comparar costo on-prem vs AWS para el board | B - Migration Evaluator | ✅ +25 XP |
+
+**Puntuación:** 1/1 (100%) ⭐ PERFECTO
+**XP ganado:** 25
+
+#### Conceptos dominados:
+- [x] Migration Evaluator = business case ($$$ justification)
+
+---
+
+### 14.10 VM Migration Services
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-15
+
+#### Quiz (2 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Mapear comunicación entre 200 servidores | B - Application Discovery Agent-based | ✅ +25 XP |
+| 2 | CloudEndure Migration = qué servicio actual | D - MGN | ✅ +25 XP |
+
+**Puntuación:** 2/2 (100%) ⭐ PERFECTO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] Discovery Agentless (VMware) vs Agent-based (mapeo de red)
+- [x] MGN = lift & shift (reemplaza CloudEndure Migration + SMS)
+- [x] DRS = DR (reemplaza CloudEndure DR)
+
+---
+
+### 14.9 AWS FIS (Fault Injection Simulator)
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-15
+
+#### Quiz (1 pregunta)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Terminar 3/6 EC2 de forma controlada | C - AWS FIS | ✅ +25 XP |
+
+**Puntuación:** 1/1 (100%) ⭐ PERFECTO
+**XP ganado:** 25
+
+#### Conceptos dominados:
+- [x] FIS = Chaos Engineering nativo de AWS
+- [x] Soporta EC2, ECS, EKS, RDS
+
+---
+
+### 14.8 Disaster Recovery
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-15
+
+#### Quiz (4 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | 24h downtime, 1 día data loss, barato | B - Backup & Restore | ✅ +25 XP |
+| 2 | Banco, 5 min downtime, cero data loss | D - Multi Site + Aurora Global | ✅ +25 XP |
+| 3 | RPO 10 min, RTO 1h, no pagar EC2 idle | D (incorrecto) → A - Pilot Light | ❌ |
+| 4 | Direct Connect se cae, backup de red | C - Site-to-Site VPN | ✅ +25 XP |
+
+**Puntuación:** 3/4 (75%) ✅ APROBADO
+**XP ganado:** 75
+
+#### Conceptos dominados:
+- [x] B&R para bajo presupuesto, RPO/RTO alto
+- [x] Multi Site para cero downtime + cero data loss
+- [x] Site-to-Site VPN como backup de Direct Connect
+- [ ] Pilot Light = solo DB, NO paga EC2 idle. Warm Standby = todo al mínimo, SÍ paga EC2 ← REPASAR
+
+---
+
+### 14.7 AWS CART (Cloud Adoption Readiness Tool)
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-15
+
+#### Quiz (1 pregunta)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Evaluar readiness migración, 6 perspectivas | C - AWS CART | ✅ +25 XP |
+
+**Puntuación:** 1/1 (100%) ⭐ PERFECTO
+**XP ganado:** 25
+
+#### Conceptos dominados:
+- [x] CART = cuestionario readiness con 6 perspectivas
+- [x] Output = scorecard + recomendaciones
+
+---
+
 ### 14.6 AWS DMS (Database Migration Service)
 **Estado:** ✅ Completado
 **Fecha:** 2026-03-15
@@ -1242,4 +1358,10 @@
 | 2026-03-15 | 14 | 14.4 Snow Family | 75 | ✅ Aprobado (75%) |
 | 2026-03-15 | 14 | 14.5 Snow Family - Solution Architecture | 50 | ⭐ Perfecto (100%) |
 | 2026-03-15 | 14 | 14.6 AWS DMS | 100 | ⭐ Perfecto (100%) |
+| 2026-03-15 | 14 | 14.7 AWS CART | 25 | ⭐ Perfecto (100%) |
+| 2026-03-15 | 14 | 14.8 Disaster Recovery | 75 | ✅ Aprobado (75%) |
+| 2026-03-15 | 14 | 14.9 AWS FIS | 25 | ⭐ Perfecto (100%) |
+| 2026-03-15 | 14 | 14.10 VM Migration Services | 50 | ⭐ Perfecto (100%) |
+| 2026-03-15 | 14 | 14.11 Migration Evaluator | 25 | ⭐ Perfecto (100%) |
+| 2026-03-15 | 14 | 14.12 AWS Backup | 50 | ⭐ Perfecto (100%) |
 

@@ -146,8 +146,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 13 - Cost Control
-- **Lección completada:** 14.6 AWS DMS ✅ (100% quiz)
-- **Próxima:** 14.7 AWS CART (Cloud Adoption Readiness Tool)
+- **Lección completada:** 14.12 AWS Backup ✅ (Sección 14 COMPLETA)
+- **Próxima:** 15.1 VPC Overview
 
 ---
 

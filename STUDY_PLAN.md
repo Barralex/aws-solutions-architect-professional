@@ -196,12 +196,12 @@
 - [x] 14.4 Snow Family ✅ (75% quiz)
 - [x] 14.5 Snow Family - Solution Architecture ✅ (100% quiz)
 - [x] 14.6 AWS DMS (Database Migration Service) ✅ (100% quiz)
-- [ ] 14.7 AWS CART (Cloud Adoption Readiness Tool)
-- [ ] 14.8 Disaster Recovery
-- [ ] 14.9 AWS FIS (Fault Injection Simulator)
-- [ ] 14.10 VM Migrations Services
-- [ ] 14.11 AWS Migration Evaluator
-- [ ] 14.12 AWS Backup
+- [x] 14.7 AWS CART (Cloud Adoption Readiness Tool) ✅ (100% quiz)
+- [x] 14.8 Disaster Recovery ✅ (75% quiz)
+- [x] 14.9 AWS FIS (Fault Injection Simulator) ✅ (100% quiz)
+- [x] 14.10 VM Migrations Services ✅ (100% quiz)
+- [x] 14.11 AWS Migration Evaluator ✅ (100% quiz)
+- [x] 14.12 AWS Backup ✅ (100% quiz)
 - [ ] 14.13 Migration Quiz
 
 ## 15. VPC (12 clases | 1h 21min)

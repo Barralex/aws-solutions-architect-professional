@@ -7,11 +7,11 @@ Study notes for AWS SAP-C02, assisted by Claude.
 ## 📊 Progress
 
 ```
-████████████████████░░░░░░░░░░ 67% (137/205 lessons)
+█████████████████████░░░░░░░░░ 70% (143/205 lessons)
 ```
 
-**Current section:** 14 - Migration
-**Next lesson:** 14.7 AWS CART (Cloud Adoption Readiness Tool)
+**Current section:** 15 - VPC
+**Next lesson:** 15.1 VPC Overview
 
 ## What's this
 
