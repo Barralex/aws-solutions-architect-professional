@@ -146,8 +146,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 13 - Cost Control
-- **Lección completada:** 14.12 AWS Backup ✅ (Sección 14 COMPLETA)
-- **Próxima:** 15.1 VPC Overview
+- **Lección completada:** 15.4 VPC Endpoints ✅ (100% quiz)
+- **Próxima:** 15.5 VPC Endpoint Policies
 
 ---
 

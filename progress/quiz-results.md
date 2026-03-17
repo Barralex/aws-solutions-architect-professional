@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 5475
-**Lecciones completadas:** 143/205
+**Total XP:** 5650
+**Lecciones completadas:** 147/205
 
 ---
 
@@ -1282,6 +1282,86 @@
 
 ---
 
+## Sección 15: VPC
+
+### 15.1 VPC Overview (Fundamentos)
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-16
+
+#### Quiz (2 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | Subnet privada accede IPv6 externo | C - Egress-Only IGW | ✅ +25 XP |
+| 2 | Bloquear IP atacante en toda subnet | C - NACL deny rule | ✅ +25 XP |
+
+**Puntuación:** 2/2 (100%) ⭐ PERFECTO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] Egress-Only IGW = NAT Gateway para IPv6
+- [x] NACL para bloquear IPs (deny rules), SG solo allow
+
+---
+
+### 15.4 VPC Endpoints
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-16
+
+#### Quiz (2 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | EC2 privada accede S3 sin internet, barato | C - Gateway Endpoint | ✅ +25 XP |
+| 2 | On-prem via DC accede S3 privado | B - Interface Endpoint | ✅ +25 XP |
+
+**Puntuación:** 2/2 (100%) ⭐ PERFECTO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] Gateway Endpoint = S3/DynamoDB, gratis, no sale de VPC
+- [x] Interface Endpoint = todos, ENI+SG, accesible desde on-prem
+
+---
+
+### 15.3 Transit Gateway
+**Estado:** ✅ Completado
+**Fecha:** 2026-03-16
+
+#### Quiz (2 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | 30 VPCs, internet central, aislar prod/dev | B - TGW + Egress VPC + route tables | ✅ +25 XP |
+| 2 | IP Multicast entre VPCs | C - Transit Gateway (único) | ✅ +25 XP |
+
+**Puntuación:** 2/2 (100%) ⭐ PERFECTO
+**XP ganado:** 50
+
+#### Conceptos dominados:
+- [x] TGW = hub central, transitivo, edge-to-edge routing
+- [x] Egress VPC + TGW para NAT centralizado
+- [x] Route tables en TGW para aislar ambientes
+- [x] IP Multicast = solo TGW
+
+---
+
+### 15.2 VPC Peering
+**Estado:** ⚠️ Repasar
+**Fecha:** 2026-03-16
+
+#### Quiz (2 preguntas)
+| # | Pregunta | Respuesta | Resultado |
+|---|----------|-----------|-----------|
+| 1 | VPC central con NAT+IGW peered con 5 VPCs | A (incorrecto) → B - No edge-to-edge routing | ❌ |
+| 2 | CIDR overlap parcial entre VPCs | B - Un CIDR overlap = no peering | ✅ +25 XP |
+
+**Puntuación:** 1/2 (50%) ❌ NO APROBADO
+**XP ganado:** 25
+
+#### Conceptos a REPASAR:
+- [ ] No edge-to-edge routing: peering NO comparte IGW/NAT/VPN/DC/Gateway Endpoints ← CLAVE
+- [x] CIDR overlap parcial = no peering
+
+---
+
 ## Historial de sesiones
 
 | Fecha | Sección | Lección | XP | Resultado |
@@ -1364,4 +1444,8 @@
 | 2026-03-15 | 14 | 14.10 VM Migration Services | 50 | ⭐ Perfecto (100%) |
 | 2026-03-15 | 14 | 14.11 Migration Evaluator | 25 | ⭐ Perfecto (100%) |
 | 2026-03-15 | 14 | 14.12 AWS Backup | 50 | ⭐ Perfecto (100%) |
+| 2026-03-16 | 15 | 15.1 VPC Overview | 50 | ⭐ Perfecto (100%) |
+| 2026-03-16 | 15 | 15.2 VPC Peering | 25 | ❌ Repasar (50%) |
+| 2026-03-16 | 15 | 15.3 Transit Gateway | 50 | ⭐ Perfecto (100%) |
+| 2026-03-16 | 15 | 15.4 VPC Endpoints | 50 | ⭐ Perfecto (100%) |
 

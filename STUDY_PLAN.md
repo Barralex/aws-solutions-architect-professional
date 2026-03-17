@@ -205,10 +205,10 @@
 - [ ] 14.13 Migration Quiz
 
 ## 15. VPC (12 clases | 1h 21min)
-- [ ] 15.1 VPC Overview
-- [ ] 15.2 VPC Peering
-- [ ] 15.3 Transit Gateway
-- [ ] 15.4 VPC Endpoints
+- [x] 15.1 VPC Overview ✅ (100% quiz)
+- [x] 15.2 VPC Peering ⚠️ (50% quiz - REPASAR)
+- [x] 15.3 Transit Gateway ✅ (100% quiz)
+- [x] 15.4 VPC Endpoints ✅ (100% quiz)
 - [ ] 15.5 VPC Endpoint Policies
 - [ ] 15.6 PrivateLink
 - [ ] 15.7 AWS Site-to-Site VPN
