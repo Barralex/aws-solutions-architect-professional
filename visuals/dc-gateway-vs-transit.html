@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Direct Connect — Visual Completo</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', 'Segoe UI', sans-serif; background: #080b12; color: #e0e0e0; padding: 40px 30px; }
+
+  h1 { color: #ff9900; text-align: center; font-size: 2.2em; font-weight: 900; margin-bottom: 6px; }
+  .subtitle { text-align: center; color: #555; margin-bottom: 48px; }
+
+  /* SECCION */
+  .section { background: #111520; border-radius: 16px; padding: 28px; margin-bottom: 28px; border: 1px solid #1e2235; position: relative; overflow: hidden; }
+  .section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .sec-orange::before { background: linear-gradient(90deg, #ff9900, #fbbf24); }
+  .sec-blue::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+  .sec-purple::before { background: linear-gradient(90deg, #a855f7, #c084fc); }
+  .sec-green::before { background: linear-gradient(90deg, #22c55e, #4ade80); }
+  h2 { font-size: 1.1em; font-weight: 700; margin-bottom: 4px; }
+  .sec-desc { font-size: 0.83em; color: #666; margin-bottom: 24px; }
+
+  /* FISICO */
+  .physical { display: flex; align-items: stretch; gap: 0; justify-content: center; margin: 16px 0; }
+  .building { border-radius: 12px; padding: 16px; text-align: center; min-width: 130px; }
+  .building-dc { background: #0a1628; border: 2px solid #3b82f6; }
+  .building-equinix { background: #1a0d0a; border: 2px solid #f97316; min-width: 220px; }
+  .building-aws { background: #1a1200; border: 2px solid #ff9900; }
+  .building-title { font-weight: 700; font-size: 0.85em; margin-bottom: 4px; }
+  .building-dc .building-title { color: #60a5fa; }
+  .building-equinix .building-title { color: #fb923c; }
+  .building-aws .building-title { color: #ff9900; }
+  .building-sub { font-size: 0.7em; color: #666; margin-bottom: 10px; }
+  .cage { border-radius: 8px; padding: 8px 10px; margin: 4px 0; font-size: 0.72em; text-align: center; }
+  .cage-aws { background: #1a1200; border: 1px dashed #ff990060; color: #fbbf24; }
+  .cage-yours { background: #0a1628; border: 1px dashed #3b82f660; color: #93c5fd; }
+  .cage-label { font-size: 0.65em; color: #555; margin-bottom: 2px; }
+
+  /* CABLES */
+  .cable-h { display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 6px; min-width: 80px; }
+  .cable-line-h { height: 3px; width: 100%; border-radius: 99px; }
+  .fiber { background: linear-gradient(90deg, #3b82f6, #f97316); box-shadow: 0 0 10px #3b82f640; }
+  .private-vif { background: linear-gradient(90deg, #3b82f6, #60a5fa); box-shadow: 0 0 10px #3b82f640; }
+  .transit-vif { background: linear-gradient(90deg, #a855f7, #c084fc); box-shadow: 0 0 10px #a855f740; }
+  .tgw-cable { background: linear-gradient(90deg, #06b6d4, #67e8f9); box-shadow: 0 0 10px #06b6d440; }
+  .cable-label-h { font-size: 0.6em; color: #555; margin-top: 4px; text-align: center; white-space: nowrap; }
+  .cable-label-h strong { color: #888; }
+
+  /* NODOS */
+  .node { border-radius: 10px; padding: 10px 16px; text-align: center; font-size: 0.8em; font-weight: 700; white-space: nowrap; }
+  .node-dc { background: #0a1628; border: 2px solid #3b82f6; color: #93c5fd; }
+  .node-loc { background: #1a0d0a; border: 2px solid #f97316; color: #fdba74; font-size:0.72em; }
+  .node-dcgw-a { background: #0a1f3c; border: 2px solid #60a5fa; color: #bfdbfe; }
+  .node-dcgw-b { background: #1e0a3c; border: 2px solid #a855f7; color: #d8b4fe; }
+  .node-tgw { background: #0a2a2a; border: 2px solid #06b6d4; color: #67e8f9; }
+  .node-vpc { background: #0a200a; border: 2px solid #22c55e; color: #86efac; font-size:0.72em; padding: 8px 12px; }
+  .node-vgw { background: #1a1200; border: 2px solid #ff9900; color: #fbbf24; font-size:0.72em; padding: 8px 12px; }
+  .node-cloud { background: #1a1200; border: 2px solid #ff9900; color: #ff9900; }
+
+  /* DIAGRAMA VERTICAL */
+  .diag { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .diag-row { display: flex; align-items: center; gap: 0; }
+  .cable-v { display: flex; flex-direction: column; align-items: center; gap: 0; padding: 2px 0; }
+  .cable-line-v { width: 3px; height: 28px; border-radius: 99px; }
+  .cable-label-v { font-size: 0.6em; color: #555; }
+
+  /* VPCs */
+  .vpc-row { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+  .vpc-wrap { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .region-badge { font-size: 0.6em; color: #555; }
+  .inter-vpc { font-size: 0.72em; margin-top: 8px; padding: 5px 14px; border-radius: 6px; }
+  .no-inter { background: #2a0a0a; color: #f87171; border: 1px solid #ef444440; }
+  .yes-inter { background: #0a2a14; color: #4ade80; border: 1px solid #22c55e40; }
+
+  /* GRID */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+
+  /* TABLA */
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+  th { background: #ff9900; color: #000; padding: 11px 14px; text-align: left; font-size: 0.87em; font-weight: 700; }
+  td { padding: 11px 14px; border-bottom: 1px solid #1e2235; font-size: 0.85em; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  .hl-blue { color: #60a5fa; font-weight: 700; }
+  .hl-purple { color: #c084fc; font-weight: 700; }
+  .hl-green { color: #4ade80; font-weight: 700; }
+
+  .note { margin-top: 20px; background: #1a1200; border: 1px solid #ff990040; border-radius: 10px; padding: 14px 18px; font-size: 0.85em; color: #fbbf24; line-height: 1.7; }
+  .note strong { color: #ff9900; }
+
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 0.7em; font-weight: 700; margin-left: 6px; }
+  .pill-orange { background: #2d1a00; color: #fb923c; border: 1px solid #f9731640; }
+  .pill-blue { background: #0a1628; color: #93c5fd; border: 1px solid #3b82f640; }
+
+  .arrow-right { color: #444; font-size: 1.3em; padding: 0 2px; align-self: center; }
+</style>
+</head>
+<body>
+
+<h1>🔌 AWS Direct Connect — Guía Visual</h1>
+<p class="subtitle">Desde el cable físico hasta las VPCs, paso a paso</p>
+
+<!-- SECCION 1: COMO FUNCIONA FISICAMENTE -->
+<div class="section sec-orange">
+  <h2 style="color:#ff9900;">📦 Paso 1 — Cómo funciona físicamente</h2>
+  <p class="sec-desc">Direct Connect no es magia — es literalmente un cable de fibra que llega a un edificio específico donde AWS tiene equipos.</p>
+
+  <div class="physical">
+
+    <!-- TU DC -->
+    <div class="building building-dc">
+      <div class="building-title">🏢 Tu Data Center</div>
+      <div class="building-sub">Texas, NY, donde sea</div>
+      <div class="cage">
+        <div class="cage-label">tu router / firewall</div>
+        <div style="color:#60a5fa; font-size:1.5em;">🖥️</div>
+        <div style="font-size:0.75em; color:#888;">IP pública propia</div>
+      </div>
+    </div>
+
+    <!-- CABLE FIBRA -->
+    <div class="cable-h" style="min-width:90px;">
+      <div class="cable-line-h fiber"></div>
+      <div class="cable-label-h"><strong>fibra óptica física</strong><br>la contratas vos<br>(telecom local)</div>
+    </div>
+
+    <!-- EQUINIX / DC LOCATION -->
+    <div class="building building-equinix">
+      <div class="building-title">🏗️ Direct Connect Location</div>
+      <div class="building-sub">Ej: Equinix DA1, Dallas</div>
+      <div style="display:flex; gap:8px; margin-top:8px;">
+        <div class="cage cage-yours" style="flex:1;">
+          <div class="cage-label">Tu cage</div>
+          <div style="font-size:1.3em;">🔲</div>
+          <div>Tu router<br>o el de tu<br>partner (AT&T)</div>
+        </div>
+        <div style="display:flex; align-items:center; color:#555; font-size:0.8em;">⟷<br><span style="font-size:0.7em;">cross<br>connect</span></div>
+        <div class="cage cage-aws" style="flex:1;">
+          <div class="cage-label">AWS cage</div>
+          <div style="font-size:1.3em;">☁️</div>
+          <div>Router<br>de AWS</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CABLE INTERNO -->
+    <div class="cable-h" style="min-width:80px;">
+      <div class="cable-line-h" style="background: linear-gradient(90deg, #f97316, #ff9900); box-shadow: 0 0 10px #ff990040;"></div>
+      <div class="cable-label-h"><strong>red interna AWS</strong><br>va a la región</div>
+    </div>
+
+    <!-- AWS CLOUD -->
+    <div class="building building-aws">
+      <div class="building-title">☁️ AWS Region</div>
+      <div class="building-sub">us-east-1, etc.</div>
+      <div class="cage cage-aws" style="margin-top:8px;">
+        <div>VGW / TGW<br>DC Gateway</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="note" style="margin-top:16px;">
+    💡 <strong>Cross connect</strong> = el cable corto dentro del edificio Equinix que conecta tu cage con el cage de AWS. Literalmente 2 metros de cable.<br>
+    <strong>Customer Gateway</strong> en AWS = la config que le dice a AWS "mi router on-prem tiene esta IP pública".<br>
+    <strong>Virtual Private Gateway (VGW)</strong> = el lado AWS donde termina tu conexión Direct Connect.
+  </div>
+</div>
+
+<!-- SECCION 2: VIFs -->
+<div class="section sec-blue">
+  <h2 style="color:#60a5fa;">🛣️ Paso 2 — VIF: qué tipo de carril elegís</h2>
+  <p class="sec-desc">Una vez que el cable físico está conectado, elegís un VIF (Virtual Interface) para decirle a AWS a dónde va el tráfico.</p>
+
+  <div style="display:flex; gap:16px; flex-wrap:wrap; justify-content:center; margin-top:8px;">
+
+    <div style="background:#0a1628; border:2px solid #3b82f6; border-radius:12px; padding:18px; min-width:170px; text-align:center;">
+      <div style="color:#60a5fa; font-weight:700; margin-bottom:6px;">🌐 Public VIF</div>
+      <div style="font-size:0.78em; color:#888; margin-bottom:10px;">Vas a endpoints públicos de AWS</div>
+      <div style="font-size:0.72em; color:#60a5fa;">→ S3, Glacier<br>→ EC2 public IPs<br>→ cualquier URL pública de AWS</div>
+    </div>
+
+    <div style="background:#0a200a; border:2px solid #22c55e; border-radius:12px; padding:18px; min-width:170px; text-align:center;">
+      <div style="color:#4ade80; font-weight:700; margin-bottom:6px;">🔒 Private VIF</div>
+      <div style="font-size:0.78em; color:#888; margin-bottom:10px;">Vas a recursos privados en tu VPC</div>
+      <div style="font-size:0.72em; color:#4ade80;">→ EC2 privadas<br>→ RDS, ALB<br>→ recursos con IP privada</div>
+    </div>
+
+    <div style="background:#0a2a2a; border:2px solid #06b6d4; border-radius:12px; padding:18px; min-width:170px; text-align:center;">
+      <div style="color:#67e8f9; font-weight:700; margin-bottom:6px;">🔄 Transit VIF</div>
+      <div style="font-size:0.78em; color:#888; margin-bottom:10px;">Vas via Transit Gateway</div>
+      <div style="font-size:0.72em; color:#67e8f9;">→ múltiples VPCs<br>→ VPCs que se hablan<br>→ máxima escala</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SECCION 3: DC GATEWAY VS TRANSIT -->
+<div class="section sec-purple">
+  <h2 style="color:#c084fc;">🔀 Paso 3 — DC Gateway vs Transit Gateway</h2>
+  <p class="sec-desc">Acá está la diferencia clave. Depende de si las VPCs necesitan hablarse entre sí o no.</p>
+
+  <div class="grid" style="margin-top:8px;">
+
+    <!-- OPCION A -->
+    <div style="background:#0a0f1e; border:2px solid #3b82f6; border-radius:12px; padding:20px;">
+      <div style="color:#60a5fa; font-weight:700; margin-bottom:4px;">🔵 DC Gateway solo</div>
+      <div style="font-size:0.78em; color:#666; margin-bottom:16px;">Las VPCs solo hablan con el DC, no entre sí</div>
+      <div class="diag">
+        <div class="node node-dc">🏢 Tu DC</div>
+        <div class="cable-v"><div class="cable-line-v private-vif"></div><div class="cable-label-v">Private VIF</div></div>
+        <div class="node node-dcgw-a">🔵 DC Gateway</div>
+        <div class="cable-v"><div class="cable-line-v private-vif" style="height:14px;"></div></div>
+        <div class="vpc-row" style="gap:8px;">
+          <div class="vpc-wrap">
+            <div class="region-badge">us-east-1</div>
+            <div class="node node-vgw" style="font-size:0.68em; padding:5px 8px;">VGW → VPC A</div>
+          </div>
+          <div class="vpc-wrap">
+            <div class="region-badge">eu-west-1</div>
+            <div class="node node-vgw" style="font-size:0.68em; padding:5px 8px;">VGW → VPC B</div>
+          </div>
+          <div class="vpc-wrap">
+            <div class="region-badge">ap-south-1</div>
+            <div class="node node-vgw" style="font-size:0.68em; padding:5px 8px;">VGW → VPC C</div>
+          </div>
+        </div>
+        <div class="inter-vpc no-inter">❌ VPCs NO se hablan entre sí</div>
+      </div>
+      <div style="margin-top:12px; font-size:0.78em; color:#aaa; line-height:1.8;">
+        ✅ Multi-region, multi-account<br>
+        ✅ Más simple y barato<br>
+        ❌ Sin routing entre VPCs
+      </div>
+    </div>
+
+    <!-- OPCION B -->
+    <div style="background:#0f0a1e; border:2px solid #a855f7; border-radius:12px; padding:20px;">
+      <div style="color:#c084fc; font-weight:700; margin-bottom:4px;">🟣 DC Gateway + Transit Gateway</div>
+      <div style="font-size:0.78em; color:#666; margin-bottom:16px;">Las VPCs también se comunican entre sí</div>
+      <div class="diag">
+        <div class="node node-dc">🏢 Tu DC</div>
+        <div class="cable-v"><div class="cable-line-v transit-vif"></div><div class="cable-label-v">Transit VIF</div></div>
+        <div class="node node-dcgw-b">🟣 DC Gateway</div>
+        <div class="cable-v"><div class="cable-line-v tgw-cable"></div><div class="cable-label-v">conecta al TGW</div></div>
+        <div class="node node-tgw">🔄 Transit Gateway</div>
+        <div class="cable-v"><div class="cable-line-v tgw-cable" style="height:14px;"></div></div>
+        <div class="vpc-row" style="gap:8px;">
+          <div class="vpc-wrap">
+            <div class="region-badge">us-east-1</div>
+            <div class="node node-vpc" style="padding:6px 10px;">VPC A</div>
+          </div>
+          <div class="vpc-wrap">
+            <div class="region-badge">us-east-1</div>
+            <div class="node node-vpc" style="padding:6px 10px;">VPC B</div>
+          </div>
+          <div class="vpc-wrap">
+            <div class="region-badge">us-east-1</div>
+            <div class="node node-vpc" style="padding:6px 10px;">VPC C</div>
+          </div>
+        </div>
+        <div class="inter-vpc yes-inter">✅ VPCs SÍ se hablan entre sí via TGW</div>
+      </div>
+      <div style="margin-top:12px; font-size:0.78em; color:#aaa; line-height:1.8;">
+        ✅ VPCs se comunican entre sí<br>
+        ✅ Hub centralizado en TGW<br>
+        ⚠️ Más complejo y caro
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TABLA EXAMEN -->
+<div class="section sec-green">
+  <h2 style="color:#4ade80;">🎯 Tabla Examen</h2>
+  <table>
+    <tr><th>La pregunta dice...</th><th>Usás</th></tr>
+    <tr><td>1 DC → VPCs en múltiples regiones, sin comunicación entre VPCs</td><td class="hl-blue">DC Gateway + Private VIF</td></tr>
+    <tr><td>1 DC → VPCs que también se comunican entre sí</td><td class="hl-purple">DC Gateway + Transit VIF + TGW</td></tr>
+    <tr><td>Solo quiero llegar a 1 VPC desde el DC</td><td class="hl-green">Private VIF → VGW directo</td></tr>
+    <tr><td>DC no encripta, necesito privacidad + cifrado</td><td style="color:#fbbf24; font-weight:700;">DC + VPN encima (IPsec)</td></tr>
+    <tr><td>Gateway Endpoint (S3) desde on-prem via DC?</td><td style="color:#f87171; font-weight:700;">❌ NO — usar Interface Endpoint</td></tr>
+  </table>
+  <div class="note">
+    💡 <strong>Regla mental:</strong> ¿Las VPCs se hablan entre sí? → <strong>Transit Gateway</strong>. ¿Solo el DC habla con las VPCs? → <strong>DC Gateway solo</strong>.
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>15.11 — VPC Flow Logs</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #080b12; color: #e0e0e0; padding: 40px 30px; }
+
+  h1 { color: #ff9900; text-align: center; font-size: 2.2em; font-weight: 900; margin-bottom: 6px; }
+  .subtitle { text-align: center; color: #555; margin-bottom: 48px; }
+
+  .section { background: #111520; border-radius: 16px; padding: 28px; margin-bottom: 24px; border: 1px solid #1e2235; position: relative; overflow: hidden; }
+  .section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .s1::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+  .s2::before { background: linear-gradient(90deg, #ef4444, #f87171); }
+  .s3::before { background: linear-gradient(90deg, #22c55e, #4ade80); }
+  .s4::before { background: linear-gradient(90deg, #a855f7, #c084fc); }
+  .s5::before { background: linear-gradient(90deg, #ff9900, #fbbf24); }
+
+  h2 { font-size: 1.1em; font-weight: 700; margin-bottom: 4px; }
+  .desc { font-size: 0.83em; color: #666; margin-bottom: 20px; }
+
+  /* NODES */
+  .node { border-radius: 10px; padding: 10px 16px; text-align: center; font-size: 0.78em; font-weight: 700; white-space: nowrap; }
+  .n-blue { background: #0a1628; border: 2px solid #3b82f6; color: #93c5fd; }
+  .n-green { background: #0a200a; border: 2px solid #22c55e; color: #86efac; }
+  .n-red { background: #2a0a0a; border: 2px solid #ef4444; color: #fca5a5; }
+  .n-orange { background: #1a0d00; border: 2px solid #ff9900; color: #fbbf24; }
+  .n-purple { background: #1e0a3c; border: 2px solid #a855f7; color: #d8b4fe; }
+  .n-gray { background: #131826; border: 2px solid #334155; color: #94a3b8; }
+  .n-cyan { background: #0a2a2a; border: 2px solid #06b6d4; color: #67e8f9; }
+  .n-sky { background: #021b2e; border: 2px solid #0ea5e9; color: #7dd3fc; }
+  .n-yellow { background: #1a1200; border: 2px solid #eab308; color: #fde047; }
+
+  .cable { display: flex; flex-direction: column; align-items: center; padding: 0 6px; }
+  .wire { height: 3px; border-radius: 99px; width: 50px; }
+  .w-blue { background: linear-gradient(90deg, #3b82f6, #60a5fa); box-shadow: 0 0 8px #3b82f640; }
+  .w-green { background: linear-gradient(90deg, #22c55e, #4ade80); box-shadow: 0 0 8px #22c55e40; }
+  .w-red { background: linear-gradient(90deg, #ef4444, #f87171); box-shadow: 0 0 8px #ef444440; }
+  .w-orange { background: linear-gradient(90deg, #ff9900, #fbbf24); box-shadow: 0 0 8px #ff990040; }
+  .w-purple { background: linear-gradient(90deg, #a855f7, #c084fc); box-shadow: 0 0 8px #a855f740; }
+  .wire-label { font-size: 0.6em; color: #555; margin-top: 3px; white-space: nowrap; text-align: center; }
+
+  .arrow { color: #444; font-size: 1.2em; align-self: center; padding: 0 2px; }
+  .arrow-v { color: #444; font-size: 1.2em; text-align: center; line-height: 1; }
+  .row { display: flex; align-items: center; justify-content: center; gap: 0; }
+  .diagram { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 16px 0; }
+
+  /* LEVELS */
+  .levels { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin: 16px 0; }
+  .level-card { border-radius: 10px; padding: 14px 18px; text-align: center; min-width: 140px; }
+  .level-title { font-weight: 700; font-size: 0.85em; margin-bottom: 6px; }
+  .level-desc { font-size: 0.72em; color: #888; }
+
+  /* SG VS NACL TROUBLESHOOT */
+  .trouble-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .trouble-card { border-radius: 12px; padding: 16px; }
+  .trouble-title { font-weight: 700; font-size: 0.88em; margin-bottom: 12px; }
+
+  .flow-box { border-radius: 8px; padding: 8px 12px; font-size: 0.75em; margin: 4px 0; text-align: center; font-weight: 600; }
+  .flow-accept { background: #0a200a; border: 1px solid #22c55e50; color: #86efac; }
+  .flow-reject { background: #2a0a0a; border: 1px solid #ef444450; color: #fca5a5; }
+  .flow-arrow { font-size: 0.8em; color: #444; text-align: center; margin: 2px 0; }
+  .flow-verdict { border-radius: 8px; padding: 8px 12px; font-size: 0.78em; margin-top: 8px; text-align: center; font-weight: 700; }
+  .verdict-nacl { background: #1a1200; border: 2px solid #eab308; color: #fde047; }
+  .verdict-both { background: #131826; border: 2px solid #334155; color: #94a3b8; }
+
+  /* SG NACL INLINE DIAGRAM */
+  .sg-nacl-flow { display: flex; align-items: center; justify-content: center; gap: 0; margin: 12px 0; }
+  .sg-nacl-box { border-radius: 8px; padding: 8px 12px; text-align: center; font-size: 0.72em; font-weight: 700; }
+  .sg-box { background: #021b2e; border: 2px solid #0ea5e9; color: #7dd3fc; }
+  .nacl-box { background: #1a1200; border: 2px solid #eab308; color: #fde047; }
+  .ec2-box { background: #0a1628; border: 2px solid #3b82f6; color: #93c5fd; }
+  .internet-box { background: #131826; border: 2px solid #334155; color: #94a3b8; }
+
+  /* ARCHITECTURES */
+  .arch-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .arch-card { background: #0a0d16; border-radius: 10px; padding: 14px; text-align: center; }
+  .arch-title { font-weight: 700; font-size: 0.82em; margin-bottom: 8px; }
+  .arch-flow { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .arch-step { font-size: 0.7em; border-radius: 6px; padding: 5px 10px; }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; }
+  th { background: #ff9900; color: #000; padding: 10px 14px; text-align: left; font-size: 0.82em; font-weight: 700; }
+  td { padding: 10px 14px; border-bottom: 1px solid #1e2235; font-size: 0.82em; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  .hl { font-weight: 700; }
+  .c-green { color: #4ade80; } .c-red { color: #f87171; } .c-yellow { color: #fde047; }
+  .c-blue { color: #60a5fa; } .c-purple { color: #d8b4fe; } .c-orange { color: #fdba74; }
+  .c-cyan { color: #67e8f9; } .c-sky { color: #7dd3fc; }
+
+  .tip { background: #0a1a0a; border: 1px solid #22c55e40; border-radius: 8px; padding: 10px 14px; margin-top: 12px; font-size: 0.8em; color: #86efac; }
+  .tip strong { color: #22c55e; }
+  .trap { background: #1a0a0a; border: 1px solid #ef444440; border-radius: 8px; padding: 10px 14px; margin-top: 12px; font-size: 0.8em; color: #fca5a5; }
+  .trap strong { color: #ef4444; }
+</style>
+</head>
+<body>
+
+<h1>📊 VPC Flow Logs</h1>
+<p class="subtitle">Capture, analyze, and troubleshoot network traffic in your VPC</p>
+
+<!-- 1. WHAT ARE FLOW LOGS -->
+<div class="section s1">
+  <h2 style="color:#60a5fa;">What are VPC Flow Logs?</h2>
+  <p class="desc">Metadata about every network packet entering your interfaces. Not the content — just the envelope.</p>
+
+  <div class="levels">
+    <div class="level-card" style="background:#0a1628; border:2px solid #3b82f6;">
+      <div class="level-title" style="color:#60a5fa;">🌐 VPC Level</div>
+      <div class="level-desc">All traffic in the entire VPC</div>
+    </div>
+    <div class="level-card" style="background:#0a200a; border:2px solid #22c55e;">
+      <div class="level-title" style="color:#4ade80;">📂 Subnet Level</div>
+      <div class="level-desc">All traffic in one subnet</div>
+    </div>
+    <div class="level-card" style="background:#1e0a3c; border:2px solid #a855f7;">
+      <div class="level-title" style="color:#d8b4fe;">🔌 ENI Level</div>
+      <div class="level-desc">Traffic on one specific interface</div>
+    </div>
+  </div>
+
+  <div style="font-size:0.78em; color:#888; text-align:center; margin-bottom:12px;">Also captures managed interfaces: ELB, RDS, ElastiCache, NAT GW, Transit GW...</div>
+
+  <div class="diagram">
+    <div style="font-size:0.72em; color:#555; margin-bottom:8px;">Where do logs go?</div>
+    <div class="row" style="gap:6px;">
+      <div class="node n-blue" style="font-size:0.72em;">📊 VPC<br>Flow Logs</div>
+      <div class="arrow">→</div>
+      <div style="display:flex; flex-direction:column; gap:6px;">
+        <div class="node n-orange" style="font-size:0.68em; padding:6px 10px;">📦 S3 → query with Athena</div>
+        <div class="node n-purple" style="font-size:0.68em; padding:6px 10px;">📋 CloudWatch Logs → Insights</div>
+        <div class="node n-red" style="font-size:0.68em; padding:6px 10px;">🔥 Kinesis Data Firehose</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. SG VS NACL TROUBLESHOOTING — THE MONEY SHOT -->
+<div class="section s2">
+  <h2 style="color:#f87171;">The Exam Trick — SG vs NACL Troubleshooting</h2>
+  <p class="desc">Use the ACTION field (ACCEPT/REJECT) to figure out if the problem is Security Group or NACL.</p>
+
+  <!-- The inline diagram showing where SG and NACL sit -->
+  <div style="font-size:0.78em; color:#888; text-align:center; margin-bottom:8px;">Remember where they sit:</div>
+  <div class="sg-nacl-flow">
+    <div class="internet-box sg-nacl-box">🌐 Internet</div>
+    <div class="cable"><div class="wire w-red" style="width:30px;"></div></div>
+    <div class="nacl-box sg-nacl-box">🟡 NACL<br><span style="font-size:0.85em; color:#888;">(stateless)</span></div>
+    <div class="cable"><div class="wire w-red" style="width:30px;"></div></div>
+    <div class="sg-box sg-nacl-box">🔵 SG<br><span style="font-size:0.85em; color:#555;">(stateful)</span></div>
+    <div class="cable"><div class="wire w-blue" style="width:30px;"></div></div>
+    <div class="ec2-box sg-nacl-box">🖥️ EC2</div>
+  </div>
+
+  <div class="trouble-grid">
+    <!-- INBOUND SCENARIOS -->
+    <div class="trouble-card" style="background:#131826; border:2px solid #334155;">
+      <div class="trouble-title" style="color:#94a3b8;">Inbound: REJECT</div>
+      <div class="flow-box flow-reject">→ Inbound REJECT</div>
+      <div class="flow-verdict verdict-both">Could be SG or NACL — can't tell</div>
+      <div style="font-size:0.7em; color:#666; margin-top:6px; text-align:center;">Either one blocked the request</div>
+    </div>
+
+    <div class="trouble-card" style="background:#1a1200; border:2px solid #eab308;">
+      <div class="trouble-title" style="color:#fde047;">Inbound: ACCEPT + Outbound: REJECT</div>
+      <div class="flow-box flow-accept">→ Inbound ACCEPT ✅</div>
+      <div class="flow-arrow">↓ request got through</div>
+      <div class="flow-box flow-reject">← Outbound REJECT ❌</div>
+      <div class="flow-verdict verdict-nacl">100% NACL problem</div>
+      <div style="font-size:0.7em; color:#eab308; margin-top:6px; text-align:center;">
+        Why? SG is <strong>stateful</strong> — if inbound was accepted, outbound response is auto-allowed. Only NACL (stateless) would block it.
+      </div>
+    </div>
+
+    <!-- OUTBOUND SCENARIOS -->
+    <div class="trouble-card" style="background:#131826; border:2px solid #334155;">
+      <div class="trouble-title" style="color:#94a3b8;">Outbound: REJECT</div>
+      <div class="flow-box flow-reject">← Outbound REJECT</div>
+      <div class="flow-verdict verdict-both">Could be SG or NACL — can't tell</div>
+      <div style="font-size:0.7em; color:#666; margin-top:6px; text-align:center;">Either one blocked the response</div>
+    </div>
+
+    <div class="trouble-card" style="background:#1a1200; border:2px solid #eab308;">
+      <div class="trouble-title" style="color:#fde047;">Outbound: ACCEPT + Inbound: REJECT</div>
+      <div class="flow-box flow-accept">← Outbound ACCEPT ✅</div>
+      <div class="flow-arrow">↓ response got out</div>
+      <div class="flow-box flow-reject">→ Inbound REJECT ❌</div>
+      <div class="flow-verdict verdict-nacl">100% NACL problem</div>
+      <div style="font-size:0.7em; color:#eab308; margin-top:6px; text-align:center;">
+        Same logic — SG would auto-allow inbound response
+      </div>
+    </div>
+  </div>
+
+  <div class="trap"><strong>⚠️ Exam golden rule:</strong> If one direction is ACCEPT and the other is REJECT → it's ALWAYS a <strong>NACL</strong> issue. SG is stateful and would never block the return traffic of an accepted connection.</div>
+</div>
+
+<!-- 3. ARCHITECTURES -->
+<div class="section s3">
+  <h2 style="color:#4ade80;">Flow Log Architectures</h2>
+  <p class="desc">Three common patterns you'll see on the exam.</p>
+
+  <div class="arch-grid">
+    <div class="arch-card">
+      <div class="arch-title" style="color:#67e8f9;">🏆 Top 10 IPs</div>
+      <div class="arch-flow">
+        <div class="arch-step n-blue">Flow Logs</div>
+        <div class="arrow-v">↓</div>
+        <div class="arch-step n-purple" style="font-size:0.68em;">CloudWatch Logs</div>
+        <div class="arrow-v">↓</div>
+        <div class="arch-step n-cyan" style="font-size:0.68em;">Contributor Insights</div>
+        <div class="arrow-v">↓</div>
+        <div style="font-size:0.68em; color:#67e8f9; margin-top:4px;">Top talkers by IP</div>
+      </div>
+    </div>
+
+    <div class="arch-card">
+      <div class="arch-title" style="color:#f87171;">🚨 SSH/RDP Spike Alert</div>
+      <div class="arch-flow">
+        <div class="arch-step n-blue">Flow Logs</div>
+        <div class="arrow-v">↓</div>
+        <div class="arch-step n-purple" style="font-size:0.68em;">CloudWatch Logs</div>
+        <div class="arrow-v">↓</div>
+        <div class="arch-step n-orange" style="font-size:0.68em;">Metric Filter<br>(SSH port 22)</div>
+        <div class="arrow-v">↓</div>
+        <div class="arch-step n-red" style="font-size:0.68em;">CloudWatch Alarm<br>→ SNS Alert</div>
+      </div>
+    </div>
+
+    <div class="arch-card">
+      <div class="arch-title" style="color:#fdba74;">📊 SQL Analytics</div>
+      <div class="arch-flow">
+        <div class="arch-step n-blue">Flow Logs</div>
+        <div class="arrow-v">↓</div>
+        <div class="arch-step n-orange" style="font-size:0.68em;">S3 Bucket</div>
+        <div class="arrow-v">↓</div>
+        <div class="arch-step n-yellow" style="font-size:0.68em;">Athena (SQL)</div>
+        <div class="arrow-v">↓</div>
+        <div class="arch-step n-purple" style="font-size:0.68em;">QuickSight<br>(dashboards)</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. NAT GATEWAY GOTCHA -->
+<div class="section s4">
+  <h2 style="color:#d8b4fe;">NAT Gateway Gotcha</h2>
+  <p class="desc">You see ACCEPT for inbound public IPs to your NAT GW in Flow Logs. Is your NAT GW compromised? No.</p>
+
+  <div class="diagram">
+    <div class="row" style="gap:4px;">
+      <div class="node n-gray" style="font-size:0.72em;">🌐 Public IP<br>(attacker?)</div>
+      <div class="cable">
+        <div class="wire w-red" style="width:40px;"></div>
+        <div class="wire-label">inbound</div>
+      </div>
+      <div class="node n-yellow" style="font-size:0.72em;">NACL<br>ACCEPT ✅</div>
+      <div class="cable">
+        <div class="wire w-green" style="width:40px;"></div>
+      </div>
+      <div class="node n-orange" style="font-size:0.72em;">🔀 NAT GW</div>
+      <div style="display:flex; flex-direction:column; align-items:center; padding:0 8px;">
+        <div style="background:#ef4444; color:#fff; border-radius:50%; width:22px; height:22px; display:flex; align-items:center; justify-content:center; font-size:0.7em; font-weight:900;">X</div>
+        <div style="font-size:0.6em; color:#ef4444; margin-top:2px;">DROPPED</div>
+      </div>
+      <div class="node n-gray" style="font-size:0.72em; opacity:0.4;">🖥️ EC2<br>(never reaches)</div>
+    </div>
+  </div>
+
+  <div style="font-size:0.8em; color:#888; text-align:center; margin:8px 0;">
+    Flow Logs show <span style="color:#4ade80;">ACCEPT</span> because SG/NACL allowed it in.<br>
+    But NAT Gateway <span style="color:#ef4444;">drops unsolicited inbound traffic internally</span> — it never reaches your private instances.
+  </div>
+
+  <div class="tip"><strong>✅ Not a security issue.</strong> The ACCEPT in Flow Logs is at the SG/NACL level. NAT GW has its own internal logic that drops unsolicited inbound traffic. Your instances are safe.</div>
+</div>
+
+<!-- EXAM TABLE -->
+<div class="section s5">
+  <h2 style="color:#fbbf24;">🎯 Exam Cheat Sheet</h2>
+  <table>
+    <tr><th>Question says...</th><th>Answer</th></tr>
+    <tr><td>Monitor/capture network traffic in VPC</td><td class="hl c-blue">VPC Flow Logs</td></tr>
+    <tr><td>Inbound ACCEPT + Outbound REJECT</td><td class="hl c-yellow">NACL problem (SG is stateful)</td></tr>
+    <tr><td>Outbound ACCEPT + Inbound REJECT</td><td class="hl c-yellow">NACL problem (SG is stateful)</td></tr>
+    <tr><td>Just REJECT (one direction)</td><td class="hl" style="color:#94a3b8;">Could be SG or NACL</td></tr>
+    <tr><td>Query flow logs with SQL</td><td class="hl c-orange">Athena on S3</td></tr>
+    <tr><td>Find top IPs by traffic</td><td class="hl c-cyan">CloudWatch Contributor Insights</td></tr>
+    <tr><td>Alert on SSH/RDP spikes</td><td class="hl c-red">Metric Filter → CloudWatch Alarm → SNS</td></tr>
+    <tr><td>Visualize flow log analytics</td><td class="hl c-purple">Athena + QuickSight</td></tr>
+    <tr><td>NAT GW shows ACCEPT for inbound public IPs</td><td class="hl c-green">Normal — NAT drops it internally</td></tr>
+  </table>
+</div>
+
+</body>
+</html>

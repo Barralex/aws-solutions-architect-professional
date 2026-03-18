@@ -7,11 +7,11 @@ Study notes for AWS SAP-C02, assisted by Claude.
 ## 📊 Progress
 
 ```
-██████████████████████░░░░░░░░ 72% (147/205 lessons)
+██████████████████████░░░░░░░░ 75% (154/205 lessons)
 ```
 
 **Current section:** 15 - VPC
-**Next lesson:** 15.5 VPC Endpoint Policies
+**Next lesson:** 15.13 VPC Quiz
 
 ## What's this
 

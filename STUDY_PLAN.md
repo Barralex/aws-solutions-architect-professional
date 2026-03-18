@@ -209,14 +209,14 @@
 - [x] 15.2 VPC Peering ⚠️ (50% quiz - REPASAR)
 - [x] 15.3 Transit Gateway ✅ (100% quiz)
 - [x] 15.4 VPC Endpoints ✅ (100% quiz)
-- [ ] 15.5 VPC Endpoint Policies
-- [ ] 15.6 PrivateLink
-- [ ] 15.7 AWS Site-to-Site VPN
-- [ ] 15.8 AWS Client VPN
-- [ ] 15.9 Direct Connect
-- [ ] 15.10 On-Premises Redundant Connections
+- [x] 15.5 VPC Endpoint Policies ⚠️ (75% quiz - REPASAR: Route Table)
+- [x] 15.6 PrivateLink ⚠️ (75% quiz - REPASAR: endpoint debe estar en región del bucket)
+- [x] 15.7 AWS Site-to-Site VPN ⚠️ (67% quiz - REPASAR: Shared Services VPC)
+- [x] 15.8 AWS Client VPN ✅ (100% quiz)
+- [x] 15.9 Direct Connect ⚠️ (67% quiz - REPASAR: DC Gateway vs Transit Gateway)
+- [x] 15.10 On-Premises Redundant Connections ✅ (100% quiz)
 - [ ] 15.11 VPC Flow Logs
-- [ ] 15.12 AWS Network Firewall
+- [x] 15.12 AWS Network Firewall ⚠️ (50% quiz - REPASAR: TGW routes through Inspection VPC)
 - [ ] 15.13 VPC Quiz
 
 ## 16. Machine Learning (12 clases | 26min)

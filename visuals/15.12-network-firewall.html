@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>15.12 — AWS Network Firewall</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #080b12; color: #e0e0e0; padding: 40px 30px; }
+
+  h1 { color: #ff9900; text-align: center; font-size: 2.2em; font-weight: 900; margin-bottom: 6px; }
+  .subtitle { text-align: center; color: #555; margin-bottom: 48px; }
+
+  .section { background: #111520; border-radius: 16px; padding: 28px; margin-bottom: 24px; border: 1px solid #1e2235; position: relative; overflow: hidden; }
+  .section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .s1::before { background: linear-gradient(90deg, #ef4444, #f87171); }
+  .s2::before { background: linear-gradient(90deg, #ff9900, #fbbf24); }
+  .s3::before { background: linear-gradient(90deg, #06b6d4, #67e8f9); }
+  .s4::before { background: linear-gradient(90deg, #a855f7, #c084fc); }
+
+  h2 { font-size: 1.1em; font-weight: 700; margin-bottom: 4px; }
+  .desc { font-size: 0.83em; color: #666; margin-bottom: 20px; }
+
+  /* NODES */
+  .node { border-radius: 10px; padding: 10px 16px; text-align: center; font-size: 0.78em; font-weight: 700; white-space: nowrap; }
+  .n-vpc { background: #0a200a; border: 2px solid #22c55e; color: #86efac; }
+  .n-tgw { background: #0a2a2a; border: 2px solid #06b6d4; color: #67e8f9; }
+  .n-fw { background: #2a0a0a; border: 2px solid #ef4444; color: #fca5a5; }
+  .n-igw { background: #1a1200; border: 2px solid #ff9900; color: #fbbf24; }
+  .n-dc { background: #0a1628; border: 2px solid #3b82f6; color: #93c5fd; }
+  .n-internet { background: #131826; border: 2px solid #334155; color: #94a3b8; }
+  .n-mgr { background: #1e0a3c; border: 2px solid #a855f7; color: #d8b4fe; }
+
+  /* WIRES */
+  .cable { display: flex; flex-direction: column; align-items: center; padding: 0 6px; }
+  .wire { height: 3px; border-radius: 99px; width: 50px; }
+  .w-green { background: linear-gradient(90deg, #22c55e, #4ade80); box-shadow: 0 0 8px #22c55e40; }
+  .w-cyan { background: linear-gradient(90deg, #06b6d4, #67e8f9); box-shadow: 0 0 8px #06b6d440; }
+  .w-red { background: linear-gradient(90deg, #ef4444, #f87171); box-shadow: 0 0 8px #ef444440; }
+  .w-orange { background: linear-gradient(90deg, #ff9900, #fbbf24); box-shadow: 0 0 8px #ff990040; }
+  .w-blue { background: linear-gradient(90deg, #3b82f6, #60a5fa); box-shadow: 0 0 8px #3b82f640; }
+  .w-gray { background: linear-gradient(90deg, #334155, #475569); box-shadow: 0 0 6px #33415540; }
+  .wire-label { font-size: 0.6em; color: #555; margin-top: 3px; white-space: nowrap; text-align: center; }
+
+  .arrow-v { color: #444; font-size: 1.2em; text-align: center; line-height: 1; }
+  .row { display: flex; align-items: center; justify-content: center; gap: 0; }
+  .diagram { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 16px 0; }
+
+  /* SHIELD VISUAL */
+  .shield-container { position: relative; display: flex; justify-content: center; margin: 20px 0; }
+  .shield-vpc { background: #0a200a; border: 3px solid #22c55e; border-radius: 16px; padding: 20px 30px; text-align: center; min-width: 200px; }
+  .shield-vpc-label { color: #86efac; font-weight: 700; font-size: 0.9em; margin-bottom: 8px; }
+  .shield-instances { display: flex; gap: 8px; justify-content: center; }
+  .shield-instance { background: #0a1628; border: 1px solid #3b82f640; border-radius: 6px; padding: 6px 10px; font-size: 0.7em; color: #93c5fd; }
+  .shield-ring { position: absolute; top: -10px; left: -10px; right: -10px; bottom: -10px; border: 3px solid #ef4444; border-radius: 22px; box-shadow: 0 0 20px #ef444430, inset 0 0 20px #ef444410; }
+  .shield-label { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: #111520; padding: 0 12px; color: #ef4444; font-weight: 700; font-size: 0.82em; white-space: nowrap; }
+
+  /* TRAFFIC ARROWS */
+  .traffic-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 8px; align-items: center; max-width: 500px; margin: 16px auto; }
+  .traffic-source { text-align: right; font-size: 0.78em; color: #888; }
+  .traffic-arrow { display: flex; align-items: center; gap: 4px; }
+  .traffic-arrow-line { height: 2px; width: 30px; border-radius: 99px; }
+  .traffic-dest { text-align: left; font-size: 0.78em; color: #888; }
+
+  /* LAYERS */
+  .layers { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin: 12px 0; }
+  .layer { border-radius: 8px; padding: 8px 14px; text-align: center; font-size: 0.72em; font-weight: 700; }
+  .l-ip { background: #2a0a0a; border: 1px solid #ef444440; color: #fca5a5; }
+  .l-proto { background: #1a0d00; border: 1px solid #f9731640; color: #fdba74; }
+  .l-domain { background: #1a1200; border: 1px solid #eab30840; color: #fde047; }
+  .l-regex { background: #1e0a3c; border: 1px solid #a855f740; color: #d8b4fe; }
+  .l-ips { background: #0a2a2a; border: 1px solid #06b6d440; color: #67e8f9; }
+
+  /* COMPARISON TABLE */
+  .compare { background: #111520; border-radius: 16px; padding: 28px; border: 1px solid #1e2235; margin-top: 24px; }
+  .compare h2 { color: #ff9900; margin-bottom: 16px; }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: #ff9900; color: #000; padding: 10px 14px; text-align: left; font-size: 0.82em; font-weight: 700; }
+  td { padding: 10px 14px; border-bottom: 1px solid #1e2235; font-size: 0.82em; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  .hl { font-weight: 700; }
+  .c-green { color: #4ade80; } .c-cyan { color: #67e8f9; } .c-red { color: #f87171; }
+  .c-orange { color: #fdba74; } .c-purple { color: #d8b4fe; } .c-yellow { color: #fde047; }
+  .c-sky { color: #7dd3fc; }
+
+  .tip { background: #0a1a0a; border: 1px solid #22c55e40; border-radius: 8px; padding: 10px 14px; margin-top: 12px; font-size: 0.8em; color: #86efac; }
+  .tip strong { color: #22c55e; }
+  .trap { background: #1a0a0a; border: 1px solid #ef444440; border-radius: 8px; padding: 10px 14px; margin-top: 12px; font-size: 0.8em; color: #fca5a5; }
+  .trap strong { color: #ef4444; }
+
+  /* ARCHITECTURE */
+  .arch { background: #0a0d16; border-radius: 12px; padding: 20px; margin: 16px 0; }
+  .arch-label { font-size: 0.72em; color: #555; margin-bottom: 12px; text-align: center; }
+  .arch-flow { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; }
+  .flow-step { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+  .flow-num { font-size: 0.6em; color: #888; background: #1e2235; border-radius: 99px; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; }
+</style>
+</head>
+<body>
+
+<h1>🛡️ AWS Network Firewall</h1>
+<p class="subtitle">Full VPC protection · Layer 3-7 · Managed by AWS</p>
+
+<!-- 1. WHAT IS IT -->
+<div class="section s1">
+  <h2 style="color:#f87171;">What is Network Firewall?</h2>
+  <p class="desc">A managed firewall that wraps around your entire VPC. Inspects ALL traffic in every direction.</p>
+
+  <div class="shield-container">
+    <div class="shield-ring"></div>
+    <div class="shield-label">🛡️ AWS Network Firewall (Layer 3–7)</div>
+    <div class="shield-vpc">
+      <div class="shield-vpc-label">Your VPC</div>
+      <div class="shield-instances">
+        <div class="shield-instance">🖥️ EC2</div>
+        <div class="shield-instance">🗄️ RDS</div>
+        <div class="shield-instance">⚖️ ALB</div>
+        <div class="shield-instance">🐳 ECS</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="font-size:0.8em; color:#888; text-align:center; margin-bottom:12px;">Inspects traffic in ALL directions:</div>
+
+  <div class="traffic-grid">
+    <div class="traffic-source">🌐 Internet</div>
+    <div class="traffic-arrow"><div class="traffic-arrow-line w-red" style="width:20px;"></div><span style="color:#ef4444;">↔</span><div class="traffic-arrow-line w-red" style="width:20px;"></div></div>
+    <div class="traffic-dest">VPC (inbound/outbound)</div>
+
+    <div class="traffic-source">🏢 On-prem (VPN / DC)</div>
+    <div class="traffic-arrow"><div class="traffic-arrow-line w-blue" style="width:20px;"></div><span style="color:#3b82f6;">↔</span><div class="traffic-arrow-line w-blue" style="width:20px;"></div></div>
+    <div class="traffic-dest">VPC (to/from corporate)</div>
+
+    <div class="traffic-source">VPC A</div>
+    <div class="traffic-arrow"><div class="traffic-arrow-line w-green" style="width:20px;"></div><span style="color:#22c55e;">↔</span><div class="traffic-arrow-line w-green" style="width:20px;"></div></div>
+    <div class="traffic-dest">VPC B (east-west)</div>
+  </div>
+</div>
+
+<!-- 2. WHAT CAN IT FILTER -->
+<div class="section s2">
+  <h2 style="color:#fbbf24;">What can it filter?</h2>
+  <p class="desc">Thousands of rules, from IP/port up to domain names and regex patterns.</p>
+
+  <div class="layers">
+    <div class="layer l-ip">🔢 IP & Port<br><span style="font-size:0.85em; color:#888;">10,000+ IPs</span></div>
+    <div class="layer l-proto">📡 Protocol<br><span style="font-size:0.85em; color:#888;">e.g. block SMB</span></div>
+    <div class="layer l-domain">🌐 Domain<br><span style="font-size:0.85em; color:#888;">allow *.corp.com only</span></div>
+    <div class="layer l-regex">🔍 Regex Pattern<br><span style="font-size:0.85em; color:#888;">match any pattern</span></div>
+    <div class="layer l-ips">🚨 IPS<br><span style="font-size:0.85em; color:#888;">intrusion prevention</span></div>
+  </div>
+
+  <div style="display:flex; gap:12px; flex-wrap:wrap; justify-content:center; margin-top:16px;">
+    <div style="background:#0a0d16; border-radius:8px; padding:12px; font-size:0.78em; text-align:center; min-width:120px;">
+      <div style="color:#4ade80; font-weight:700; margin-bottom:4px;">✅ Allow</div>
+      <div style="color:#666;">Let it through</div>
+    </div>
+    <div style="background:#0a0d16; border-radius:8px; padding:12px; font-size:0.78em; text-align:center; min-width:120px;">
+      <div style="color:#f87171; font-weight:700; margin-bottom:4px;">❌ Drop</div>
+      <div style="color:#666;">Block silently</div>
+    </div>
+    <div style="background:#0a0d16; border-radius:8px; padding:12px; font-size:0.78em; text-align:center; min-width:120px;">
+      <div style="color:#fbbf24; font-weight:700; margin-bottom:4px;">⚠️ Alert</div>
+      <div style="color:#666;">Log & notify</div>
+    </div>
+  </div>
+
+  <div style="font-size:0.72em; color:#555; text-align:center; margin-top:12px;">
+    Logs to: S3 · CloudWatch Logs · Kinesis Data Firehose
+  </div>
+</div>
+
+<!-- 3. THE ARCHITECTURE PATTERN -->
+<div class="section s3">
+  <h2 style="color:#67e8f9;">The Architecture Pattern — Always the same</h2>
+  <p class="desc">Everything goes through Transit Gateway → Inspection VPC (Network Firewall) → final destination.</p>
+
+  <div class="arch">
+    <div class="arch-label">North-South: VPC → Internet</div>
+    <div class="arch-flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="node n-vpc" style="font-size:0.7em; padding:6px 10px;">VPC A<br>instances</div>
+      </div>
+      <div class="cable"><div class="wire w-green" style="width:30px;"></div></div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="node n-tgw" style="font-size:0.7em; padding:6px 10px;">Transit<br>Gateway</div>
+      </div>
+      <div class="cable"><div class="wire w-cyan" style="width:30px;"></div></div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="node n-fw" style="font-size:0.7em; padding:8px 10px;">🛡️ Inspection VPC<br>Network Firewall</div>
+      </div>
+      <div class="cable"><div class="wire w-cyan" style="width:30px;"></div></div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="node n-tgw" style="font-size:0.7em; padding:6px 10px;">Transit<br>Gateway</div>
+      </div>
+      <div class="cable"><div class="wire w-orange" style="width:30px;"></div></div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="node n-igw" style="font-size:0.7em; padding:6px 10px;">Egress VPC<br>IGW → 🌐</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arch">
+    <div class="arch-label">VPC → On-Premises</div>
+    <div class="arch-flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="node n-vpc" style="font-size:0.7em; padding:6px 10px;">VPC A</div>
+      </div>
+      <div class="cable"><div class="wire w-green" style="width:30px;"></div></div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="node n-tgw" style="font-size:0.7em; padding:6px 10px;">TGW</div>
+      </div>
+      <div class="cable"><div class="wire w-cyan" style="width:30px;"></div></div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="node n-fw" style="font-size:0.7em; padding:8px 10px;">🛡️ Network FW</div>
+      </div>
+      <div class="cable"><div class="wire w-cyan" style="width:30px;"></div></div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="node n-tgw" style="font-size:0.7em; padding:6px 10px;">TGW</div>
+      </div>
+      <div class="cable"><div class="wire w-blue" style="width:30px;"></div></div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="node n-dc" style="font-size:0.7em; padding:6px 10px;">🏢 On-prem<br>VPN / DC</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="arch">
+    <div class="arch-label">East-West: VPC ↔ VPC</div>
+    <div class="arch-flow">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="node n-vpc" style="font-size:0.7em; padding:6px 10px;">VPC A</div>
+      </div>
+      <div class="cable"><div class="wire w-green" style="width:30px;"></div></div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="node n-tgw" style="font-size:0.7em; padding:6px 10px;">TGW</div>
+      </div>
+      <div class="cable"><div class="wire w-cyan" style="width:30px;"></div></div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="node n-fw" style="font-size:0.7em; padding:8px 10px;">🛡️ Network FW</div>
+      </div>
+      <div class="cable"><div class="wire w-cyan" style="width:30px;"></div></div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="node n-tgw" style="font-size:0.7em; padding:6px 10px;">TGW</div>
+      </div>
+      <div class="cable"><div class="wire w-green" style="width:30px;"></div></div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="node n-vpc" style="font-size:0.7em; padding:6px 10px;">VPC B</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip"><strong>✅ The pattern:</strong> Traffic ALWAYS goes: Source → TGW → Network Firewall → TGW → Destination. TGW is the central router, Network Firewall is the inspector.</div>
+</div>
+
+<!-- 4. ALL FIREWALLS COMPARED -->
+<div class="section s4">
+  <h2 style="color:#d8b4fe;">All AWS Firewall Services — When to use what</h2>
+  <p class="desc">Don't confuse them on the exam. Each has a specific scope.</p>
+
+  <table>
+    <tr><th>Service</th><th>Scope</th><th>What it does</th></tr>
+    <tr>
+      <td class="hl c-yellow">NACL</td>
+      <td>Subnet level</td>
+      <td>Basic allow/deny by IP & port · stateless · rule order matters</td>
+    </tr>
+    <tr>
+      <td class="hl c-sky">Security Group</td>
+      <td>Instance level</td>
+      <td>Allow rules only · stateful · remembers connections</td>
+    </tr>
+    <tr>
+      <td class="hl c-orange">AWS WAF</td>
+      <td>HTTP layer (L7)</td>
+      <td>Protects ALB, CloudFront, API GW · SQL injection, XSS, rate limiting</td>
+    </tr>
+    <tr>
+      <td class="hl c-cyan">AWS Shield</td>
+      <td>DDoS protection</td>
+      <td>Standard (free, auto) · Advanced (paid, 24/7 response team)</td>
+    </tr>
+    <tr>
+      <td class="hl c-red">Network Firewall</td>
+      <td>Entire VPC (L3-L7)</td>
+      <td>Full inspection · IPS · domain filtering · regex · 10K+ rules</td>
+    </tr>
+    <tr>
+      <td class="hl c-purple">Firewall Manager</td>
+      <td>Multi-account</td>
+      <td>Centrally manages rules for WAF, Shield, SG, Network Firewall</td>
+    </tr>
+  </table>
+
+  <div class="trap" style="margin-top:16px;"><strong>⚠️ Exam key:</strong><br>
+    • "Block malicious IP" → <strong>NACL</strong> (has Deny)<br>
+    • "Protect against SQL injection on ALB" → <strong>WAF</strong><br>
+    • "Inspect all VPC traffic, IPS, domain filtering" → <strong>Network Firewall</strong><br>
+    • "Manage firewall rules across all accounts" → <strong>Firewall Manager</strong>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>15.10 — On-Premises Redundant Connections</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #080b12; color: #e0e0e0; padding: 40px 30px; }
+
+  h1 { color: #ff9900; text-align: center; font-size: 2.2em; font-weight: 900; margin-bottom: 6px; }
+  .subtitle { text-align: center; color: #555; margin-bottom: 48px; }
+
+  .section { background: #111520; border-radius: 16px; padding: 28px; margin-bottom: 24px; border: 1px solid #1e2235; position: relative; overflow: hidden; }
+  .section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .s1::before { background: linear-gradient(90deg, #ef4444, #f87171); }
+  .s2::before { background: linear-gradient(90deg, #ff9900, #fbbf24); }
+  .s3::before { background: linear-gradient(90deg, #a855f7, #c084fc); }
+  .s4::before { background: linear-gradient(90deg, #06b6d4, #67e8f9); }
+
+  h2 { font-size: 1.1em; font-weight: 700; margin-bottom: 4px; }
+  .desc { font-size: 0.83em; color: #666; margin-bottom: 20px; }
+
+  /* DIAGRAMS */
+  .diagram { display: flex; flex-direction: column; align-items: center; gap: 8px; margin: 16px 0; }
+  .row { display: flex; align-items: center; gap: 0; justify-content: center; }
+
+  .node { border-radius: 10px; padding: 10px 16px; text-align: center; font-size: 0.78em; font-weight: 700; white-space: nowrap; }
+  .n-dc { background: #0a1628; border: 2px solid #3b82f6; color: #93c5fd; }
+  .n-aws { background: #1a1200; border: 2px solid #ff9900; color: #fbbf24; }
+  .n-dcgw { background: #1e0a3c; border: 2px solid #a855f7; color: #d8b4fe; }
+  .n-loc { background: #1a0d0a; border: 2px solid #f97316; color: #fdba74; font-size: 0.72em; }
+  .n-vpn { background: #2a0a0a; border: 2px solid #ef4444; color: #fca5a5; font-size: 0.72em; }
+
+  .cable { display: flex; flex-direction: column; align-items: center; padding: 0 6px; }
+  .wire { height: 3px; border-radius: 99px; }
+  .w-vpn { background: linear-gradient(90deg, #ef4444, #f87171); box-shadow: 0 0 8px #ef444450; width: 60px; }
+  .w-dc { background: linear-gradient(90deg, #ff9900, #fbbf24); box-shadow: 0 0 8px #ff990050; width: 60px; }
+  .w-purple { background: linear-gradient(90deg, #a855f7, #c084fc); box-shadow: 0 0 8px #a855f750; width: 60px; }
+  .w-cyan { background: linear-gradient(90deg, #06b6d4, #67e8f9); box-shadow: 0 0 8px #06b6d450; width: 60px; }
+  .w-internal { background: linear-gradient(90deg, #334155, #475569); box-shadow: 0 0 6px #33415540; width: 80px; }
+  .wire-label { font-size: 0.6em; color: #555; margin-top: 3px; white-space: nowrap; text-align: center; }
+
+  /* INTERNAL LINK (bottom arc between DCs) */
+  .internal-link { display: flex; flex-direction: column; align-items: center; margin-top: 12px; padding: 10px 20px; border: 2px dashed #475569; border-top: none; border-radius: 0 0 16px 16px; }
+  .internal-label { font-size: 0.7em; color: #94a3b8; margin-top: 6px; }
+
+  /* FAILOVER */
+  .fail { position: relative; }
+  .fail-x { position: absolute; top: -2px; right: -8px; background: #ef4444; color: #fff; border-radius: 50%; width: 18px; height: 18px; display: flex; align-items: center; justify-content: center; font-size: 0.65em; font-weight: 900; }
+  .fail-path { font-size: 0.7em; color: #4ade80; margin-top: 4px; text-align: center; }
+
+  .tag { display: inline-block; padding: 3px 10px; border-radius: 6px; font-size: 0.72em; font-weight: 700; margin-top: 8px; }
+  .tag-red { background: #2a0a0a; color: #fca5a5; border: 1px solid #ef444440; }
+  .tag-orange { background: #1a0d00; color: #fdba74; border: 1px solid #ff990040; }
+  .tag-purple { background: #1e0a3c; color: #d8b4fe; border: 1px solid #a855f740; }
+  .tag-cyan { background: #0a2a2a; color: #67e8f9; border: 1px solid #06b6d440; }
+
+  .tip { background: #0a1a0a; border: 1px solid #22c55e40; border-radius: 8px; padding: 10px 14px; margin-top: 12px; font-size: 0.8em; color: #86efac; }
+  .tip strong { color: #22c55e; }
+
+  /* SITELINK SPECIAL */
+  .sitelink-path { display: flex; align-items: center; justify-content: center; gap: 0; margin: 16px 0; }
+  .sl-step { display: flex; flex-direction: column; align-items: center; gap: 4px; }
+  .sl-arrow { color: #06b6d4; font-size: 1.4em; padding: 0 4px; }
+  .no-region { background: #0a2a2a; border: 2px dashed #06b6d460; border-radius: 10px; padding: 10px 20px; text-align: center; margin-top: 8px; }
+  .no-region-text { font-size: 0.78em; color: #67e8f9; font-weight: 700; }
+  .no-region-sub { font-size: 0.65em; color: #555; margin-top: 4px; }
+
+  /* EXAM TABLE */
+  .exam { background: #111520; border-radius: 16px; padding: 28px; border: 1px solid #1e2235; }
+  .exam h2 { color: #ff9900; margin-bottom: 16px; }
+  table { width: 100%; border-collapse: collapse; }
+  th { background: #ff9900; color: #000; padding: 10px 14px; text-align: left; font-size: 0.85em; font-weight: 700; }
+  td { padding: 10px 14px; border-bottom: 1px solid #1e2235; font-size: 0.85em; }
+  tr:last-child td { border-bottom: none; }
+  .hl { font-weight: 700; }
+  .c-red { color: #f87171; } .c-orange { color: #fdba74; } .c-purple { color: #d8b4fe; } .c-cyan { color: #67e8f9; }
+</style>
+</head>
+<body>
+
+<h1>🔄 On-Premises Redundant Connections</h1>
+<p class="subtitle">How to make your DC ↔ AWS connection fault-tolerant</p>
+
+<!-- 1. REDUNDANT VPN -->
+<div class="section s1">
+  <h2 style="color:#f87171;">1. Redundant VPN (Active-Active)</h2>
+  <p class="desc">Two Data Centers, each with its own VPN connection. If one fails, the other takes over.</p>
+
+  <div class="diagram">
+    <div class="row">
+      <div class="node n-dc">🏢 DC 1<br><span style="font-size:0.8em; color:#666;">New York</span></div>
+      <div class="cable">
+        <div class="wire w-vpn"></div>
+        <div class="wire-label">VPN tunnel ✅</div>
+      </div>
+      <div class="node n-aws" style="padding:14px 24px;">☁️ AWS<br>VPC<br><span style="font-size:0.75em; color:#888;">(VGW)</span></div>
+      <div class="cable">
+        <div class="wire w-vpn"></div>
+        <div class="wire-label">VPN tunnel ✅</div>
+      </div>
+      <div class="node n-dc">🏢 DC 2<br><span style="font-size:0.8em; color:#666;">Los Angeles</span></div>
+    </div>
+    <div class="internal-link" style="width:340px;">
+      <div class="wire w-internal" style="width:100%;"></div>
+      <div class="internal-label">🔗 Internal corporate network (failover path)</div>
+    </div>
+  </div>
+
+  <div class="diagram" style="margin-top:20px;">
+    <div style="font-size:0.78em; color:#888; margin-bottom:6px;">What happens when one VPN dies:</div>
+    <div class="row">
+      <div class="node n-dc">🏢 DC 1</div>
+      <div class="cable fail">
+        <div class="wire w-vpn" style="opacity:0.3;"></div>
+        <div class="fail-x">X</div>
+        <div class="wire-label" style="color:#ef4444;">VPN DOWN</div>
+      </div>
+      <div class="node n-aws">☁️ AWS</div>
+      <div class="cable">
+        <div class="wire w-vpn"></div>
+        <div class="wire-label">still active ✅</div>
+      </div>
+      <div class="node n-dc">🏢 DC 2</div>
+    </div>
+    <div class="fail-path">✅ DC 1 → internal network → DC 2 → VPN → AWS</div>
+  </div>
+
+  <div class="tag tag-red">Both VPNs active at all times · encrypted IPsec · over public internet</div>
+</div>
+
+<!-- 2. REDUNDANT DIRECT CONNECT -->
+<div class="section s2">
+  <h2 style="color:#fbbf24;">2. Redundant Direct Connect</h2>
+  <p class="desc">Two DCs, each connected to a different Direct Connect Location. If one DC location goes down, traffic reroutes.</p>
+
+  <div class="diagram">
+    <div class="row">
+      <div class="node n-dc">🏢 DC 1</div>
+      <div class="cable">
+        <div class="wire w-dc"></div>
+        <div class="wire-label">fiber ✅</div>
+      </div>
+      <div class="node n-loc">🏗️ DC Location A<br><span style="color:#555;">Equinix NY</span></div>
+      <div class="cable">
+        <div class="wire w-dc"></div>
+      </div>
+      <div class="node n-aws" style="padding:14px 20px;">☁️ AWS<br>Region</div>
+      <div class="cable">
+        <div class="wire w-dc"></div>
+      </div>
+      <div class="node n-loc">🏗️ DC Location B<br><span style="color:#555;">Equinix LA</span></div>
+      <div class="cable">
+        <div class="wire w-dc"></div>
+        <div class="wire-label">fiber ✅</div>
+      </div>
+      <div class="node n-dc">🏢 DC 2</div>
+    </div>
+    <div class="internal-link" style="width:500px;">
+      <div class="wire w-internal" style="width:100%;"></div>
+      <div class="internal-label">🔗 Internal corporate network (failover path)</div>
+    </div>
+  </div>
+
+  <div class="tag tag-orange">Dedicated fiber · private · more expensive but more reliable than VPN</div>
+</div>
+
+<!-- 3. HYBRID -->
+<div class="section s3">
+  <h2 style="color:#d8b4fe;">3. Hybrid Failover (Direct Connect + VPN backup)</h2>
+  <p class="desc">Primary: Direct Connect (fast, stable). Backup: VPN (cheap, quick to set up). Best of both worlds.</p>
+
+  <div class="diagram">
+    <div class="row">
+      <div class="node n-dc">🏢 DC 1</div>
+      <div class="cable">
+        <div class="wire w-dc"></div>
+        <div class="wire-label">Direct Connect<br>(primary) ✅</div>
+      </div>
+      <div class="node n-aws" style="padding:14px 24px;">☁️ AWS<br>VPC</div>
+      <div class="cable">
+        <div class="wire w-vpn"></div>
+        <div class="wire-label">VPN<br>(backup) 💤</div>
+      </div>
+      <div class="node n-dc">🏢 DC 2</div>
+    </div>
+    <div class="internal-link" style="width:340px;">
+      <div class="wire w-internal" style="width:100%;"></div>
+      <div class="internal-label">🔗 Internal corporate network</div>
+    </div>
+  </div>
+
+  <div class="diagram" style="margin-top:16px;">
+    <div style="font-size:0.78em; color:#888; margin-bottom:6px;">When Direct Connect fails:</div>
+    <div class="row">
+      <div class="node n-dc">🏢 DC 1</div>
+      <div class="cable fail">
+        <div class="wire w-dc" style="opacity:0.3;"></div>
+        <div class="fail-x">X</div>
+        <div class="wire-label" style="color:#ef4444;">DC DOWN</div>
+      </div>
+      <div class="node n-aws">☁️ AWS</div>
+      <div class="cable">
+        <div class="wire w-vpn"></div>
+        <div class="wire-label" style="color:#4ade80;">VPN activates ✅</div>
+      </div>
+      <div class="node n-dc">🏢 DC 2</div>
+    </div>
+    <div class="fail-path">✅ DC 1 → internal network → DC 2 → VPN → AWS</div>
+  </div>
+
+  <div class="tag tag-purple">Most common real-world setup · DC for speed, VPN for cheap failover</div>
+</div>
+
+<!-- 4. SITELINK -->
+<div class="section s4">
+  <h2 style="color:#67e8f9;">4. Direct Connect Gateway — SiteLink</h2>
+  <p class="desc">Send data between Data Centers through DC Locations WITHOUT going through AWS Regions. Fastest private path.</p>
+
+  <div class="sitelink-path">
+    <div class="sl-step">
+      <div class="node n-dc">🏢 DC A<br><span style="font-size:0.8em; color:#666;">Tokyo</span></div>
+    </div>
+    <div class="cable"><div class="wire w-dc"></div><div class="wire-label">fiber</div></div>
+    <div class="sl-step">
+      <div class="node n-loc">🏗️ DC Location<br>Tokyo</div>
+    </div>
+    <div class="cable"><div class="wire w-cyan"></div><div class="wire-label">SiteLink</div></div>
+    <div class="sl-step">
+      <div class="node n-dcgw">🟣 DC Gateway<br><span style="font-size:0.8em; color:#888;">SiteLink ON</span></div>
+    </div>
+    <div class="cable"><div class="wire w-cyan"></div><div class="wire-label">SiteLink</div></div>
+    <div class="sl-step">
+      <div class="node n-loc">🏗️ DC Location<br>London</div>
+    </div>
+    <div class="cable"><div class="wire w-dc"></div><div class="wire-label">fiber</div></div>
+    <div class="sl-step">
+      <div class="node n-dc">🏢 DC B<br><span style="font-size:0.8em; color:#666;">London</span></div>
+    </div>
+  </div>
+
+  <div class="no-region">
+    <div class="no-region-text">Traffic stays within AWS backbone — NEVER enters an AWS Region</div>
+    <div class="no-region-sub">DC A → DC Location → DC Gateway → DC Location → DC B (shortest path on AWS network)</div>
+  </div>
+
+  <div class="tip" style="margin-top:16px;">
+    <strong>✅ When to use SiteLink:</strong> You have DCs in different countries and want them to communicate privately via the AWS backbone, without routing through any AWS region. Fastest possible private link.
+  </div>
+
+  <div class="tag tag-cyan">Requires DC Gateway with SiteLink enabled · data never touches AWS regions</div>
+</div>
+
+<!-- EXAM TABLE -->
+<div class="exam">
+  <h2>🎯 Exam Cheat Sheet</h2>
+  <table>
+    <tr><th>Question says...</th><th>Answer</th></tr>
+    <tr><td>Redundant connection to AWS via internet</td><td class="hl c-red">Active-active VPN from 2 DCs</td></tr>
+    <tr><td>Redundant private dedicated connection</td><td class="hl c-orange">2 Direct Connect from 2 DC Locations</td></tr>
+    <tr><td>DC primary + cheap backup</td><td class="hl c-purple">Direct Connect + VPN as failover</td></tr>
+    <tr><td>DC-to-DC traffic without going through AWS regions</td><td class="hl c-cyan">SiteLink (via DC Gateway)</td></tr>
+    <tr><td>Fastest private path between on-prem locations</td><td class="hl c-cyan">SiteLink (AWS backbone, no region routing)</td></tr>
+  </table>
+</div>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 5650
-**Lecciones completadas:** 147/205
+**Total XP:** 6000
+**Lecciones completadas:** 154/205
 
 ---
 

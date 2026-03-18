@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VPC Section — Visual Review</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #080b12; color: #e0e0e0; padding: 40px 30px; }
+
+  h1 { color: #ff9900; text-align: center; font-size: 2.4em; font-weight: 900; margin-bottom: 6px; }
+  .subtitle { text-align: center; color: #555; margin-bottom: 48px; font-size: 0.95em; }
+
+  .lesson { background: #111520; border-radius: 16px; padding: 26px; margin-bottom: 24px; border: 1px solid #1e2235; position: relative; overflow: hidden; }
+  .lesson::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+  .l1::before { background: linear-gradient(90deg, #3b82f6, #60a5fa); }
+  .l2::before { background: linear-gradient(90deg, #22c55e, #4ade80); }
+  .l3::before { background: linear-gradient(90deg, #06b6d4, #67e8f9); }
+  .l4::before { background: linear-gradient(90deg, #a855f7, #c084fc); }
+  .l5::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+  .l6::before { background: linear-gradient(90deg, #ec4899, #f472b6); }
+  .l7::before { background: linear-gradient(90deg, #ef4444, #f87171); }
+  .l8::before { background: linear-gradient(90deg, #84cc16, #a3e635); }
+  .l9::before { background: linear-gradient(90deg, #ff9900, #fb923c); }
+  .lsg::before { background: linear-gradient(90deg, #0ea5e9, #38bdf8); }
+
+  .lesson-header { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+  .lesson-num { font-size: 0.72em; font-weight: 700; padding: 3px 10px; border-radius: 99px; white-space: nowrap; }
+  .l1 .lesson-num { background: #0a1628; color: #60a5fa; border: 1px solid #3b82f640; }
+  .l2 .lesson-num { background: #0a200a; color: #4ade80; border: 1px solid #22c55e40; }
+  .l3 .lesson-num { background: #0a2a2a; color: #67e8f9; border: 1px solid #06b6d440; }
+  .l4 .lesson-num { background: #1e0a3c; color: #d8b4fe; border: 1px solid #a855f740; }
+  .l5 .lesson-num { background: #1a1200; color: #fbbf24; border: 1px solid #f59e0b40; }
+  .l6 .lesson-num { background: #2a0a1e; color: #f9a8d4; border: 1px solid #ec489940; }
+  .l7 .lesson-num { background: #2a0a0a; color: #fca5a5; border: 1px solid #ef444440; }
+  .l8 .lesson-num { background: #0a1a00; color: #bef264; border: 1px solid #84cc1640; }
+  .l9 .lesson-num { background: #1a0d00; color: #fdba74; border: 1px solid #ff990040; }
+  .lsg .lesson-num { background: #021b2e; color: #7dd3fc; border: 1px solid #0ea5e940; }
+
+  .lesson-title { font-size: 1.1em; font-weight: 700; }
+  .l1 .lesson-title { color: #60a5fa; }
+  .l2 .lesson-title { color: #4ade80; }
+  .l3 .lesson-title { color: #67e8f9; }
+  .l4 .lesson-title { color: #d8b4fe; }
+  .l5 .lesson-title { color: #fbbf24; }
+  .l6 .lesson-title { color: #f9a8d4; }
+  .l7 .lesson-title { color: #fca5a5; }
+  .l8 .lesson-title { color: #bef264; }
+  .l9 .lesson-title { color: #fdba74; }
+  .lsg .lesson-title { color: #7dd3fc; }
+
+  .lesson-oneliner { font-size: 0.83em; color: #666; margin-bottom: 18px; }
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .cols3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  .mini-diag { background: #0a0d16; border-radius: 10px; padding: 16px; }
+  .diag-row { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; }
+  .node { border-radius: 8px; padding: 8px 12px; text-align: center; font-size: 0.75em; font-weight: 700; white-space: nowrap; }
+  .n-blue { background: #0a1628; border: 2px solid #3b82f6; color: #93c5fd; }
+  .n-green { background: #0a200a; border: 2px solid #22c55e; color: #86efac; }
+  .n-cyan { background: #0a2a2a; border: 2px solid #06b6d4; color: #67e8f9; }
+  .n-purple { background: #1e0a3c; border: 2px solid #a855f7; color: #d8b4fe; }
+  .n-orange { background: #1a0d00; border: 2px solid #ff9900; color: #fbbf24; }
+  .n-red { background: #2a0a0a; border: 2px solid #ef4444; color: #fca5a5; }
+  .n-pink { background: #2a0a1e; border: 2px solid #ec4899; color: #f9a8d4; }
+  .n-gray { background: #131826; border: 2px solid #334155; color: #94a3b8; font-size: 0.68em; }
+  .n-yellow { background: #1a1200; border: 2px solid #eab308; color: #fde047; }
+  .n-sky { background: #021b2e; border: 2px solid #0ea5e9; color: #7dd3fc; }
+
+  .cable { display: flex; flex-direction: column; align-items: center; padding: 0 4px; align-self: center; }
+  .wire { height: 2px; width: 40px; border-radius: 99px; }
+  .wire-blue { background: linear-gradient(90deg, #3b82f6, #60a5fa); box-shadow: 0 0 6px #3b82f650; }
+  .wire-green { background: linear-gradient(90deg, #22c55e, #4ade80); box-shadow: 0 0 6px #22c55e50; }
+  .wire-purple { background: linear-gradient(90deg, #a855f7, #c084fc); box-shadow: 0 0 6px #a855f750; }
+  .wire-orange { background: linear-gradient(90deg, #ff9900, #fbbf24); box-shadow: 0 0 6px #ff990050; }
+  .wire-red { background: linear-gradient(90deg, #ef4444, #f87171); box-shadow: 0 0 6px #ef444450; }
+  .wire-sky { background: linear-gradient(90deg, #0ea5e9, #38bdf8); box-shadow: 0 0 6px #0ea5e950; }
+  .wire-label { font-size: 0.58em; color: #555; white-space: nowrap; text-align: center; margin-top: 3px; }
+  .arrow { color: #444; font-size: 1.2em; align-self: center; padding: 0 2px; }
+  .arrow-v { color: #444; font-size: 1.2em; text-align: center; line-height: 1; }
+
+  .quick-table { width: 100%; border-collapse: collapse; }
+  .quick-table th { background: #1e2235; color: #888; padding: 8px 12px; text-align: left; font-size: 0.75em; font-weight: 600; }
+  .quick-table td { padding: 8px 12px; border-bottom: 1px solid #1a1d2a; font-size: 0.8em; vertical-align: top; }
+  .quick-table tr:last-child td { border-bottom: none; }
+
+  .trap { background: #1a0a0a; border: 1px solid #ef444440; border-radius: 8px; padding: 10px 14px; margin-top: 8px; font-size: 0.8em; color: #fca5a5; }
+  .trap strong { color: #ef4444; }
+  .tip { background: #0a1a0a; border: 1px solid #22c55e40; border-radius: 8px; padding: 10px 14px; margin-top: 8px; font-size: 0.8em; color: #86efac; }
+  .tip strong { color: #22c55e; }
+
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 99px; font-size: 0.68em; font-weight: 700; }
+  .badge-blue { background: #0a1628; color: #60a5fa; border: 1px solid #3b82f640; }
+  .stack { display: flex; flex-direction: column; gap: 8px; }
+
+  .compare { background: #111520; border-radius: 16px; padding: 28px; border: 1px solid #1e2235; margin-top: 24px; }
+  .compare h2 { color: #ff9900; font-size: 1.1em; margin-bottom: 16px; }
+  .compare table { width: 100%; border-collapse: collapse; }
+  .compare th { background: #ff9900; color: #000; padding: 10px 14px; text-align: left; font-size: 0.82em; font-weight: 700; }
+  .compare td { padding: 10px 14px; border-bottom: 1px solid #1e2235; font-size: 0.82em; vertical-align: middle; }
+  .compare tr:last-child td { border-bottom: none; }
+  .hl { font-weight: 700; }
+  .c-blue { color: #60a5fa; } .c-green { color: #4ade80; } .c-cyan { color: #67e8f9; }
+  .c-purple { color: #d8b4fe; } .c-orange { color: #fdba74; } .c-red { color: #f87171; }
+
+  /* SG vs NACL specific */
+  .sg-nacl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+  .sg-box { background: #021b2e; border: 2px solid #0ea5e9; border-radius: 10px; padding: 14px; }
+  .nacl-box { background: #1a1200; border: 2px solid #f59e0b; border-radius: 10px; padding: 14px; }
+  .sg-box h3 { color: #38bdf8; font-size: 0.9em; margin-bottom: 10px; }
+  .nacl-box h3 { color: #fbbf24; font-size: 0.9em; margin-bottom: 10px; }
+  .flow-step { border-radius: 6px; padding: 6px 10px; font-size: 0.75em; margin: 4px 0; text-align: center; }
+  .flow-ok { background: #0a200a; border: 1px solid #22c55e50; color: #86efac; }
+  .flow-auto { background: #0a1628; border: 1px solid #3b82f650; color: #93c5fd; font-style: italic; }
+  .flow-bad { background: #2a0a0a; border: 1px solid #ef444450; color: #fca5a5; }
+  .flow-label { font-size: 0.65em; color: #555; text-align: center; margin: 2px 0; }
+</style>
+</head>
+<body>
+
+<h1>🗺️ Section 15 — VPC Visual Review</h1>
+<p class="subtitle">15.1 to 15.9 · Everything you need for the exam</p>
+
+<!-- 15.1 VPC OVERVIEW -->
+<div class="lesson l1">
+  <div class="lesson-header">
+    <span class="lesson-num">15.1</span>
+    <span class="lesson-title">VPC Overview</span>
+  </div>
+  <div class="lesson-oneliner">Your private network inside AWS. Everything lives here.</div>
+  <div class="cols">
+    <div class="mini-diag">
+      <div style="font-size:0.72em; color:#555; margin-bottom:10px;">VPC Anatomy</div>
+      <div class="diag-row" style="gap:8px; flex-direction:column; align-items:flex-start;">
+        <div class="node n-blue" style="width:100%;">🌐 VPC (10.0.0.0/16) — your full private network</div>
+        <div style="display:flex; gap:8px; width:100%;">
+          <div class="node n-green" style="flex:1; font-size:0.68em;">📗 Public Subnet<br>10.0.1.0/24<br>+ IGW access</div>
+          <div class="node n-gray" style="flex:1; font-size:0.68em;">🔒 Private Subnet<br>10.0.2.0/24<br>no direct internet</div>
+        </div>
+        <div style="display:flex; gap:8px; width:100%;">
+          <div class="node n-orange" style="flex:1; font-size:0.68em;">🌍 Internet Gateway<br>(public in/out)</div>
+          <div class="node n-yellow" style="flex:1; font-size:0.68em;">🔀 NAT Gateway<br>(private → internet, not reverse)</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <table class="quick-table">
+        <tr><th>Component</th><th>Purpose</th></tr>
+        <tr><td><span class="badge badge-blue">CIDR</span></td><td>IP range of your VPC (e.g. 10.0.0.0/16)</td></tr>
+        <tr><td><span class="badge badge-blue">IGW</span></td><td>Internet access for public subnets</td></tr>
+        <tr><td><span class="badge badge-blue">NAT GW</span></td><td>Private subnets go out to internet (not in)</td></tr>
+        <tr><td><span class="badge badge-blue">Route Table</span></td><td>Defines where traffic goes</td></tr>
+        <tr><td><span class="badge badge-blue">Security Group</span></td><td>Instance-level firewall (stateful)</td></tr>
+        <tr><td><span class="badge badge-blue">NACL</span></td><td>Subnet-level firewall (stateless)</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- SECURITY GROUP VS NACL -->
+<div class="lesson lsg">
+  <div class="lesson-header">
+    <span class="lesson-num">15.1 deep dive</span>
+    <span class="lesson-title">Security Group vs NACL</span>
+  </div>
+  <div class="lesson-oneliner">The two firewall layers — they always confuse people. Here's the real difference.</div>
+
+  <div class="sg-nacl-grid">
+    <!-- SG -->
+    <div class="sg-box">
+      <h3>🔵 Security Group — Instance level (stateful)</h3>
+      <div style="font-size:0.75em; color:#888; margin-bottom:10px;">Attached directly to EC2. Has memory — remembers connections.</div>
+      <div class="flow-step flow-ok">→ HTTP request comes IN ✅ (inbound rule allows it)</div>
+      <div class="flow-label">SG remembers this connection</div>
+      <div class="flow-step flow-auto">← Response goes OUT ✅ automatically (no outbound rule needed!)</div>
+      <div style="margin-top:10px; font-size:0.75em; color:#aaa;">
+        • Only <strong>Allow</strong> rules (no Deny)<br>
+        • All rules evaluated together<br>
+        • Default: all inbound denied, all outbound allowed
+      </div>
+    </div>
+    <!-- NACL -->
+    <div class="nacl-box">
+      <h3>🟡 NACL — Subnet level (stateless)</h3>
+      <div style="font-size:0.75em; color:#888; margin-bottom:10px;">Attached to the subnet. No memory — treats every packet independently.</div>
+      <div class="flow-step flow-ok">→ HTTP request comes IN ✅ (inbound rule #100 allows it)</div>
+      <div class="flow-label">NACL forgets immediately</div>
+      <div class="flow-step flow-bad">← Response tries to go OUT ❌ blocked! (needs explicit outbound rule)</div>
+      <div style="margin-top:10px; font-size:0.75em; color:#aaa;">
+        • Both <strong>Allow and Deny</strong> rules<br>
+        • Rules evaluated in number order (lowest first)<br>
+        • Default: all traffic allowed
+      </div>
+    </div>
+  </div>
+
+  <table class="quick-table">
+    <tr><th></th><th>Security Group</th><th>NACL</th></tr>
+    <tr><td>Level</td><td>Instance (EC2)</td><td>Subnet</td></tr>
+    <tr><td>Stateful?</td><td style="color:#4ade80;">✅ Yes — return traffic auto-allowed</td><td style="color:#f87171;">❌ No — must allow both directions</td></tr>
+    <tr><td>Rule types</td><td>Allow only</td><td>Allow AND Deny</td></tr>
+    <tr><td>Rule evaluation</td><td>All rules at once</td><td>In order (lowest number first)</td></tr>
+    <tr><td>Block a specific IP?</td><td style="color:#f87171;">❌ Can't — no Deny rules</td><td style="color:#4ade80;">✅ Yes — add a Deny rule</td></tr>
+  </table>
+  <div class="trap" style="margin-top:12px;"><strong>⚠️ Exam trap:</strong> "Block a malicious IP" → use <strong>NACL</strong> (has Deny). Security Groups can't block specific IPs.</div>
+</div>
+
+<!-- 15.2 VPC PEERING -->
+<div class="lesson l2">
+  <div class="lesson-header">
+    <span class="lesson-num">15.2</span>
+    <span class="lesson-title">VPC Peering</span>
+  </div>
+  <div class="lesson-oneliner">Connect two VPCs as if they were the same network. NOT transitive.</div>
+  <div class="cols">
+    <div class="mini-diag">
+      <div style="font-size:0.72em; color:#555; margin-bottom:10px;">NOT transitive — classic exam trap</div>
+      <div class="diag-row" style="gap:6px;">
+        <div class="node n-green">VPC A</div>
+        <div class="cable"><div class="wire wire-green"></div><div class="wire-label">peering ✅</div></div>
+        <div class="node n-green">VPC B</div>
+        <div class="cable"><div class="wire wire-green"></div><div class="wire-label">peering ✅</div></div>
+        <div class="node n-green">VPC C</div>
+      </div>
+      <div style="text-align:center; margin-top:12px; font-size:0.75em; color:#f87171;">
+        ❌ A cannot talk to C<br>even though B is in the middle
+      </div>
+      <div style="text-align:center; margin-top:6px; font-size:0.7em; color:#555;">
+        Fix → add direct peering A↔C
+      </div>
+    </div>
+    <div>
+      <div class="trap"><strong>⚠️ Exam traps:</strong><br>
+        • Not transitive → A↔B↔C ≠ A↔C<br>
+        • CIDRs cannot overlap<br>
+        • Works cross-account and cross-region
+      </div>
+      <div class="tip" style="margin-top:8px;"><strong>✅ When to use:</strong><br>
+        Few VPCs (2-3). For many VPCs → Transit Gateway.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 15.3 TRANSIT GATEWAY -->
+<div class="lesson l3">
+  <div class="lesson-header">
+    <span class="lesson-num">15.3</span>
+    <span class="lesson-title">Transit Gateway</span>
+  </div>
+  <div class="lesson-oneliner">The central hub connecting all your VPCs, VPNs, and Direct Connects.</div>
+  <div class="cols">
+    <div class="mini-diag">
+      <div style="font-size:0.72em; color:#555; margin-bottom:10px;">Hub-and-spoke — everything goes through TGW</div>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+        <div style="display:flex; gap:8px;">
+          <div class="node n-green" style="font-size:0.68em; padding:6px 10px;">VPC A</div>
+          <div class="node n-green" style="font-size:0.68em; padding:6px 10px;">VPC B</div>
+          <div class="node n-green" style="font-size:0.68em; padding:6px 10px;">VPC C</div>
+        </div>
+        <div style="color:#444; font-size:0.9em;">↕ ↕ ↕</div>
+        <div class="node n-cyan" style="padding:10px 24px;">🔄 Transit Gateway</div>
+        <div style="color:#444; font-size:0.9em;">↕ ↕</div>
+        <div style="display:flex; gap:8px;">
+          <div class="node n-red" style="font-size:0.68em; padding:6px 10px;">🏢 DC VPN</div>
+          <div class="node n-orange" style="font-size:0.68em; padding:6px 10px;">⚡ Direct Connect</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <table class="quick-table">
+        <tr><th>Feature</th><th>Detail</th></tr>
+        <tr><td>Peering vs TGW</td><td>Peering = 2 VPCs · TGW = N VPCs</td></tr>
+        <tr><td>Transitive?</td><td>✅ Yes (unlike VPC Peering)</td></tr>
+        <tr><td>Cross-region</td><td>✅ With TGW Peering</td></tr>
+        <tr><td>RAM</td><td>Share TGW across accounts</td></tr>
+        <tr><td>ECMP</td><td>Multiple VPNs = more bandwidth</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 15.4 VPC ENDPOINTS -->
+<div class="lesson l4">
+  <div class="lesson-header">
+    <span class="lesson-num">15.4</span>
+    <span class="lesson-title">VPC Endpoints</span>
+  </div>
+  <div class="lesson-oneliner">Access AWS services without going through the internet.</div>
+  <div class="cols3">
+    <div class="mini-diag">
+      <div style="font-size:0.7em; color:#a855f7; font-weight:700; margin-bottom:8px;">Gateway Endpoint</div>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+        <div class="node n-purple" style="font-size:0.7em;">EC2 inside VPC</div>
+        <div class="arrow-v">↓</div>
+        <div class="node n-purple" style="font-size:0.7em;">Route Table</div>
+        <div class="arrow-v">↓</div>
+        <div class="node n-purple" style="font-size:0.7em;">S3 / DynamoDB</div>
+      </div>
+      <div style="font-size:0.65em; color:#555; margin-top:8px; text-align:center;">Free · S3 and DynamoDB only<br>Only from inside the VPC</div>
+    </div>
+    <div class="mini-diag">
+      <div style="font-size:0.7em; color:#a855f7; font-weight:700; margin-bottom:8px;">Interface Endpoint</div>
+      <div style="display:flex; flex-direction:column; align-items:center; gap:4px;">
+        <div class="node n-purple" style="font-size:0.7em;">EC2 / On-prem</div>
+        <div class="arrow-v">↓</div>
+        <div class="node n-gray" style="font-size:0.68em;">ENI (private IP)</div>
+        <div class="arrow-v">↓</div>
+        <div class="node n-purple" style="font-size:0.7em;">Any AWS service</div>
+      </div>
+      <div style="font-size:0.65em; color:#555; margin-top:8px; text-align:center;">Paid · Any service<br>Works from on-prem too</div>
+    </div>
+    <div>
+      <div class="trap"><strong>⚠️ Trap:</strong><br>
+        Gateway Endpoint does NOT work from on-prem (Direct Connect / VPN). Use Interface Endpoint.
+      </div>
+      <div class="tip" style="margin-top:8px;"><strong>✅ Rule:</strong><br>
+        S3/DynamoDB from inside VPC → Gateway (free)<br>
+        Everything else / on-prem → Interface
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 15.5 ENDPOINT POLICIES -->
+<div class="lesson l5">
+  <div class="lesson-header">
+    <span class="lesson-num">15.5</span>
+    <span class="lesson-title">VPC Endpoint Policies</span>
+  </div>
+  <div class="lesson-oneliner">JSON attached to the endpoint controlling what can pass through it.</div>
+  <div class="cols">
+    <div class="mini-diag">
+      <div style="font-size:0.72em; color:#555; margin-bottom:10px;">3 security layers — all must allow</div>
+      <div style="display:flex; flex-direction:column; gap:6px;">
+        <div class="node n-yellow" style="font-size:0.72em; text-align:left;">1️⃣ IAM Policy (user/role)</div>
+        <div class="node n-yellow" style="font-size:0.72em; text-align:left;">2️⃣ Endpoint Policy (on the endpoint)</div>
+        <div class="node n-yellow" style="font-size:0.72em; text-align:left;">3️⃣ Resource Policy (S3, SQS, etc.)</div>
+      </div>
+      <div style="font-size:0.68em; color:#f87171; margin-top:8px; text-align:center;">All 3 must allow → otherwise DENIED</div>
+    </div>
+    <div>
+      <table class="quick-table">
+        <tr><th>Condition</th><th>Applies to</th></tr>
+        <tr><td><code style="color:#fbbf24;">aws:sourceVpce</code></td><td>1 specific endpoint</td></tr>
+        <tr><td><code style="color:#fbbf24;">aws:sourceVpc</code></td><td>Entire VPC (all its endpoints)</td></tr>
+        <tr><td><code style="color:#fbbf24;">aws:SourceIp</code></td><td><strong>Public IPs only</strong></td></tr>
+      </table>
+      <div class="trap" style="margin-top:8px;"><strong>⚠️ Trap:</strong> SourceIp does NOT work with private IPs. Use sourceVpce or sourceVpc instead.</div>
+    </div>
+  </div>
+</div>
+
+<!-- 15.6 PRIVATELINK -->
+<div class="lesson l6">
+  <div class="lesson-header">
+    <span class="lesson-num">15.6</span>
+    <span class="lesson-title">AWS PrivateLink</span>
+  </div>
+  <div class="lesson-oneliner">Expose a service to thousands of VPCs privately. NLB + ENI.</div>
+  <div class="cols">
+    <div class="mini-diag">
+      <div style="font-size:0.72em; color:#555; margin-bottom:10px;">PrivateLink Architecture</div>
+      <div class="diag-row" style="gap:4px;">
+        <div>
+          <div style="font-size:0.62em; color:#555; text-align:center; margin-bottom:4px;">Provider VPC</div>
+          <div class="node n-pink" style="font-size:0.7em;">[App] → NLB</div>
+        </div>
+        <div class="cable">
+          <div class="wire wire-purple" style="width:50px;"></div>
+          <div class="wire-label">PrivateLink</div>
+        </div>
+        <div>
+          <div style="font-size:0.62em; color:#555; text-align:center; margin-bottom:4px;">Client VPC</div>
+          <div class="node n-pink" style="font-size:0.7em;">ENI → [Consumer]</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="tip"><strong>✅ When to use:</strong><br>
+        Expose your service to other VPCs/accounts without VPC Peering. Scales to thousands.
+      </div>
+      <div class="trap" style="margin-top:8px;"><strong>⚠️ Traps:</strong><br>
+        Direct Connect + S3 → Interface Endpoint + <strong>Private VIF</strong> (not Gateway Endpoint)<br>
+        Cross-region → Interface Endpoint must be in the <strong>same region as the bucket</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 15.7 SITE TO SITE VPN -->
+<div class="lesson l7">
+  <div class="lesson-header">
+    <span class="lesson-num">15.7</span>
+    <span class="lesson-title">Site-to-Site VPN</span>
+  </div>
+  <div class="lesson-oneliner">Connect your DC to AWS over the public internet, encrypted with IPsec.</div>
+  <div class="cols">
+    <div class="mini-diag">
+      <div style="font-size:0.72em; color:#555; margin-bottom:8px;">Components</div>
+      <div class="diag-row" style="gap:4px;">
+        <div>
+          <div style="font-size:0.62em; color:#555; margin-bottom:4px;">On-prem</div>
+          <div class="node n-red" style="font-size:0.7em;">Customer<br>Gateway<br>(public IP)</div>
+        </div>
+        <div class="cable">
+          <div class="wire wire-red" style="width:50px;"></div>
+          <div class="wire-label">2 IPsec tunnels<br>(encrypted internet)</div>
+        </div>
+        <div>
+          <div style="font-size:0.62em; color:#555; margin-bottom:4px;">AWS</div>
+          <div class="node n-red" style="font-size:0.7em;">Virtual<br>Private GW<br>(VGW)</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <table class="quick-table">
+        <tr><th>Concept</th><th>Key point</th></tr>
+        <tr><td>Static routing</td><td>Edit routes manually</td></tr>
+        <tr><td>BGP (dynamic)</td><td>Routes auto-updated, needs ASN</td></tr>
+        <tr><td>NAT Gateway + VPN</td><td>❌ Can't give internet to on-prem</td></tr>
+        <tr><td>NAT Instance + VPN</td><td>✅ Can (more software control)</td></tr>
+        <tr><td>VPN CloudHub</td><td>Multiple DCs connected via one VGW</td></tr>
+        <tr><td>Multiple VPCs</td><td>Shared Services VPC + Peering</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- 15.8 CLIENT VPN -->
+<div class="lesson l8">
+  <div class="lesson-header">
+    <span class="lesson-num">15.8</span>
+    <span class="lesson-title">Client VPN</span>
+  </div>
+  <div class="lesson-oneliner">Connect your laptop to AWS via OpenVPN. Device → private network.</div>
+  <div class="cols">
+    <div class="mini-diag">
+      <div class="diag-row" style="gap:4px;">
+        <div class="node" style="background:#0a1a00; border:2px solid #84cc16; color:#bef264; font-size:0.72em;">💻 Your laptop<br>(OpenVPN)</div>
+        <div class="cable">
+          <div class="wire" style="background: linear-gradient(90deg,#84cc16,#a3e635); box-shadow:0 0 6px #84cc1650; width:40px;"></div>
+          <div class="wire-label">encrypted<br>internet</div>
+        </div>
+        <div class="node" style="background:#0a1a00; border:2px solid #84cc16; color:#bef264; font-size:0.72em;">Client VPN<br>Endpoint</div>
+        <div class="arrow">→</div>
+        <div class="stack" style="gap:4px;">
+          <div class="node n-green" style="font-size:0.65em; padding:4px 8px;">Private VPC</div>
+          <div class="node n-cyan" style="font-size:0.65em; padding:4px 8px;">on-prem (via S2S)</div>
+          <div class="node n-blue" style="font-size:0.65em; padding:4px 8px;">Internet (via IGW)</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="tip"><strong>Site-to-Site vs Client VPN:</strong><br>
+        S2S = network ↔ network (DC ↔ VPC)<br>
+        Client = device ↔ network (laptop ↔ VPC)
+      </div>
+      <div style="margin-top:8px; font-size:0.8em; color:#888;">
+        Works with: VPC Peering, Transit Gateway, Direct Connect
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 15.9 DIRECT CONNECT -->
+<div class="lesson l9">
+  <div class="lesson-header">
+    <span class="lesson-num">15.9</span>
+    <span class="lesson-title">Direct Connect</span>
+  </div>
+  <div class="lesson-oneliner">Dedicated physical cable. Private, stable, expensive. Takes 1+ month to provision.</div>
+  <div class="cols">
+    <div class="mini-diag">
+      <div style="font-size:0.72em; color:#555; margin-bottom:8px;">Physical → VIF → destination</div>
+      <div style="display:flex; flex-direction:column; gap:6px;">
+        <div class="diag-row" style="gap:4px;">
+          <div class="node n-orange" style="font-size:0.7em;">🏢 Your DC</div>
+          <div class="cable"><div class="wire wire-orange" style="width:30px;"></div><div class="wire-label">fiber cable</div></div>
+          <div class="node n-gray" style="font-size:0.68em;">🏗️ Equinix<br>(DC Location)</div>
+          <div class="cable"><div class="wire wire-orange" style="width:30px;"></div></div>
+          <div class="node n-orange" style="font-size:0.68em;">AWS Region</div>
+        </div>
+        <div style="display:flex; gap:6px; margin-top:4px;">
+          <div class="node" style="background:#1a0d00; border:1px solid #ff990050; color:#fdba74; font-size:0.65em; flex:1; text-align:center;">Public VIF<br>→ S3, public endpoints</div>
+          <div class="node" style="background:#1a0d00; border:1px solid #22c55e50; color:#4ade80; font-size:0.65em; flex:1; text-align:center;">Private VIF<br>→ EC2, RDS private</div>
+          <div class="node" style="background:#1a0d00; border:1px solid #06b6d450; color:#67e8f9; font-size:0.65em; flex:1; text-align:center;">Transit VIF<br>→ Transit Gateway</div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <table class="quick-table">
+        <tr><th>Concept</th><th>Key point</th></tr>
+        <tr><td>Encryption</td><td>❌ Not by default → add VPN on top</td></tr>
+        <tr><td>1 DC → many VPCs</td><td>Direct Connect Gateway</td></tr>
+        <tr><td>VPCs talk to each other too</td><td>DC Gateway + Transit VIF + TGW</td></tr>
+        <tr><td>LAG</td><td>Up to 4 dedicated connections, active-active</td></tr>
+        <tr><td>Failover</td><td>Second DC connection or VPN as backup</td></tr>
+        <tr><td>Provisioning time</td><td>1+ month</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- EXAM TABLE -->
+<div class="compare">
+  <h2>🎯 When to use what — Exam Cheat Sheet</h2>
+  <table>
+    <tr><th>Scenario</th><th>Solution</th></tr>
+    <tr><td>Connect 2-3 VPCs together</td><td class="hl c-green">VPC Peering</td></tr>
+    <tr><td>Connect N VPCs, VPNs, and DCs in a hub</td><td class="hl c-cyan">Transit Gateway</td></tr>
+    <tr><td>Access S3/DynamoDB without internet (from VPC)</td><td class="hl c-purple">Gateway Endpoint (free)</td></tr>
+    <tr><td>Access any AWS service without internet</td><td class="hl c-purple">Interface Endpoint (ENI)</td></tr>
+    <tr><td>Access S3 from on-prem via Direct Connect</td><td class="hl c-purple">Interface Endpoint + Private VIF</td></tr>
+    <tr><td>Expose your service to thousands of VPCs, no peering</td><td class="hl" style="color:#f9a8d4;">PrivateLink (NLB + ENI)</td></tr>
+    <tr><td>Connect DC to AWS via internet (encrypted, fast to set up)</td><td class="hl c-red">Site-to-Site VPN</td></tr>
+    <tr><td>Laptop → private AWS resources</td><td class="hl" style="color:#bef264;">Client VPN (OpenVPN)</td></tr>
+    <tr><td>Private dedicated connection, stable, high bandwidth</td><td class="hl c-orange">Direct Connect</td></tr>
+    <tr><td>Direct Connect + encryption</td><td class="hl c-orange">Direct Connect + VPN (IPsec)</td></tr>
+    <tr><td>1 DC → VPCs in multiple regions</td><td class="hl c-orange">DC Gateway + Private VIF</td></tr>
+    <tr><td>1 DC → VPCs that also talk to each other</td><td class="hl c-orange">DC Gateway + Transit VIF + TGW</td></tr>
+    <tr><td>Multiple offices connected via AWS hub</td><td class="hl c-red">VPN CloudHub (hub-and-spoke)</td></tr>
+    <tr><td>Block a specific malicious IP</td><td class="hl" style="color:#fbbf24;">NACL (has Deny rules)</td></tr>
+    <tr><td>Firewall that remembers connections (stateful)</td><td class="hl" style="color:#7dd3fc;">Security Group</td></tr>
+  </table>
+</div>
+
+</body>
+</html>

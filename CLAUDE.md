@@ -146,8 +146,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 13 - Cost Control
-- **Lección completada:** 15.4 VPC Endpoints ✅ (100% quiz)
-- **Próxima:** 15.5 VPC Endpoint Policies
+- **Lección completada:** 15.12 AWS Network Firewall ⚠️ (50% quiz)
+- **Próxima:** 15.13 VPC Quiz
 
 ---
 
