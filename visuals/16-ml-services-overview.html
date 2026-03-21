@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>AWS ML — Visión General</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #0d1117; color: #e0e0e0; padding: 32px 24px; max-width: 900px; margin: 0 auto; }
+
+  h1 { color: #ff9900; text-align: center; font-size: 1.8em; font-weight: 800; margin-bottom: 4px; }
+  .sub { text-align: center; color: #555; font-size: 0.85em; margin-bottom: 36px; }
+
+  .bloque { background: #161b22; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+  h2 { font-size: 1.05em; font-weight: 700; margin-bottom: 16px; }
+
+  /* TABLA SERVICIOS */
+  table { width: 100%; border-collapse: collapse; }
+  th { background: #21262d; color: #aaa; font-size: 0.75em; font-weight: 600; padding: 8px 12px; text-align: left; border-bottom: 2px solid #30363d; }
+  td { padding: 10px 12px; border-bottom: 1px solid #21262d; font-size: 0.85em; vertical-align: middle; }
+  tr:last-child td { border-bottom: none; }
+  .emoji { font-size: 1.1em; }
+  .badge { display: inline-block; border-radius: 6px; padding: 2px 8px; font-size: 0.72em; font-weight: 700; }
+
+  /* 3 OPCIONES */
+  .tres { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .opcion { border-radius: 10px; padding: 18px; }
+  .opcion-titulo { font-weight: 700; font-size: 0.95em; margin-bottom: 6px; }
+  .opcion-desc { font-size: 0.78em; color: #aaa; line-height: 1.6; margin-bottom: 10px; }
+  .opcion-cuado { font-size: 0.75em; color: #888; }
+
+  /* FLOWCHART */
+  .flow { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .nodo { border-radius: 8px; padding: 10px 20px; text-align: center; font-size: 0.85em; font-weight: 600; }
+  .flecha { color: #444; font-size: 1.1em; }
+  .bifurcacion { display: flex; gap: 32px; align-items: flex-start; }
+  .rama { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .label { font-size: 0.78em; font-weight: 700; }
+
+  .tip { background: #0d2020; border-left: 3px solid #22c55e; border-radius: 6px; padding: 12px 16px; margin-top: 16px; font-size: 0.82em; color: #86efac; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<h1>🧠 AWS ML — Visión General</h1>
+<p class="sub">Tres categorías para el examen SAP-C02</p>
+
+
+<!-- 1. SERVICIOS PRE-CONSTRUIDOS -->
+<div class="bloque">
+  <h2 style="color:#4ade80;">🍔 Servicios pre-construidos — "Mandar datos, recibir resultado"</h2>
+  <p style="font-size:0.8em; color:#666; margin-bottom:14px;">AWS ya entrenó el modelo. Vos solo llamás la API. Sin conocimiento de ML.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>SERVICIO</th>
+        <th>ENTRADA</th>
+        <th>SALIDA</th>
+        <th>CASO DE USO</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="emoji">🖼️</span> <strong>Rekognition</strong></td>
+        <td>Imagen / Video</td>
+        <td>Objetos, caras, texto, celebridades</td>
+        <td>Moderación de contenido, verificación de identidad</td>
+      </tr>
+      <tr>
+        <td><span class="emoji">🎤</span> <strong>Transcribe</strong></td>
+        <td>Audio</td>
+        <td>Texto (con redacción de PII)</td>
+        <td>Subtítulos, call centers, notas médicas</td>
+      </tr>
+      <tr>
+        <td><span class="emoji">🔊</span> <strong>Polly</strong></td>
+        <td>Texto</td>
+        <td>Audio (voz)</td>
+        <td>Texto a voz en apps</td>
+      </tr>
+      <tr>
+        <td><span class="emoji">🌐</span> <strong>Translate</strong></td>
+        <td>Texto (cualquier idioma)</td>
+        <td>Texto (otro idioma)</td>
+        <td>Localización de contenido</td>
+      </tr>
+      <tr>
+        <td><span class="emoji">📝</span> <strong>Comprehend</strong></td>
+        <td>Texto</td>
+        <td>Sentimiento, entidades, temas</td>
+        <td>Análisis de reviews, clasificación de emails</td>
+      </tr>
+      <tr>
+        <td><span class="emoji">🤖</span> <strong>Lex</strong></td>
+        <td>Voz / Texto</td>
+        <td>Intención del usuario + acción</td>
+        <td>Chatbots, asistentes virtuales</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<!-- 2. LAS 3 OPCIONES -->
+<div class="bloque">
+  <h2 style="color:#fbbf24;">Las 3 categorías — ¿Cuándo usar cada una?</h2>
+
+  <div class="tres">
+    <div class="opcion" style="background:#0a1f0a; border:2px solid #22c55e;">
+      <div class="opcion-titulo" style="color:#4ade80;">🍔 Pre-built</div>
+      <div class="opcion-desc">
+        Tarea común (imágenes, audio, texto, traducción).<br>
+        AWS entrenó el modelo. Vos llamás la API.
+      </div>
+      <div class="opcion-cuado">
+        <span style="color:#4ade80;">✓</span> Rápido, sin saber ML<br>
+        <span style="color:#f87171;">✗</span> Solo lo que AWS ofrece
+      </div>
+    </div>
+
+    <div class="opcion" style="background:#1a0d00; border:2px solid #ff9900;">
+      <div class="opcion-titulo" style="color:#fbbf24;">🧠 Bedrock</div>
+      <div class="opcion-desc">
+        Modelos de fundación (Claude, Titan, Llama) via API.<br>
+        Puede reemplazar la mayoría de pre-built + mucho más.
+      </div>
+      <div class="opcion-cuado">
+        <span style="color:#4ade80;">✓</span> Muy versátil, RAG, agentes<br>
+        <span style="color:#fbbf24;">⚠</span> Poco en el examen (es nuevo)
+      </div>
+    </div>
+
+    <div class="opcion" style="background:#150a2a; border:2px solid #a855f7;">
+      <div class="opcion-titulo" style="color:#d8b4fe;">👨‍🍳 SageMaker</div>
+      <div class="opcion-desc">
+        Construís, entrenás y desplegás tu propio modelo con tus propios datos.
+      </div>
+      <div class="opcion-cuado">
+        <span style="color:#4ade80;">✓</span> Control total<br>
+        <span style="color:#f87171;">✗</span> Necesitás saber ML
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 3. ÁRBOL DE DECISIÓN -->
+<div class="bloque">
+  <h2 style="color:#67e8f9;">🔀 ¿Qué usar en el examen?</h2>
+
+  <div class="flow">
+    <div class="nodo" style="background:#0a2a2a; border:2px solid #06b6d4; color:#67e8f9;">
+      "Necesito ML en mi app AWS"
+    </div>
+    <div class="flecha">↓</div>
+    <div class="nodo" style="background:#161b22; border:1px solid #30363d; color:#94a3b8; font-weight:400;">
+      ¿Es una tarea estándar? (imágenes, audio, texto, traducción)
+    </div>
+
+    <div class="bifurcacion">
+      <div class="rama">
+        <div class="label" style="color:#4ade80;">SÍ ↓</div>
+        <div class="nodo" style="background:#0a1f0a; border:2px solid #22c55e; color:#4ade80; min-width:160px;">
+          🍔 Pre-built Service<br>
+          <span style="font-size:0.78em; color:#888; font-weight:400;">Rekognition, Transcribe,<br>Polly, Comprehend…</span>
+        </div>
+      </div>
+
+      <div class="rama">
+        <div class="label" style="color:#f87171;">NO ↓</div>
+        <div class="nodo" style="background:#161b22; border:1px solid #30363d; color:#94a3b8; font-size:0.82em; font-weight:400; min-width:180px;">
+          ¿Necesitás entrenar con<br>tus propios datos?
+        </div>
+        <div class="bifurcacion" style="gap:20px;">
+          <div class="rama">
+            <div class="label" style="color:#fbbf24;">NO ↓</div>
+            <div class="nodo" style="background:#1a0d00; border:2px solid #ff9900; color:#fbbf24; min-width:120px;">
+              🧠 Bedrock
+            </div>
+          </div>
+          <div class="rama">
+            <div class="label" style="color:#d8b4fe;">SÍ ↓</div>
+            <div class="nodo" style="background:#150a2a; border:2px solid #a855f7; color:#d8b4fe; min-width:120px;">
+              👨‍🍳 SageMaker
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip">
+    <strong>Para el examen:</strong> Pre-built → tarea conocida. SageMaker → modelo propio. Bedrock → casi no aparece en SAP-C02 (es muy nuevo), pero existe.
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 6000
-**Lecciones completadas:** 154/205
+**Total XP:** 6675
+**Lecciones completadas:** 168/205
 
 ---
 
@@ -1448,4 +1448,9 @@
 | 2026-03-16 | 15 | 15.2 VPC Peering | 25 | ❌ Repasar (50%) |
 | 2026-03-16 | 15 | 15.3 Transit Gateway | 50 | ⭐ Perfecto (100%) |
 | 2026-03-16 | 15 | 15.4 VPC Endpoints | 50 | ⭐ Perfecto (100%) |
+| 2026-03-21 | 16 | 16.8 SageMaker Overview | 100 | ⭐ Perfecto (100%) |
+| 2026-03-21 | 16 | 16.9 Kendra Overview | 75 | ⭐ Perfecto (100%) |
+| 2026-03-21 | 16 | 16.10 Personalize Overview | 75 | ⭐ Perfecto (100%) |
+| 2026-03-21 | 16 | 16.11 Textract Overview | 75 | ⭐ Perfecto (100%) |
+| 2026-03-21 | 16 | 16.12 ML Services Summary | 125 | ⭐ Perfecto (100%) |
 

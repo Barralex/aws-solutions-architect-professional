@@ -220,14 +220,14 @@
 - [ ] 15.13 VPC Quiz
 
 ## 16. Machine Learning (12 clases | 26min)
-- [ ] 16.1 Rekognition Overview
-- [ ] 16.2 Transcribe Overview
-- [ ] 16.3 Polly Overview
-- [ ] 16.4 Translate Overview
-- [ ] 16.5 Lex + Connect
-- [ ] 16.6 Comprehend Overview
-- [ ] 16.7 Comprehend Medical Overview
-- [ ] 16.8 SageMaker AI Overview
+- [x] 16.1 Rekognition Overview ✅ (100% quiz)
+- [x] 16.2 Transcribe Overview ✅ (100% quiz)
+- [x] 16.3 Polly Overview ✅ (100% quiz)
+- [x] 16.4 Translate Overview ✅
+- [x] 16.5 Lex + Connect ✅ (100% quiz)
+- [x] 16.6 Comprehend Overview ✅
+- [x] 16.7 Comprehend Medical Overview ✅
+- [x] 16.8 SageMaker AI Overview ✅
 - [ ] 16.9 Kendra Overview
 - [ ] 16.10 Personalize Overview
 - [ ] 16.11 Textract Overview
