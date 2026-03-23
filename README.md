@@ -7,11 +7,11 @@ Study notes for AWS SAP-C02, assisted by Claude.
 ## 📊 Progress
 
 ```
-████████████████████████░░░░░░ 82% (168/205 lessons)
+█████████████████████████░░░░░ 83% (171/205 lessons)
 ```
 
-**Current section:** 16 - Machine Learning ✅
-**Next lesson:** 17.1 (next section)
+**Current section:** 17 - Other Services
+**Next lesson:** 17.4
 
 ## What's this
 

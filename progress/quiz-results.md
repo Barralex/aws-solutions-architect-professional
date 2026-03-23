@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 6675
-**Lecciones completadas:** 168/205
+**Total XP:** 6925
+**Lecciones completadas:** 171/205
 
 ---
 
@@ -1453,4 +1453,7 @@
 | 2026-03-21 | 16 | 16.10 Personalize Overview | 75 | ⭐ Perfecto (100%) |
 | 2026-03-21 | 16 | 16.11 Textract Overview | 75 | ⭐ Perfecto (100%) |
 | 2026-03-21 | 16 | 16.12 ML Services Summary | 125 | ⭐ Perfecto (100%) |
+| 2026-03-23 | 17 | 17.1 CICD in AWS | 100 | ⭐ Perfecto (100%) |
+| 2026-03-23 | 17 | 17.2 CodeGuru | 75 | ✅ Aprobado (75%) |
+| 2026-03-23 | 17 | 17.3 Alexa, Lex & Connect | 75 | ✅ Aprobado (75%) |
 

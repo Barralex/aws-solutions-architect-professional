@@ -145,9 +145,9 @@ Yo: "Correcto! +25 XP
 ```
 
 ### Estado actual:
-- **Sección:** 13 - Cost Control
-- **Lección completada:** 15.12 AWS Network Firewall ⚠️ (50% quiz)
-- **Próxima:** 15.13 VPC Quiz
+- **Sección:** 17 - Other Services
+- **Lección completada:** 17.3 Alexa, Lex & Connect ✅ (75% quiz)
+- **Próxima:** 17.4
 
 ---
 
