@@ -1,7 +1,7 @@
 # Quiz Results - AWS SAP-C02
 
-**Total XP:** 6925
-**Lecciones completadas:** 171/205
+**Total XP:** 7575
+**Lecciones completadas:** 180/205
 
 ---
 
@@ -1456,4 +1456,13 @@
 | 2026-03-23 | 17 | 17.1 CICD in AWS | 100 | ⭐ Perfecto (100%) |
 | 2026-03-23 | 17 | 17.2 CodeGuru | 75 | ✅ Aprobado (75%) |
 | 2026-03-23 | 17 | 17.3 Alexa, Lex & Connect | 75 | ✅ Aprobado (75%) |
+| 2026-03-23 | 17 | 17.4 Kinesis Video Streams | 100 | ⭐ Perfecto (100%) |
+| 2026-03-23 | 17 | 17.5 Amazon Workspaces | 100 | ⭐ Perfecto (100%) |
+| 2026-03-23 | 17 | 17.6 AppStream 2.0 | 50 | ⭐ Perfecto (100%) |
+| 2026-03-23 | 17 | 17.7 AWS Device Farm | 50 | ⭐ Perfecto (100%) |
+| 2026-03-23 | 17 | 17.8 Amazon Macie | 50 | ⭐ Perfecto (100%) |
+| 2026-03-23 | 17 | 17.9 Amazon SES | 75 | ✅ Aprobado (75%) |
+| 2026-03-23 | 17 | 17.10 Amazon Pinpoint | 50 | ⭐ Perfecto (100%) |
+| 2026-03-23 | 17 | 17.11 EC2 Image Builder | 100 | ⭐ Perfecto (100%) |
+| 2026-03-23 | 17 | 17.12 AWS IoT Core | 75 | ⭐ Perfecto (100%) |
 

@@ -146,8 +146,8 @@ Yo: "Correcto! +25 XP
 
 ### Estado actual:
 - **Sección:** 17 - Other Services
-- **Lección completada:** 17.3 Alexa, Lex & Connect ✅ (75% quiz)
-- **Próxima:** 17.4
+- **Lección completada:** 17.12 AWS IoT Core ⭐ (100% quiz)
+- **Próxima:** 17.13
 
 ---
 
