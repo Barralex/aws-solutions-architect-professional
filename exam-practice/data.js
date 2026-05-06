@@ -1,0 +1,130 @@
+window.examData = {
+  "metadata": {
+    "student": "Luis Barral",
+    "exam": "AWS Solutions Architect Professional (SAP-C02)",
+    "totalExams": 10,
+    "passMark": 75,
+    "started": "2026-05-06",
+    "lastUpdated": "2026-05-06"
+  },
+  "exams": [
+    {
+      "n": 1,
+      "name": "Practice Exam 1",
+      "date": null,
+      "scoreCorrect": null,
+      "scoreTotal": null,
+      "passed": null
+    },
+    {
+      "n": 2,
+      "name": "Practice Exam 2",
+      "date": null,
+      "scoreCorrect": null,
+      "scoreTotal": null,
+      "passed": null
+    },
+    {
+      "n": 3,
+      "name": "Practice Exam 3",
+      "date": null,
+      "scoreCorrect": null,
+      "scoreTotal": null,
+      "passed": null
+    },
+    {
+      "n": 4,
+      "name": "Practice Exam 4",
+      "date": null,
+      "scoreCorrect": null,
+      "scoreTotal": null,
+      "passed": null
+    },
+    {
+      "n": 5,
+      "name": "Practice Exam 5",
+      "date": null,
+      "scoreCorrect": null,
+      "scoreTotal": null,
+      "passed": null
+    },
+    {
+      "n": 6,
+      "name": "Practice Exam 6",
+      "date": null,
+      "scoreCorrect": null,
+      "scoreTotal": null,
+      "passed": null
+    },
+    {
+      "n": 7,
+      "name": "Practice Exam 7",
+      "date": null,
+      "scoreCorrect": null,
+      "scoreTotal": null,
+      "passed": null
+    },
+    {
+      "n": 8,
+      "name": "Practice Exam 8",
+      "date": null,
+      "scoreCorrect": null,
+      "scoreTotal": null,
+      "passed": null
+    },
+    {
+      "n": 9,
+      "name": "Practice Exam 9",
+      "date": null,
+      "scoreCorrect": null,
+      "scoreTotal": null,
+      "passed": null
+    },
+    {
+      "n": 10,
+      "name": "Practice Exam 10",
+      "date": null,
+      "scoreCorrect": null,
+      "scoreTotal": null,
+      "passed": null
+    }
+  ],
+  "patterns": [
+    {
+      "id": "sg-direction-inbound-outbound",
+      "topic": "Security Group rule direction (inbound vs outbound)",
+      "area": "VPC / Security Groups",
+      "description": "Hesitation when deciding which SG gets inbound vs outbound, and whether to reference the peer SG as source or destination. Two-tier patterns (app -> DB) are the typical trigger.",
+      "occurrences": 1,
+      "firstSeen": "2026-05-06",
+      "lastSeen": "2026-05-06",
+      "notes": "Mental model that worked: outbound = traffic LEAVING the SG owner; inbound = traffic ENTERING the SG owner. Reference the peer SG, not CIDR. Got the answer right but second-guessed."
+    },
+    {
+      "id": "sg-stateful-vs-nacl-stateless",
+      "topic": "Stateful Security Groups vs stateless NACLs (ephemeral ports)",
+      "area": "VPC / Security Groups",
+      "description": "Distractors that mention ephemeral port ranges in SG questions. Risk of opening unnecessary ranges because of confusion with NACL behavior.",
+      "occurrences": 1,
+      "firstSeen": "2026-05-06",
+      "lastSeen": "2026-05-06",
+      "notes": "Rule of thumb: SG = stateful, return traffic auto-allowed, never need ephemeral. NACL = stateless, must open ephemeral on the return side. If 'ephemeral' appears in a SG question, it is almost always a distractor."
+    }
+  ],
+  "trickyQuestions": [
+    {
+      "examN": null,
+      "date": "2026-05-06",
+      "area": "VPC / Security Groups",
+      "summary": "Two-tier EC2 + RDS MySQL: configure SG rules with least privilege. Pick the two correct rules.",
+      "patternIds": [
+        "sg-direction-inbound-outbound",
+        "sg-stateful-vs-nacl-stateless"
+      ],
+      "myAnswer": "Inbound 3306 on DB SG (src=EC2 SG) + Outbound 3306 on EC2 SG (dst=DB SG)",
+      "correctAnswer": "Inbound 3306 on DB SG (src=EC2 SG) + Outbound 3306 on EC2 SG (dst=DB SG)",
+      "result": "correct",
+      "keyInsight": "SGs are stateful \u2014 never open ephemeral port ranges. Reference SG-to-SG, not CIDRs, for two-tier traffic."
+    }
+  ]
+};

@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AWS SAP — Exam Practice Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Fira+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="data.js"></script>
+<style>
+  /* ===== Design System: Data-Dense Dashboard (UI/UX Pro Max) ===== */
+  :root {
+    --color-primary:        #1E40AF;
+    --color-secondary:      #3B82F6;
+    --color-accent:         #D97706;
+    --color-success:        #15803D;
+    --color-destructive:    #DC2626;
+
+    --color-bg:             #0B1220;
+    --color-bg-elevated:    #111B2E;
+    --color-surface:        #18243C;
+    --color-surface-hover:  #1F2D49;
+    --color-border:         #243553;
+    --color-border-strong:  #2F4670;
+
+    --color-fg:             #E6ECF7;
+    --color-fg-muted:       #94A3B8;
+    --color-fg-subtle:      #64748B;
+
+    --series-1: #3B82F6; --series-2: #D97706; --series-3: #15803D; --series-4: #DC2626;
+    --series-5: #A855F7; --series-6: #06B6D4; --series-7: #EAB308; --series-8: #EC4899;
+
+    --s-1: 4px;  --s-2: 8px;  --s-3: 12px;
+    --s-4: 16px; --s-5: 20px; --s-6: 24px; --s-8: 32px;
+
+    --r-sm: 6px; --r-md: 10px; --r-lg: 14px;
+
+    --fs-xs: 11px;  --fs-sm: 12px; --fs-base: 13px;
+    --fs-md: 14px;  --fs-lg: 16px; --fs-xl: 20px;
+    --fs-2xl: 28px;
+
+    --t-fast: 150ms; --t-base: 220ms;
+    --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Fira Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--color-bg);
+    color: var(--color-fg);
+    min-height: 100vh;
+    padding: var(--s-6);
+    font-size: var(--fs-base);
+    line-height: 1.5;
+  }
+
+  .num, td, th { font-variant-numeric: tabular-nums; }
+  .mono { font-family: 'Fira Code', monospace; }
+
+  /* Top bar */
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-bottom: var(--s-5);
+    margin-bottom: var(--s-6);
+    border-bottom: 1px solid var(--color-border);
+    gap: var(--s-4); flex-wrap: wrap;
+  }
+  .brand { display: flex; align-items: center; gap: var(--s-3); }
+  .brand-mark {
+    width: 38px; height: 38px;
+    border-radius: var(--r-md);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    display: grid; place-items: center;
+    color: #fff;
+  }
+  .brand-text h1 { font-size: var(--fs-lg); font-weight: 600; letter-spacing: -0.01em; line-height: 1.2; }
+  .brand-text p { color: var(--color-fg-muted); font-size: var(--fs-sm); }
+  .meta { color: var(--color-fg-muted); font-size: var(--fs-sm); font-family: 'Fira Code', monospace; }
+
+  /* KPI strip */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: var(--s-3);
+    margin-bottom: var(--s-6);
+  }
+  .kpi {
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--r-md);
+    padding: var(--s-4) var(--s-5);
+    transition: border-color var(--t-fast) var(--ease);
+  }
+  .kpi:hover { border-color: var(--color-border-strong); }
+  .kpi .kpi-label {
+    display: flex; align-items: center; gap: var(--s-2);
+    color: var(--color-fg-muted); font-size: var(--fs-xs); font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .kpi .kpi-label svg { width: 14px; height: 14px; }
+  .kpi .kpi-value {
+    font-family: 'Fira Code', monospace;
+    font-size: var(--fs-2xl); font-weight: 600; line-height: 1.1; margin-top: var(--s-1);
+  }
+  .kpi .kpi-sub { font-size: var(--fs-xs); color: var(--color-fg-subtle); margin-top: var(--s-1); }
+  .kpi.accent .kpi-value  { color: var(--color-accent); }
+  .kpi.success .kpi-value { color: #4ADE80; }
+  .kpi.danger .kpi-value  { color: #F87171; }
+  .kpi.primary .kpi-value { color: var(--color-secondary); }
+
+  /* Panel */
+  .panel {
+    background: var(--color-bg-elevated);
+    border: 1px solid var(--color-border);
+    border-radius: var(--r-lg);
+    padding: var(--s-6);
+    margin-bottom: var(--s-6);
+  }
+  .panel.hero {
+    background:
+      radial-gradient(circle at 0% 0%, rgba(59,130,246,0.08), transparent 40%),
+      radial-gradient(circle at 100% 100%, rgba(217,119,6,0.06), transparent 40%),
+      var(--color-bg-elevated);
+    border-color: var(--color-border-strong);
+  }
+  .panel-header {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: var(--s-5); gap: var(--s-3); flex-wrap: wrap;
+  }
+  .panel-title {
+    display: flex; align-items: center; gap: var(--s-2);
+    font-size: var(--fs-md); font-weight: 600; letter-spacing: -0.005em;
+  }
+  .panel-title svg { width: 16px; height: 16px; color: var(--color-secondary); }
+  .panel-subtitle { color: var(--color-fg-muted); font-size: var(--fs-sm); }
+
+  .delta-badge {
+    display: inline-flex; align-items: center; gap: var(--s-1);
+    font-family: 'Fira Code', monospace; font-size: var(--fs-sm); font-weight: 500;
+    padding: 4px 10px; border-radius: 999px; border: 1px solid transparent;
+  }
+  .delta-badge.up    { background: rgba(21,128,61,0.12); color: #4ADE80; border-color: rgba(74,222,128,0.25); }
+  .delta-badge.down  { background: rgba(220,38,38,0.10); color: #F87171; border-color: rgba(248,113,113,0.25); }
+  .delta-badge.flat  { background: rgba(148,163,184,0.10); color: var(--color-fg-muted); border-color: var(--color-border); }
+  .delta-badge svg   { width: 12px; height: 12px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; }
+  th {
+    text-align: left; padding: var(--s-2) var(--s-3);
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-fg-muted); font-size: var(--fs-xs); font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  td {
+    padding: var(--s-3); border-bottom: 1px solid var(--color-border);
+    font-size: var(--fs-base); vertical-align: top;
+  }
+  tbody tr { transition: background-color var(--t-fast) var(--ease); }
+  tbody tr:hover { background: var(--color-surface-hover); }
+  tr.pending td { color: var(--color-fg-subtle); }
+
+  /* Score bar */
+  .score-cell { display: flex; align-items: center; gap: var(--s-2); }
+  .score-bar { width: 110px; height: 6px; background: var(--color-surface); border-radius: 3px; overflow: hidden; }
+  .score-bar > span { display: block; height: 100%; background: linear-gradient(90deg, var(--color-secondary), var(--color-accent)); }
+  .score-pct { font-family: 'Fira Code', monospace; font-weight: 600; min-width: 44px; }
+
+  /* Pain points */
+  .patterns {
+    display: flex; flex-direction: column; gap: var(--s-3);
+  }
+  .pattern {
+    display: grid;
+    grid-template-columns: 36px 1fr auto;
+    gap: var(--s-4); align-items: flex-start;
+    padding: var(--s-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--r-md);
+    transition: border-color var(--t-fast) var(--ease), background-color var(--t-fast) var(--ease);
+  }
+  .pattern:hover { border-color: var(--color-border-strong); background: var(--color-surface-hover); }
+  .pattern.severity-3 { border-left: 3px solid var(--color-destructive); }
+  .pattern.severity-2 { border-left: 3px solid var(--color-accent); }
+  .pattern.severity-1 { border-left: 3px solid var(--color-secondary); }
+  .pattern .rank {
+    font-family: 'Fira Code', monospace; font-size: var(--fs-xl); font-weight: 700;
+    color: var(--color-fg-subtle); line-height: 1;
+  }
+  .pattern .pattern-body h4 {
+    font-size: var(--fs-md); font-weight: 600; margin-bottom: var(--s-1);
+  }
+  .pattern .pattern-body .area-tag {
+    display: inline-block;
+    font-size: var(--fs-xs); padding: 2px 8px; border-radius: var(--r-sm);
+    background: rgba(59,130,246,0.12); color: var(--color-secondary);
+    border: 1px solid rgba(59,130,246,0.25);
+    margin-bottom: var(--s-2); font-family: 'Fira Code', monospace;
+  }
+  .pattern .pattern-body .desc { color: var(--color-fg-muted); font-size: var(--fs-sm); margin-bottom: var(--s-2); }
+  .pattern .pattern-body .notes {
+    font-size: var(--fs-sm); color: var(--color-fg);
+    border-left: 2px solid var(--color-secondary);
+    padding-left: var(--s-3); margin-top: var(--s-2);
+  }
+  .pattern .pattern-body .notes b { color: var(--color-accent); font-weight: 500; }
+  .pattern .occ {
+    text-align: right;
+    font-family: 'Fira Code', monospace;
+  }
+  .pattern .occ .count {
+    font-size: var(--fs-2xl); font-weight: 700;
+    color: var(--color-accent); line-height: 1;
+  }
+  .pattern .occ .label {
+    font-size: var(--fs-xs); color: var(--color-fg-muted);
+    text-transform: uppercase; letter-spacing: 0.06em;
+  }
+  .pattern .occ .last-seen {
+    font-size: var(--fs-xs); color: var(--color-fg-subtle); margin-top: var(--s-2);
+  }
+
+  /* Badges */
+  .badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 2px 8px; border-radius: var(--r-sm);
+    font-size: var(--fs-xs); font-weight: 600;
+    border: 1px solid transparent; font-family: 'Fira Code', monospace;
+  }
+  .badge.ok      { background: rgba(21,128,61,0.12); color: #4ADE80; border-color: rgba(74,222,128,0.25); }
+  .badge.fail    { background: rgba(220,38,38,0.10); color: #F87171; border-color: rgba(248,113,113,0.25); }
+  .badge.pending { background: rgba(148,163,184,0.10); color: var(--color-fg-muted); border-color: var(--color-border); }
+  .badge svg { width: 11px; height: 11px; }
+
+  .insight {
+    color: var(--color-fg); font-size: var(--fs-sm);
+    margin-top: var(--s-2);
+    border-left: 2px solid var(--color-accent);
+    padding-left: var(--s-3); line-height: 1.55;
+  }
+  .insight b { color: var(--color-accent); font-weight: 500; }
+
+  .pattern-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: var(--s-2); }
+  .pattern-tag {
+    font-size: var(--fs-xs); padding: 2px 8px; border-radius: var(--r-sm);
+    background: var(--color-surface); color: var(--color-fg-muted);
+    border: 1px solid var(--color-border); font-family: 'Fira Code', monospace;
+  }
+
+  .empty {
+    color: var(--color-fg-subtle); font-size: var(--fs-sm);
+    padding: var(--s-4); text-align: center;
+  }
+
+  .chart-wrap { position: relative; height: 300px; }
+
+  :focus-visible {
+    outline: 2px solid var(--color-secondary);
+    outline-offset: 2px; border-radius: var(--r-sm);
+  }
+
+  @media (max-width: 600px) {
+    body { padding: var(--s-4); }
+    .panel { padding: var(--s-4); }
+    .pattern { grid-template-columns: 1fr; }
+    .pattern .occ { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="i-trending-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+    <symbol id="i-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 1 0 0-9h-1.8A7 7 0 1 0 4 14.5"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></symbol>
+    <symbol id="i-arrow-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></symbol>
+  </defs>
+</svg>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark"><svg width="20" height="20"><use href="#i-cloud"/></svg></div>
+    <div class="brand-text">
+      <h1>AWS SAP — Exam Practice Tracker</h1>
+      <p id="subtitle">Loading…</p>
+    </div>
+  </div>
+  <div class="meta" id="meta-line"></div>
+</header>
+
+<section class="kpi-strip" aria-label="Key metrics">
+  <div class="kpi success">
+    <div class="kpi-label"><svg><use href="#i-trophy"/></svg>Best score</div>
+    <div class="kpi-value num" id="kpi-best">—</div>
+    <div class="kpi-sub" id="kpi-best-exam">No data yet</div>
+  </div>
+  <div class="kpi accent">
+    <div class="kpi-label"><svg><use href="#i-target"/></svg>Average</div>
+    <div class="kpi-value num" id="kpi-avg">—</div>
+    <div class="kpi-sub" id="kpi-avg-sub">across completed exams</div>
+  </div>
+  <div class="kpi primary">
+    <div class="kpi-label"><svg><use href="#i-zap"/></svg>Latest</div>
+    <div class="kpi-value num" id="kpi-latest">—</div>
+    <div class="kpi-sub" id="kpi-latest-sub">no exams completed</div>
+  </div>
+  <div class="kpi success">
+    <div class="kpi-label"><svg><use href="#i-check"/></svg>Passed (≥75%)</div>
+    <div class="kpi-value num" id="kpi-passed">0</div>
+    <div class="kpi-sub" id="kpi-passed-sub">of 0 completed</div>
+  </div>
+  <div class="kpi primary">
+    <div class="kpi-label"><svg><use href="#i-flag"/></svg>Progress</div>
+    <div class="kpi-value num" id="kpi-progress">0/10</div>
+    <div class="kpi-sub">exams completed</div>
+  </div>
+</section>
+
+<section class="panel hero">
+  <div class="panel-header">
+    <div>
+      <div class="panel-title"><svg><use href="#i-trending-up"/></svg>Score evolution — 10 practice exams</div>
+      <div class="panel-subtitle">Aggregate score per exam. Pass mark dashed in green at 75%.</div>
+    </div>
+    <div id="delta-badge" class="delta-badge flat"><svg><use href="#i-minus"/></svg>No exams yet</div>
+  </div>
+  <div class="chart-wrap"><canvas id="hero-chart"></canvas></div>
+
+  <table style="margin-top: var(--s-6);">
+    <thead>
+      <tr>
+        <th>Exam</th>
+        <th>Date</th>
+        <th>Correct</th>
+        <th>Total</th>
+        <th>Score</th>
+        <th>Pass</th>
+        <th>Δ vs previous</th>
+      </tr>
+    </thead>
+    <tbody id="exams-body"></tbody>
+  </table>
+</section>
+
+<section class="panel">
+  <div class="panel-header">
+    <div>
+      <div class="panel-title"><svg><use href="#i-alert"/></svg>Pain points — patterns detected</div>
+      <div class="panel-subtitle">Recurring concepts where Luis hesitates. Higher occurrences = priority to study.</div>
+    </div>
+  </div>
+  <div class="patterns" id="patterns-list"></div>
+</section>
+
+<section class="panel">
+  <div class="panel-header">
+    <div class="panel-title"><svg><use href="#i-list"/></svg>Tricky questions log</div>
+    <div class="panel-subtitle">Only logged when Luis flags a question for review</div>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th style="width:64px">Exam</th>
+        <th style="width:180px">Area</th>
+        <th>Question &amp; key insight</th>
+        <th style="width:200px">Patterns triggered</th>
+        <th style="width:90px">Result</th>
+      </tr>
+    </thead>
+    <tbody id="tricky-body"></tbody>
+  </table>
+</section>
+
+<script>
+const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+
+async function load() {
+  const data = window.examData;
+  if (!data) {
+    document.body.innerHTML = '<div style="padding:40px;color:#F87171;font-family:monospace">Error: data.js not loaded. Run sync-data.sh to regenerate.</div>';
+    return;
+  }
+
+  document.getElementById('subtitle').textContent = `${data.metadata.student} · ${data.metadata.exam}`;
+  document.getElementById('meta-line').textContent = `Last update: ${data.metadata.lastUpdated} · Pass mark: ${data.metadata.passMark}%`;
+
+  // ===== Score helpers =====
+  const completed = data.exams.filter(e => e.scoreCorrect !== null && e.scoreTotal);
+  const pcts = completed.map(e => Math.round(e.scoreCorrect / e.scoreTotal * 100));
+
+  // ===== KPIs =====
+  if (completed.length) {
+    const best = Math.max(...pcts);
+    const bestIdx = pcts.indexOf(best);
+    const avg = Math.round(pcts.reduce((a, b) => a + b, 0) / pcts.length);
+    const latest = pcts[pcts.length - 1];
+    const latestExam = completed[completed.length - 1];
+    const passed = pcts.filter(p => p >= data.metadata.passMark).length;
+
+    document.getElementById('kpi-best').textContent = best + '%';
+    document.getElementById('kpi-best-exam').textContent = completed[bestIdx].name;
+    document.getElementById('kpi-avg').textContent = avg + '%';
+    document.getElementById('kpi-avg-sub').textContent = `across ${completed.length} completed`;
+    document.getElementById('kpi-latest').textContent = latest + '%';
+    document.getElementById('kpi-latest-sub').textContent = latestExam.name;
+    document.getElementById('kpi-passed').textContent = passed;
+    document.getElementById('kpi-passed-sub').textContent = `of ${completed.length} completed`;
+  }
+  document.getElementById('kpi-progress').textContent = `${completed.length}/${data.metadata.totalExams}`;
+
+  // ===== Hero chart =====
+  const labels = data.exams.map(e => e.name.replace('Practice Exam', 'PE'));
+  const scoreData = data.exams.map(e => (e.scoreCorrect !== null && e.scoreTotal) ? Math.round(e.scoreCorrect / e.scoreTotal * 100) : null);
+
+  // Delta badge
+  const dBadge = document.getElementById('delta-badge');
+  if (pcts.length >= 2) {
+    const d = pcts[pcts.length - 1] - pcts[pcts.length - 2];
+    if (d > 0) { dBadge.className = 'delta-badge up'; dBadge.innerHTML = `<svg><use href="#i-arrow-up"/></svg>+${d}% vs previous`; }
+    else if (d < 0) { dBadge.className = 'delta-badge down'; dBadge.innerHTML = `<svg><use href="#i-arrow-down"/></svg>${d}% vs previous`; }
+    else { dBadge.className = 'delta-badge flat'; dBadge.innerHTML = `<svg><use href="#i-minus"/></svg>No change`; }
+  } else if (pcts.length === 1) {
+    dBadge.className = 'delta-badge flat';
+    dBadge.innerHTML = `<svg><use href="#i-minus"/></svg>Baseline ${pcts[0]}%`;
+  }
+
+  Chart.defaults.font.family = "'Fira Sans', sans-serif";
+  Chart.defaults.font.size = 12;
+  Chart.defaults.color = css('--color-fg-muted');
+  Chart.defaults.borderColor = css('--color-border');
+
+  new Chart(document.getElementById('hero-chart'), {
+    type: 'line',
+    data: {
+      labels,
+      datasets: [
+        {
+          label: 'Score',
+          data: scoreData,
+          borderColor: css('--color-secondary'),
+          backgroundColor: 'rgba(59,130,246,0.12)',
+          tension: 0.35,
+          fill: true,
+          pointRadius: 6,
+          pointHoverRadius: 10,
+          pointBackgroundColor: css('--color-accent'),
+          pointBorderColor: '#fff',
+          pointBorderWidth: 2,
+          borderWidth: 3,
+          spanGaps: false
+        },
+        {
+          label: `Pass mark (${data.metadata.passMark}%)`,
+          data: labels.map(() => data.metadata.passMark),
+          borderColor: css('--color-success'),
+          borderDash: [6, 6],
+          pointRadius: 0,
+          fill: false,
+          borderWidth: 1.5
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      animation: { duration: 600, easing: 'easeOutCubic' },
+      scales: {
+        y: {
+          beginAtZero: true, max: 100,
+          ticks: { callback: v => v + '%', font: { family: "'Fira Code', monospace" } },
+          grid: { color: 'rgba(36,53,83,0.5)' }
+        },
+        x: { grid: { display: false }, ticks: { font: { family: "'Fira Code', monospace" } } }
+      },
+      plugins: {
+        legend: { labels: { boxWidth: 12, color: css('--color-fg') } },
+        tooltip: {
+          backgroundColor: css('--color-surface'),
+          titleColor: css('--color-fg'),
+          bodyColor: css('--color-fg-muted'),
+          borderColor: css('--color-border'),
+          borderWidth: 1, padding: 12,
+          callbacks: {
+            label: ctx => {
+              if (ctx.parsed.y === null) return ctx.dataset.label + ': pending';
+              const e = data.exams[ctx.dataIndex];
+              if (ctx.dataset.label === 'Score' && e.scoreCorrect != null) {
+                return `Score: ${ctx.parsed.y}% (${e.scoreCorrect}/${e.scoreTotal})`;
+              }
+              return ctx.dataset.label + ': ' + ctx.parsed.y + '%';
+            }
+          }
+        }
+      }
+    }
+  });
+
+  // ===== Exams table =====
+  const eBody = document.getElementById('exams-body');
+  data.exams.forEach((e, i) => {
+    const tr = document.createElement('tr');
+    if (e.scoreCorrect === null) {
+      tr.className = 'pending';
+      tr.innerHTML = `
+        <td class="mono">${e.name}</td>
+        <td class="mono">—</td>
+        <td class="mono">—</td>
+        <td class="mono">—</td>
+        <td><span class="badge pending">PENDING</span></td>
+        <td>—</td>
+        <td>—</td>`;
+      eBody.appendChild(tr);
+      return;
+    }
+    const p = Math.round(e.scoreCorrect / e.scoreTotal * 100);
+    const passed = p >= data.metadata.passMark;
+    // Find previous completed exam for delta
+    const prevCompleted = data.exams.slice(0, i).filter(x => x.scoreCorrect !== null).pop();
+    let deltaCell = '<span style="color: var(--color-fg-subtle)">—</span>';
+    if (prevCompleted) {
+      const prevP = Math.round(prevCompleted.scoreCorrect / prevCompleted.scoreTotal * 100);
+      const d = p - prevP;
+      if (d > 0)      deltaCell = `<span style="color:#4ADE80" class="mono">▲ +${d}%</span>`;
+      else if (d < 0) deltaCell = `<span style="color:#F87171" class="mono">▼ ${d}%</span>`;
+      else            deltaCell = `<span class="mono" style="color:var(--color-fg-muted)">■ 0%</span>`;
+    }
+    tr.innerHTML = `
+      <td class="mono">${e.name}</td>
+      <td class="mono">${e.date || '—'}</td>
+      <td class="mono">${e.scoreCorrect}</td>
+      <td class="mono">${e.scoreTotal}</td>
+      <td>
+        <div class="score-cell">
+          <span class="score-bar"><span style="width:${p}%"></span></span>
+          <span class="score-pct" style="color:var(--color-accent)">${p}%</span>
+        </div>
+      </td>
+      <td>${passed
+        ? '<span class="badge ok"><svg><use href="#i-check"/></svg>PASS</span>'
+        : '<span class="badge fail"><svg><use href="#i-x"/></svg>FAIL</span>'}</td>
+      <td>${deltaCell}</td>`;
+    eBody.appendChild(tr);
+  });
+
+  // ===== Patterns (pain points) =====
+  const patternsList = document.getElementById('patterns-list');
+  if (!data.patterns.length) {
+    patternsList.innerHTML = '<div class="empty">No patterns detected yet — keep flagging tricky questions and patterns will surface here.</div>';
+  } else {
+    const sortedPatterns = [...data.patterns].sort((a, b) => b.occurrences - a.occurrences);
+    sortedPatterns.forEach((p, idx) => {
+      let severity = 1;
+      if (p.occurrences >= 3) severity = 3;
+      else if (p.occurrences >= 2) severity = 2;
+      const card = document.createElement('div');
+      card.className = `pattern severity-${severity}`;
+      card.innerHTML = `
+        <div class="rank">#${idx + 1}</div>
+        <div class="pattern-body">
+          <span class="area-tag">${p.area}</span>
+          <h4>${p.topic}</h4>
+          <div class="desc">${p.description}</div>
+          ${p.notes ? `<div class="notes"><b>Note.</b> ${p.notes}</div>` : ''}
+        </div>
+        <div class="occ">
+          <div class="count">${p.occurrences}×</div>
+          <div class="label">occurrences</div>
+          <div class="last-seen">last: ${p.lastSeen}</div>
+        </div>`;
+      patternsList.appendChild(card);
+    });
+  }
+
+  // ===== Tricky questions =====
+  const tBody = document.getElementById('tricky-body');
+  if (!data.trickyQuestions.length) {
+    tBody.innerHTML = '<tr><td colspan="5" class="empty">No tricky questions logged yet.</td></tr>';
+  } else {
+    data.trickyQuestions.forEach(q => {
+      const tr = document.createElement('tr');
+      const tags = (q.patternIds || []).map(id => `<span class="pattern-tag">${id}</span>`).join('');
+      const badge = q.result === 'correct'
+        ? '<span class="badge ok"><svg><use href="#i-check"/></svg>OK</span>'
+        : q.result === 'wrong'
+          ? '<span class="badge fail"><svg><use href="#i-x"/></svg>FAIL</span>'
+          : '<span class="badge pending">FLAGGED</span>';
+      tr.innerHTML = `
+        <td class="mono">${q.examN ? 'PE' + q.examN : '—'}</td>
+        <td>${q.area}</td>
+        <td>
+          <div>${q.summary}</div>
+          ${q.keyInsight ? `<div class="insight"><b>Key insight.</b> ${q.keyInsight}</div>` : ''}
+        </td>
+        <td><div class="pattern-tags">${tags}</div></td>
+        <td>${badge}</td>`;
+      tBody.appendChild(tr);
+    });
+  }
+}
+load();
+</script>
+
+</body>
+</html>
